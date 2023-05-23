@@ -1,9 +1,14 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme } from './components/Themes';
 import { AnimatePresence } from 'framer-motion';
 import GlobalStyle from './globalStyles';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 
 //Components
 import Main from './components/Main';
@@ -16,7 +21,7 @@ import SoundBar from './subComponents/SoundBar';
 function App() {
   const location = useLocation();
   return (
-    <BrowserRouter>
+    <>
       <GlobalStyle />
 
       <ThemeProvider theme={lightTheme}>
@@ -45,7 +50,7 @@ you can add custom 404 component or message instead of Main component*/}
           </Routes>
         </AnimatePresence>
       </ThemeProvider>
-    </BrowserRouter>
+    </>
   );
 }
 
