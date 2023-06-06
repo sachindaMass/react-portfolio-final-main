@@ -1,15 +1,14 @@
-import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import LogoComponent from '../subComponents/LogoComponent';
 import PowerButton from '../subComponents/PowerButton';
 import SocialIcons from '../subComponents/SocialIcons';
-import { YinYang } from './AllSvgs';
 import Intro from './Intro';
 
 const MainContainer = styled.div`
-  background: ${(props) => props.theme.body};
+  // background: ${(props) => props.theme.body};
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -80,45 +79,10 @@ const SKILLS = styled(NavLink)`
   z-index: 1;
 `;
 
-const rotate = keyframes`
-from{
-    transform: rotate(0);
-}
-to{
-    transform: rotate(360deg);
-}
-`;
-
-const Center = styled.button`
-  position: absolute;
-  top: ${(props) => (props.click ? '85%' : '50%')};
-  left: ${(props) => (props.click ? '92%' : '50%')};
-  transform: translate(-50%, -50%);
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: all 1s ease;
-
-  & > :first-child {
-    animation: ${rotate} infinite 1.5s linear;
-  }
-
-  & > :last-child {
-    display: ${(props) => (props.click ? 'none' : 'inline-block')};
-    padding-top: 1rem;
-  }
-`;
-
 const DarkDiv = styled.div`
   position: absolute;
   top: 0;
-  background-color: #000;
+  background-color: white;
   bottom: 0;
   right: 50%;
   width: ${(props) => (props.click ? '50%' : '0%')};
@@ -129,27 +93,62 @@ const DarkDiv = styled.div`
 
 const Main = () => {
   const [click, setClick] = useState(false);
+  const [showText, setShowText] = useState(false);
+  const controls = useAnimation();
 
-  const handleClick = () => setClick(!click);
+  const handleClick = () => {
+    setClick(!click);
+  };
+
+  useEffect(() => {
+    if (showText) {
+      controls.start({ opacity: 1 });
+    } else {
+      controls.start({ opacity: 0 });
+    }
+  }, [showText, controls]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowText(true);
+    }, 1500);
+  }, []);
 
   return (
     <MainContainer>
       <DarkDiv click={click} />
       <Container>
+        <div
+          style={{
+            position: 'absolute',
+            top: click ? '85%' : '50%',
+            left: click ? '92%' : '50%',
+            transform: 'translate(-50%, -50%)',
+            border: 'none',
+            outline: 'none',
+            backgroundColor: 'transparent',
+            cursor: 'pointer',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            transition: 'all 1s ease',
+          }}
+          onClick={handleClick}
+        >
+          {/* ... existing code */}
+          <motion.h4
+            initial={{ opacity: 0 }}
+            animate={controls}
+            style={{ textAlign: 'center' }}
+          >
+            Our mission is to assist you in the very best way to achieve your
+            academic goals
+          </motion.h4>
+        </div>
         <PowerButton />
         <LogoComponent theme={click ? 'dark' : 'light'} />
         <SocialIcons theme={click ? 'dark' : 'light'} />
-
-        {/* <Center click={click}>
-          <YinYang
-            onClick={() => handleClick()}
-            width={click ? 120 : 200}
-            height={click ? 120 : 200}
-            fill="currentColor"
-          />
-          <span>click here</span>
-        </Center> */}
-
         <Contact target="_blank" href="mailto:info.royalepsom@gmail.com">
           <motion.h2
             initial={{

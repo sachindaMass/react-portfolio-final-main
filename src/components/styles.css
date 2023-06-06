@@ -1,0 +1,69 @@
+.container {
+  width: 100%;
+  background-color: lightblue;
+  animation: glowing-border 2s infinite;
+}
+
+@keyframes glowing-border {
+  0% {
+    box-shadow: 0 0 5px lightblue;
+  }
+  50% {
+    box-shadow: 0 0 20px lightblue, 0 0 40px lightblue;
+  }
+  100% {
+    box-shadow: 0 0 5px lightblue;
+  }
+}
+
+.row {
+  /* margin-bottom: 2rem; */
+}
+.falling-text {
+  display: inline-block;
+  position: relative;
+  animation-name: falling;
+  animation-duration: 10s; /* Adjust the animation duration as needed */
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes falling {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.racing-text {
+  padding: 0;
+  list-style-type: square;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.racing-text-item {
+  animation-name: racing;
+  animation-duration: 10s; /* Adjust the animation duration as needed */
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  text-align: justify;
+}
+
+@keyframes racing {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

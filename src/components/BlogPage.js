@@ -1,105 +1,11 @@
-// import React, { useEffect, useState } from 'react';
-// import styled from 'styled-components';
-// import img from '../assets/Images/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg';
-// import LogoComponent from '../subComponents/LogoComponent';
-// import SocialIcons from '../subComponents/SocialIcons';
-// import PowerButton from '../subComponents/PowerButton';
-
-// import { Blogs } from '../data/BlogData';
-// import BlogComponent from './BlogComponent';
-// import AnchorComponent from '../subComponents/Anchor';
-// import BigTitle from '../subComponents/BigTitlte';
-// import { motion } from 'framer-motion';
-
-// const MainContainer = styled(motion.div)`
-//   background-image: url(${img});
-//   background-size: cover;
-//   background-repeat: no-repeat;
-//   background-attachment: fixed;
-//   background-position: center;
-// `;
-// const Container = styled.div`
-//   background-color: ${(props) => `rgba(${props.theme.bodyRgba},0.8)`};
-//   width: 100%;
-//   height: auto;
-
-//   position: relative;
-//   padding-bottom: 5rem;
-// `;
-
-// const Center = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   padding-top: 10rem;
-// `;
-
-// const Grid = styled.div`
-//   display: grid;
-//   grid-template-columns: repeat(2, minmax(calc(10rem + 15vw), 1fr));
-//   grid-gap: calc(1rem + 2vw);
-// `;
-
-// // Framer-motion config
-// const container = {
-//   hidden: { opacity: 0 },
-//   show: {
-//     opacity: 1,
-
-//     transition: {
-//       staggerChildren: 0.5,
-//       duration: 0.5,
-//     },
-//   },
-// };
-
-// const BlogPage = () => {
-//   const [numbers, setNumbers] = useState(0);
-
-//   useEffect(() => {
-//     let num = (window.innerHeight - 70) / 30;
-//     setNumbers(parseInt(num));
-//   }, []);
-
-//   return (
-//     <MainContainer
-//       variants={container}
-//       initial="hidden"
-//       animate="show"
-//       exit={{
-//         opacity: 0,
-//         transition: { duration: 0.5 },
-//       }}
-//     >
-//       <Container>
-//         <LogoComponent />
-//         <PowerButton />
-//         <SocialIcons />
-//         <AnchorComponent number={numbers} />
-//         <Center>
-//           <Grid>
-//             {Blogs.map((blog) => {
-//               return <BlogComponent key={blog.id} blog={blog} />;
-//             })}
-//           </Grid>
-//         </Center>
-//         <BigTitle text="Courses" top="5rem" left="5rem" />
-//       </Container>
-//     </MainContainer>
-//   );
-// };
-
-// export default BlogPage;
-
 import React, { useRef, useEffect } from 'react';
-import styled, { keyframes, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { lightTheme } from './Themes';
 
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import AnchorComponent from '../subComponents/Anchor';
-import astronaut from '../assets/Images/spaceman.png';
 
 import { motion } from 'framer-motion';
 
@@ -113,23 +19,7 @@ const Box = styled.div`
   position: relative;
   overflow: hidden;
 `;
-const float = keyframes`
-0% { transform: translateY(-10px) }
-50% { transform: translateY(15px) translateX(15px) }
-100% { transform: translateY(-10px) }
 
-`;
-const Spaceman = styled.div`
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  width: 20vw;
-  animation: ${float} 4s ease infinite;
-  img {
-    width: 50%;
-    height: auto;
-  }
-`;
 const Main = styled.div`
   border: none;
   color: black; /* Set font color as white */
@@ -141,8 +31,9 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: calc(0.5rem + 1vw);
+  font-size: calc(0.3rem + 1vw);
   backdrop-filter: blur(50px);
+  background-color: lightblue;
 
   position: absolute;
   left: 50%;
@@ -150,7 +41,7 @@ const Main = styled.div`
   transform: translate(-50%, -50%);
   font-family: 'Ubuntu Mono', monospace;
   font-style: italic;
-  font-weight: bold; /* Set font style as bold */
+  // font-weight: bold; /* Set font style as bold */
 `;
 
 const Main1 = styled.div`
@@ -160,12 +51,14 @@ const Main1 = styled.div`
   width: 80%; /* Set width to a percentage value for responsiveness */
   max-width: 800px; /* Set a max-width for larger screens */
   height: auto;
-  line-height: 1;
+  line-height: 1, 5;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: calc(0.5rem + 1vw);
+  font-size: calc(0.3rem + 1vw);
   backdrop-filter: blur(50px);
+  background-color: lightblue;
 
   position: absolute;
   left: 50%;
@@ -173,18 +66,23 @@ const Main1 = styled.div`
   transform: translate(-50%, -50%);
   font-family: 'Ubuntu Mono', monospace;
   font-style: italic;
-  font-weight: bold; /* Set font style as bold */
+  // font-weight: bold; /* Set font style as bold */
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
-const Button = styled(motion.button)`
-  background-color: orange;
-  color: #fff;
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  cursor: pointer;
+const LeftColumn = styled.div`
+  flex: 1;
+  /* Add any additional styles for the left column */
 `;
+
+const RightColumn = styled.div`
+  flex: 1;
+  /* Add any additional styles for the right column */
+`;
+
 const FooterContainer = styled.div`
   background-color: lightblue;
   padding: 10px;
@@ -219,9 +117,6 @@ const container = {
 };
 
 const BlogPage = () => {
-  const handleFindRIE = () => {
-    window.open('https://maps.google.com', '_blank');
-  };
   const ref = useRef(null);
   const hiddenRef = useRef(null);
 
@@ -263,15 +158,11 @@ const BlogPage = () => {
       >
         <Container>
           <AnchorComponent number={numbers} />
-          {/* <BigTitle text="Courses" top="5rem" left="5rem" /> */}
         </Container>
         <Box>
           <LogoComponent theme="light" />
           <SocialIcons theme="light" />
           <PowerButton />
-          {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
           <Main>
             <motion.p
               initial={{ scale: 0 }}
@@ -314,12 +205,6 @@ const BlogPage = () => {
           </Main>
         </Box>
         <Box>
-          {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-          {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
           <Main>
             <motion.p
               initial={{ scale: 0 }}
@@ -365,13 +250,6 @@ const BlogPage = () => {
           </Main>
         </Box>
         <Box>
-          {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-          {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
           <Main1>
             <motion.p
               initial={{ scale: 0 }}
@@ -382,51 +260,47 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <u>Standard Courses for General English.</u>
-              <br></br>
-              <br></br>
-              The maximum number of students in a class is 4.
-              <br></br>
-              <br></br>
-              All courses comprise listening, speaking, reading and writing
-              skills, as well as grammar and punctuation, vocabulary and
-              spelling.
-              <br></br>
-              <br></br>
-              The standard courses each have 4 lessons of 1.5 hours. The lessons
-              are held once a week.
-              <br></br>
-              <br></br>
-              Prior to acceptance into a course the student will have a free
-              1–hour assessment with the teacher to determine the most useful
-              course for the student.
-              <br></br>
-              <br></br>
-              <ul>
-                <li>General English Elementary Level 1</li>
-                <li>General English Elementary Level 2</li>
-                <li>General English Elementary Level 3</li>
-                <li>General English Intermediate Level 1</li>
-                <li>General English Intermediate Level 2</li>
-                <li>General English Intermediate Level 3</li>
-                <li>Preparation the General IELTS Examination</li>
-                <li>
-                  Preparation for the Cambridge Certificate of Advanced English
-                  (CAE) Exam
-                </li>
-              </ul>
+              <LeftColumn>
+                <u>Standard Courses for General English.</u>
+                <br></br>
+                <br></br>
+                The maximum number of students in a class is 4.
+                <br></br>
+                <br></br>
+                All courses comprise listening, speaking, reading and writing
+                skills, as well as grammar and punctuation, vocabulary and
+                spelling.
+                <br></br>
+                <br></br>
+                The standard courses each have 4 lessons of 1.5 hours. The
+                lessons are held once a week.
+                <br></br>
+                <br></br>
+                Prior to acceptance into a course the student will have a free
+                1–hour assessment with the teacher to determine the most useful
+                course for the student.
+                <br></br>
+                <br></br>
+              </LeftColumn>
+              <RightColumn>
+                <ul>
+                  <li>General English Elementary Level 1</li>
+                  <li>General English Elementary Level 2</li>
+                  <li>General English Elementary Level 3</li>
+                  <li>General English Intermediate Level 1</li>
+                  <li>General English Intermediate Level 2</li>
+                  <li>General English Intermediate Level 3</li>
+                  <li>Preparation the General IELTS Examination</li>
+                  <li>
+                    Preparation for the Cambridge Certificate of Advanced
+                    English (CAE) Exam
+                  </li>
+                </ul>
+              </RightColumn>
             </motion.p>
           </Main1>
         </Box>
         <Box>
-          {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-          {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
           <Main>
             <motion.p
               initial={{ scale: 0 }}
@@ -457,14 +331,6 @@ const BlogPage = () => {
           </Main>
         </Box>
         <Box>
-          {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-          {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
           <Main>
             <motion.p
               initial={{ scale: 0 }}
@@ -494,14 +360,6 @@ const BlogPage = () => {
           </Main>
         </Box>
         <Box>
-          {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-          {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
           <Main>
             <motion.p
               initial={{ scale: 0 }}
@@ -533,14 +391,6 @@ const BlogPage = () => {
           </Main>
         </Box>
         <Box>
-          {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-          {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
           <Main>
             <motion.p
               initial={{ scale: 0 }}
@@ -551,7 +401,6 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              {/* <Container> */}
               <u>Proofreading and Editing assistance for your writing.</u>
               <br></br>
               <br></br>
@@ -577,7 +426,6 @@ const BlogPage = () => {
             </motion.p>
           </Main>
         </Box>
-        {/* <ContainerForFees> */}
         <FooterContainer>
           <p>
             All rights reserved by Royal Institute Epsom. Web Development by{' '}
@@ -590,7 +438,6 @@ const BlogPage = () => {
             </a>
           </p>
         </FooterContainer>
-        {/* </ContainerForFees> */}
         <BigTitle text="Courses" top="10%" right="10%" />
       </MainContainer>
     </ThemeProvider>

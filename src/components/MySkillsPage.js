@@ -692,14 +692,13 @@
 // export default MySkillsPage;
 
 import React, { useRef, useEffect } from 'react';
-import styled, { keyframes, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { lightTheme } from './Themes';
 
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 import PowerButton from '../subComponents/PowerButton';
 import AnchorComponent from '../subComponents/Anchor';
-import astronaut from '../assets/Images/spaceman.png';
 
 import { motion } from 'framer-motion';
 
@@ -713,23 +712,7 @@ const Box = styled.div`
   position: relative;
   overflow: hidden;
 `;
-const float = keyframes`
-0% { transform: translateY(-10px) }
-50% { transform: translateY(15px) translateX(15px) }
-100% { transform: translateY(-10px) }
 
-`;
-const Spaceman = styled.div`
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  width: 20vw;
-  animation: ${float} 4s ease infinite;
-  img {
-    width: 50%;
-    height: auto;
-  }
-`;
 const Main = styled.div`
   border: none;
   color: black; /* Set font color as white */
