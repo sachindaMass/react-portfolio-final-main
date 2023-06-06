@@ -145,7 +145,7 @@ const AboutPage = () => {
   useEffect(() => {
     const text =
       'Royal Institute Epson (RIE) is a New Zealand government registered academic institute. Its mission is to “Assist students in the very best way to achieve their academic goals”.';
-    const typingSpeed = 30; // Adjust typing speed (in milliseconds) here
+    const typingSpeed = 40; // Adjust typing speed (in milliseconds) here
     const element = document.getElementById('autoTypingText');
 
     let i = 0;
