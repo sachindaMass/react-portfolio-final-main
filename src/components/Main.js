@@ -137,14 +137,14 @@ const Main = () => {
           onClick={handleClick}
         >
           {/* ... existing code */}
-          <motion.h4
+          <motion.h1
             initial={{ opacity: 0 }}
             animate={controls}
             style={{ textAlign: 'center' }}
           >
             Our mission is to assist you in the very best way to achieve your
             academic goals
-          </motion.h4>
+          </motion.h1>
         </div>
         <PowerButton />
         <LogoComponent theme={click ? 'dark' : 'light'} />
