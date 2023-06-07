@@ -142,8 +142,9 @@ const Main = () => {
             animate={controls}
             style={{ textAlign: 'center' }}
           >
-            Our mission is to assist you in the very best way to achieve your
-            academic goals
+            ROYAL INSTITUTE EPSOM
+            <br></br>
+            Click Me
           </motion.h1>
         </div>
         <PowerButton />

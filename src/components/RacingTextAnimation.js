@@ -19,16 +19,16 @@ const RacingTextAnimation = () => {
         <b>Student Success:</b>&nbsp;&nbsp; Meeting student needs by creating an
         educational environment.
       </li>
-      <br></br>
+      {/* <br></br> */}
       <li className="racing-text-item">
         <b>Excellence:</b>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp; Maintaining a high standard of integrity and performance.
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Maintaining a high standard of
+        integrity and performance.
       </li>
-      <br></br>
+      {/* <br></br> */}
       <li className="racing-text-item">
-        <b>Collaboration:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        Seeking input from all sources and respective industries.
+        <b>Collaboration:</b>&nbsp;&nbsp;&nbsp;&nbsp; Seeking input from all
+        sources and respective industries.
       </li>
     </ul>
   );

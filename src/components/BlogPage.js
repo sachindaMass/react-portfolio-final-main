@@ -33,7 +33,7 @@ const Main = styled.div`
   align-items: center;
   font-size: calc(0.3rem + 1vw);
   backdrop-filter: blur(50px);
-  background-color: lightblue;
+  // background-color: lightblue;
 
   position: absolute;
   left: 50%;
@@ -58,7 +58,7 @@ const Main1 = styled.div`
   align-items: center;
   font-size: calc(0.3rem + 1vw);
   backdrop-filter: blur(50px);
-  background-color: lightblue;
+  // background-color: lightblue;
 
   position: absolute;
   left: 50%;
@@ -143,7 +143,7 @@ const BlogPage = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const numbers = 10; // Replace with your desired number of links
+  const numbers = 20; // Replace with your desired number of links
 
   return (
     <ThemeProvider theme={lightTheme}>
@@ -173,6 +173,29 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
+              Following are the other courses we advertised this year:
+              <br></br>
+              <br></br>
+              We are now starting the following courses, and please send us your
+              expression of interest. We will get back to you with more details:
+              <br></br>
+            </motion.p>
+          </Main>
+        </Box>
+        <Box>
+          <LogoComponent theme="light" />
+          <SocialIcons theme="light" />
+          <PowerButton />
+          <Main>
+            <motion.p
+              initial={{ scale: 0 }}
+              animate={{ rotate: 360, scale: 1 }}
+              transition={{
+                type: 'spring',
+                stiffness: 260,
+                damping: 20,
+              }}
+            >
               <u>
                 English lessons for students aged 16+ are available for{' '}
                 <span
@@ -182,7 +205,10 @@ const BlogPage = () => {
                 </span>
                 ,{' '}
                 <span
-                  style={{ textDecoration: 'underline double', color: 'pink' }}
+                  style={{
+                    textDecoration: 'underline double',
+                    color: '#db35c2',
+                  }}
                 >
                   Academic English
                 </span>
@@ -190,7 +216,7 @@ const BlogPage = () => {
                 <span
                   style={{
                     textDecoration: 'underline double',
-                    color: 'purple',
+                    color: '##7e2de0',
                   }}
                 >
                   Business English
@@ -215,20 +241,24 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <u>
-                Special Courses for Individual Students: Preparation for TOEIC,
-                TOEFL, IELTS and CAE.
-              </u>
+              <b>
+                <center> Special Courses for Individual Students:</center>
+              </b>
               <br></br>
               <br></br>
               <ul>
                 <li>General, Academic or Business English.</li>
-                <li>Preparation for TOEIC, TOEFL, IELTS and CAE.</li>
+                <li>
+                  Preparation for <strong>TOEIC, TOEFL, IELTS</strong> and{' '}
+                  <strong> CAE</strong>
+                </li>
               </ul>
               <br></br>
               Courses for individual students are offered at all levels:
-              beginner – advanced. They are designed to meet the student’s
-              specific English language needs.
+              beginner – advanced.
+              <br></br>
+              They are designed to meet the student’s specific English language
+              needs.
               <br></br>
               <br></br>
               <ul>
@@ -236,15 +266,18 @@ const BlogPage = () => {
                   A free 1-hr assessment is provided before the course begins to
                   determine these needs.
                 </li>
+                <br></br>
                 <li>
                   A minimum of four 1.5 hour lessons is necessary to provide the
                   opportunity for noticeable achievement.
                 </li>
+                <br></br>
                 <li>
                   The student can determine how often lessons are taken, but a
                   minimum of one lesson per week is necessary for success.
                 </li>
-                <li>The student can choose when to begin the course.</li>
+                <br></br>
+                <li> The student can choose when to begin the course.</li>
               </ul>
             </motion.p>
           </Main>
@@ -261,7 +294,9 @@ const BlogPage = () => {
               }}
             >
               <LeftColumn>
-                <u>Standard Courses for General English.</u>
+                <b>
+                  <center> Standard Courses for General English</center>
+                </b>
                 <br></br>
                 <br></br>
                 The maximum number of students in a class is 4.
@@ -283,19 +318,29 @@ const BlogPage = () => {
                 <br></br>
               </LeftColumn>
               <RightColumn>
-                <ul>
-                  <li>General English Elementary Level 1</li>
-                  <li>General English Elementary Level 2</li>
-                  <li>General English Elementary Level 3</li>
-                  <li>General English Intermediate Level 1</li>
-                  <li>General English Intermediate Level 2</li>
-                  <li>General English Intermediate Level 3</li>
-                  <li>Preparation the General IELTS Examination</li>
-                  <li>
-                    Preparation for the Cambridge Certificate of Advanced
-                    English (CAE) Exam
-                  </li>
-                </ul>
+                <strong>
+                  <ul>
+                    <li>General English Elementary Level 1</li>
+                    <br></br>
+                    <li>General English Elementary Level 2</li>
+                    <br></br>
+                    <li>General English Elementary Level 3</li>
+                    <br></br>
+                    <li>General English Intermediate Level 1</li>
+                    <br></br>
+                    <li>General English Intermediate Level 2</li>
+                    <br></br>
+                    <li>General English Intermediate Level 3</li>
+                    <br></br>
+                    <li>Preparation the General IELTS Examination</li>
+                    <br></br>
+                    <li>
+                      Preparation for the Cambridge Certificate of Advanced
+                      English (CAE) Exam
+                    </li>
+                    <br></br>
+                  </ul>
+                </strong>
               </RightColumn>
             </motion.p>
           </Main1>
@@ -311,22 +356,32 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <u>Academic English for second language learners (ESL).</u>
+              <b>
+                <center>
+                  Academic English for second language learners (ESL)
+                </center>
+              </b>
               <br></br>
               <br></br>
               Exam preparation classes for students wanting to enrol for
               universities, polytechnics or other advanced studies.
               <br></br>
               <br></br>
-              Each course has four 1.5 hour lessons held once weekly.
+              Each course has four 1.5 hour lessons held once weekly
               <br></br>
               <br></br>
-              <ul>
-                <li>Academic IELTS Writing</li>
-                <li>Academic IELTS Reading</li>
-                <li>Academic IELTS listening</li>
-                <li>Academic IELTS speaking</li>
-              </ul>
+              <strong>
+                <ul>
+                  <li>Academic IELTS Writing</li>
+                  <br></br>
+                  <li>Academic IELTS Reading</li>
+                  <br></br>
+                  <li>Academic IELTS listening</li>
+                  <br></br>
+                  <li>Academic IELTS speaking</li>
+                  <br></br>
+                </ul>
+              </strong>
             </motion.p>
           </Main>
         </Box>
@@ -341,21 +396,31 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <u>Business English for second language learners (ESL).</u>
+              <b>
+                <center>
+                  Business English for second language learners (ESL)
+                </center>
+              </b>
               <br></br>
               <br></br>
-              Exam preparation for the TOEIC test.
+              xam preparation for the TOEIC test.
               <br></br>
               <br></br>
               Each course has four 1.5 hour lessons held once weekly.
               <br></br>
               <br></br>
-              <ul>
-                <li>TOEIC business English writing</li>
-                <li>TOEIC business English reading</li>
-                <li>TOEIC business English listening</li>
-                <li>TOEIC business English speaking</li>
-              </ul>
+              <strong>
+                <ul>
+                  <li>TOEIC business English writing</li>
+                  <br></br>
+                  <li>TOEIC business English reading</li>
+                  <br></br>
+                  <li>TOEIC business English listening</li>
+                  <br></br>
+                  <li>TOEIC business English speaking</li>
+                  <br></br>
+                </ul>
+              </strong>
             </motion.p>
           </Main>
         </Box>
@@ -370,7 +435,9 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <u>Mini English Courses.</u>
+              <b>
+                <center>Mini English Courses</center>
+              </b>
               <br></br>
               <br></br>
               Each course has four 1-hour lessons, at least one lesson a week.
@@ -378,14 +445,23 @@ const BlogPage = () => {
               <br></br>
               <ul>
                 <li>1. Improve your English listening skills.</li>
+                <br></br>
                 <li>2. Improve your English Pronunciation.</li>
+                <br></br>
                 <li>3. Write an academic report.</li>
+                <br></br>
                 <li>4. Give an academic presentation.</li>
+                <br></br>
                 <li>5. Write your CV.</li>
+                <br></br>
                 <li>6. Practise for a job interview.</li>
+                <br></br>
                 <li>7. Give a business presentation.</li>
+                <br></br>
                 <li>8. Write business letters and emails.</li>
-                <li>9. Write a business report.</li>
+                <br></br>
+                <li>9. Write a business report</li>
+                <br></br>
               </ul>
             </motion.p>
           </Main>
@@ -401,7 +477,11 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <u>Proofreading and Editing assistance for your writing.</u>
+              <b>
+                <center>
+                  Proofreading and Editing assistance for your writing
+                </center>
+              </b>
               <br></br>
               <br></br>
               Services are available for:
@@ -411,9 +491,13 @@ const BlogPage = () => {
                 <li>
                   1. Personal writings such as memoirs or creative writing.
                 </li>
+                <br></br>
                 <li>2. Business letters and reports.</li>
+                <br></br>
                 <li>3. Academic dissertations and theses.</li>
+                <br></br>
                 <li>4. Papers for academic publications.</li>
+                <br></br>
               </ul>
               <br></br>
               Note: All the teachers are well qualified and experienced Kiwi
