@@ -143,13 +143,33 @@ CONTAINER FOR ALL CARDS .cards-container {
   transform: rotateY(180deg);
   box-shadow: 10px 10px 10px lightgray;
   border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.flip-card-front img {
-  width: 90%;
-  background-size: cover;
+.flip-card-back ul {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0;
 }
 
 .flip-card-back li {
-  color: #0b0b0b;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .flip-card-back {
+    padding: 0.5rem;
+  }
+
+  .flip-card-back ul {
+    margin-top: 0.5rem;
+  }
+
+  .flip-card-back li {
+    margin-bottom: 0.3rem;
+  }
 }

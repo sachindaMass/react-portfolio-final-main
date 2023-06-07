@@ -568,6 +568,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          <br></br>
           <div class="cards-container">
             <div class="card-1 flip-card">
               <div class="flip-card-inner">
@@ -588,6 +589,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          <br></br>
           <div class="cards-container">
             <div class="card-1 flip-card">
               <div class="flip-card-inner">
@@ -608,6 +610,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          <br></br>
           <div class="cards-container">
             <div class="card-1 flip-card">
               <div class="flip-card-inner">
@@ -628,6 +631,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          <br></br>
           <div class="cards-container">
             <div class="card-1 flip-card">
               <div class="flip-card-inner">
@@ -650,6 +654,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          <br></br>
           <div class="cards-container">
             <div class="card-1 flip-card">
               <div class="flip-card-inner">
@@ -658,6 +663,7 @@ const AboutPage = () => {
                     <li>Auckland university graduates</li> */}
                   <p>Click to see Accounting & Commerce</p>
                 </div>
+
                 <div class="flip-card-back">
                   {/* <h3>Maths & Physics</h3> */}
                   <ul>
@@ -670,6 +676,7 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
+          <br></br>
           {/* <h2>Maths & Physics</h2>
             <br></br>
             <br></br>
