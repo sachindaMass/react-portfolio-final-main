@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styled, { keyframes, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { lightThemeforOthers } from './Themes';
 import './styles.css';
 import FallingTextAnimation from './FallingTextAnimation';
@@ -12,25 +12,7 @@ import AnchorComponent from '../subComponents/Anchor';
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
 
-  font-family: 'Ubuntu Mono', monospace;
-  font-style: italic;
-  font-weight: bold;
-  font-size: calc(0.5rem + 1vw);
-  line-height: 1.5;
-  justify-content: center;
-  padding: 2rem;
-  text-align: justify;
-
-  @media (min-width: 768px) {
-    lex-direction: column; /* Change flex-direction to column */
-    align-items: center; /* Center the content horizontally */
-  }
-`;
 
 const Container1 = styled.div`
   display: flex;
@@ -50,22 +32,6 @@ const Container1 = styled.div`
   text-align: justify;
 `;
 
-const glowAnimation = keyframes`
-  0% {
-    text-shadow: none;
-  }
-  50% {
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
-  }
-  100% {
-    text-shadow: none;
-  }
-`;
-
-const Row = styled.div`
-  padding: 1rem;
-  backdrop-filter: blur(50px);
-`;
 const Row1 = styled.div`
   padding: 1rem;
   backdrop-filter: blur(50px);
@@ -97,13 +63,7 @@ const FirstLetter = styled.span`
   line-height: 0.6;
   margin-right: 0.1em;
 `;
-const GlowingText = styled.span`
-  position: relative;
 
-  &:hover::after {
-    animation: ${glowAnimation} 1s infinite;
-  }
-`;
 const AdultLearning = styled(motion.div)`
   width: 100%;
 
@@ -134,54 +94,12 @@ const Importance = styled(motion.div)`
   backdrop-filter: blur(50px);
 `;
 
-const MiddleContainerBlue = styled.div`
-  padding: 2rem;
-  margin-top: 2rem;
-  // background-color: lightblue;
 
-  @media (min-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  font-family: 'Ubuntu Mono', monospace;
-  font-style: italic;
-  font-weight: bold;
-  font-size: calc(0.5rem + 1vw);
-  line-height: 2;
-  justify-content: center;
-  padding: 2rem;
-  text-align: center;
-`;
 
-const Management = styled.p`
-  margin-bottom: 1rem;
-  // background-color: lightblue;
-  backdrop-filter: blur(50px);
-`;
-const TableContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  // background-color: lightblue;
-`;
 
-const StyledTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
 
-  th,
-  td {
-    border: 1px solid black;
-    padding: 8px;
-    justify-content: center;
-  }
 
-  th {
-    background-color: lightgray;
-  }
-  // background-color: lightblue;
-`;
+
 const MainContainer = styled.div`
   background-image: url(${img});
   background-size: cover;
@@ -193,10 +111,24 @@ const MainContainer = styled.div`
 const FooterContainer = styled.div`
   background-color: lightblue;
   padding: 10px;
-  color: white;
   text-align: center;
-`;
 
+  @media (max-width: 768px) {
+    /* Styles for screens with a maximum width of 768px or smaller */
+    padding: 20px;
+    font-size: 14px;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 480px) {
+    /* Styles for screens with a maximum width of 480px or smaller */
+    padding: 15px;
+    font-size: 12px;
+    width: 100%;
+    height: auto;
+  }
+`;
 // Animation keyframes
 const popupAnimation = {
   from: {
@@ -464,404 +396,12 @@ const AboutPage = () => {
             <br></br>
           </Importance>
         </SecondContainer>
-        <MiddleContainerBlue>
-          <Management>
-            <h2>
-              <u>Managment</u>
-            </h2>
-            <br></br>
-            <br></br>
-            <ParentElement
-              whileHover={{ rotate: 360, scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-              }}
-            >
-              <motion.p
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                RIE is managed by a qualified and experienced team. Director,
-                Dr. Sydney Fernando worked as a Senior Advisor in the Ministry
-                of Agriculture and Forestry in Wellington, NZ, and later joined
-                the education sector in Auckland. He managed Educational
-                Institutes over 13 years in Auckland and worked as a Director of
-                Studies, Associate Principal, and as a General Manager. Thus,
-                understand the NZ education system and experience in managing
-                them. Further, well experienced in the NZ professional pathways.
-                Teachers are also professionals from respective subject areas
-                and bring the experience and current world challenges to the
-                classroom with their own experience. In order to guide students
-                better, parents and students are encouraged to discuss their
-                academic pathways and subjects with tutors.
-              </motion.p>
-            </ParentElement>
-            <br></br>
-            <br></br>
-          </Management>
-        </MiddleContainerBlue>
-        <MiddleContainerBlue>
-          <Management>
-            <h2>
-              <u>Some of Our Staff Members</u>
-            </h2>
-            <br></br>
-            <br></br>
-            <ParentElement
-              whileHover={{ rotate: 360, scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-              }}
-            >
-              <motion.p
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                RIE recruit professionals with teaching experience in respective
-                subject areas. Professionals like Gayan, James, Devaki, Chintha,
-                Milidu, Sarath, Navidu, Panchali, and others make your learning,
-                exam practice perfect. They know where you are heading, they
-                have gone through the same path you are just entering.
-              </motion.p>
-            </ParentElement>
-            <br></br>
-            <br></br>
-          </Management>
-        </MiddleContainerBlue>
-        <Management></Management>
+        
+        
+        
 
-        <Container>
-          {/* <Row> */}
-          <div class="cards-container">
-            <div class="card-1 flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  <ul>
-                    {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                    <p>Click to see Maths & Physics</p>
-                  </ul>
-                </div>
-                <div class="flip-card-back">
-                  {/* <h3>Maths & Physics</h3> */}
-                  <ul>
-                    <li>Two Mechatronics Engineers</li>
-                    <br></br>
-                    <li>Auckland university graduates</li>
-                    <br></br>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br></br>
-          <div class="cards-container">
-            <div class="card-1 flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                  <p>Click to see Chemistry</p>
-                </div>
-                <div class="flip-card-back">
-                  {/* <h3>Maths & Physics</h3> */}
-                  <ul>
-                    <li>Chemical Engineer (PhD) Auckland Uni graduate</li>
-                    <br></br>
-                    <li>Auckland Uni Medical Student</li>
-                    <br></br>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br></br>
-          <div class="cards-container">
-            <div class="card-1 flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                  <p>Click to see Biology</p>
-                </div>
-                <div class="flip-card-back">
-                  {/* <h3>Maths & Physics</h3> */}
-                  <ul>
-                    <li>Researcher (PhD)</li>
-                    <br></br>
-                    <li>Masters Student researching at Auckland University.</li>
-                    <br></br>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br></br>
-          <div class="cards-container">
-            <div class="card-1 flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                  <p>Click to see Science</p>
-                </div>
-                <div class="flip-card-back">
-                  {/* <h3>Maths & Physics</h3> */}
-                  <ul>
-                    <li>Graduate Teacher</li>
-                    <br></br>
-                    <li>Over 20 years tutoring in Auckland</li>
-                    <br></br>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br></br>
-          <div class="cards-container">
-            <div class="card-1 flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                  <p>Click to see English</p>
-                </div>
-                <div class="flip-card-back">
-                  {/* <h3>Maths & Physics</h3> */}
-                  <ul>
-                    <li>
-                      Experience in teaching English to people of all ages
-                    </li>
-                    <br></br>
-                    <li>Accredited English tutors</li>
-                    <br></br>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br></br>
-          <div class="cards-container">
-            <div class="card-1 flip-card">
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
-                  {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                  <p>Click to see Accounting & Commerce</p>
-                </div>
+        
 
-                <div class="flip-card-back">
-                  {/* <h3>Maths & Physics</h3> */}
-                  <ul>
-                    <li>University lecturer (PhD) Auckland Uni graduate</li>
-                    <br></br>
-                    <li>Experience tutor</li>
-                    <br></br>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br></br>
-          {/* <h2>Maths & Physics</h2>
-            <br></br>
-            <br></br>
-            <ul>
-              <li>Two Mechatronics Engineers</li>
-              <li>Auckland university graduates</li>
-            </ul> */}
-          {/* </Row> */}
-          {/* <Row>
-            <h2>Chemistry</h2>
-            <br></br>
-            <br></br>
-            <ul>
-              <li>Chemical Engineer (PhD) Auckland Uni graduate</li>
-              <li>Auckland Uni Medical Student</li>
-            </ul>
-          </Row> */}
-          {/* <Row>
-            <h2>Biology</h2>
-            <br></br>
-            <br></br>
-            <ul>
-              <li>Researcher (PhD)</li>
-              <li>Masters Student researching at Auckland University.</li>
-            </ul>
-          </Row> */}
-          {/* <Row>
-            <h2>Science</h2>
-            <br></br>
-            <br></br>
-            <ul>
-              <li>Graduate Teacher</li>
-              <li>Over 20 years tutoring in Auckland</li>
-            </ul>
-          </Row> */}
-          {/* <Row>
-            <h2>English</h2>
-            <br></br>
-            <br></br>
-            <ul>
-              <li>Experience in teaching English to people of all ages</li>
-              <li>Accredited English tutors</li>
-            </ul>
-          </Row> */}
-          {/* <Row>
-            <h2>Accounting & Commerce</h2>
-            <br></br>
-            <br></br>
-            <ul>
-              <li>University lecturer (PhD) Auckland Uni graduate</li>
-              <li>Experience tutor</li>
-            </ul>
-          </Row> */}
-        </Container>
-        <SecondContainer>
-          <AdultLearning>
-            <h2>
-              <u>Fees</u>
-            </h2>
-            <br></br>
-            <br></br>
-            <ParentElement
-              whileHover={{ rotate: 360, scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-              }}
-            >
-              <motion.p
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                Need to pay fees monthly, so please pay at the beginning of the
-                month to the RIE account. All payments are through bank transfer
-                only, if you need any assistance please talk to the management
-                at any time.
-              </motion.p>
-            </ParentElement>
-            <br></br>
-            <br></br>
-          </AdultLearning>
-          <Tutoring>
-            <h2>
-              <u>Bank Details</u>
-            </h2>
-            <br></br>
-            <br></br>
-            <ParentElement
-              whileHover={{ rotate: 360, scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-              }}
-            >
-              <motion.p
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                Bank: ANZ Account
-              </motion.p>
-            </ParentElement>
-            <ParentElement
-              whileHover={{ rotate: 360, scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-              }}
-            >
-              <motion.p
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                {' '}
-                Name: Royal Institute
-              </motion.p>
-            </ParentElement>
-            <ParentElement
-              whileHover={{ rotate: 360, scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-              }}
-            >
-              <motion.p
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                {' '}
-                Account number: 01-0815-0128371-00
-              </motion.p>
-            </ParentElement>
-            <br></br>
-            <br></br>
-          </Tutoring>
-          <Importance>
-            <h2>
-              <u>Details to be added in the bank payment</u>
-            </h2>
-            <br></br>
-            <br></br>
-            <TableContainer>
-              <StyledTable>
-                <thead>
-                  <tr>
-                    <th>Particulars</th>
-                    <th>Code</th>
-                    <th>Reference</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Students' first name</td>
-                    <td>Class e.g., NCEA L1</td>
-                    <td>Paying month e.g., January</td>
-                  </tr>
-                  {/* Add more rows if needed */}
-                </tbody>
-              </StyledTable>
-            </TableContainer>
-          </Importance>
-        </SecondContainer>
         <SecondContainer>
           <AdultLearning>
             <h2>
@@ -955,19 +495,19 @@ const AboutPage = () => {
             </ParentElement>
           </AdultLearning>
         </SecondContainer>
-        <FooterContainer>
-          <p>
-            All rights reserved by Royal Institute Epsom. Web Development by{' '}
-            <a
-              href="https://github.com/sachindaMass"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              OneBinduwa
-            </a>
-          </p>
-        </FooterContainer>
       </MainContainer>
+      <FooterContainer>
+        <p>
+          All rights reserved by Royal Institute Epsom. Web Development by{' '}
+          <a
+            href="https://github.com/sachindaMass"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            OneBinduwa
+          </a>
+        </p>
+      </FooterContainer>
     </ThemeProvider>
   );
 };

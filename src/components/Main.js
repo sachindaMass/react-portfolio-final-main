@@ -21,7 +21,7 @@ const MainContainer = styled.div`
   h5,
   h6 {
     font-family: 'Karla', sans-serif;
-    font-weight: 500;
+    // font-weight: 500;
   }
 `;
 
@@ -37,24 +37,41 @@ const Contact = styled.a`
   text-decoration: none;
   z-index: 1;
 `;
-const BLOG = styled(NavLink)`
+
+const WORK = styled(NavLink)`
   color: ${(props) => props.theme.text};
   position: absolute;
-  top: 50%;
-  right: calc(1rem + 2vw);
-  transform: rotate(90deg) translate(-50%, -50%);
   text-decoration: none;
   z-index: 1;
-`;
-const WORK = styled(NavLink)`
-  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
+  ${(props) => props.position}
 
+  @media (max-width: 768px) {
+    ${(props) => props.responsivePosition}
+  }
+`;
+
+const LECS = styled(NavLink)`
+  color: ${(props) => props.theme.text};
   position: absolute;
-  top: 50%;
-  left: calc(1rem + 2vw);
-  transform: translate(-50%, -50%) rotate(-90deg);
   text-decoration: none;
   z-index: 1;
+  ${(props) => props.position}
+
+  @media (max-width: 768px) {
+    ${(props) => props.responsivePosition}
+  }
+`;
+
+const PAYMENT = styled(NavLink)`
+  color: ${(props) => props.theme.text};
+  position: absolute;
+  text-decoration: none;
+  z-index: 1;
+  ${(props) => props.position}
+
+  @media (max-width: 768px) {
+    ${(props) => props.responsivePosition}
+  }
 `;
 
 const BottomBar = styled.div`
@@ -89,6 +106,22 @@ const DarkDiv = styled.div`
   height: ${(props) => (props.click ? '100%' : '0%')};
   z-index: 1;
   transition: height 0.5s ease, width 1s ease 0.5s;
+`;
+
+const Button = styled.button`
+  color: ${(props) => props.theme.text};
+  position: absolute;
+  text-decoration: none;
+  z-index: 1;
+  ${(props) => props.position}
+
+  @media (max-width: 768px) {
+    ${(props) => props.responsivePosition}
+  }
+
+  &:hover h2 {
+    transform: perspective(1000px) rotateX(45deg);
+  }
 `;
 
 const Main = () => {
@@ -166,7 +199,11 @@ const Main = () => {
             Say hi..
           </motion.h2>
         </Contact>
-        <BLOG to="/blog">
+        <Button
+          as={NavLink}
+          to="/courses"
+          position="top: 15%; left: 30%; transform: translate(-50%, -50%);"
+        >
           <motion.h2
             initial={{
               y: -200,
@@ -181,8 +218,11 @@ const Main = () => {
           >
             Courses
           </motion.h2>
-        </BLOG>
-        <WORK to="/work" click={+click}>
+        </Button>
+        <WORK
+          to="/time-table"
+          position="top: 15%; left: 70%; transform: translate(-50%, -50%);"
+        >
           <motion.h2
             initial={{
               y: -200,
@@ -198,6 +238,44 @@ const Main = () => {
             Time Table
           </motion.h2>
         </WORK>
+        <LECS
+          to="/management"
+          position="top: 50%; left: 90%; transform: translate(-50%, -50%);"
+        >
+          <motion.h2
+            initial={{
+              y: -200,
+              transition: { type: 'spring', duration: 1.5, delay: 1 },
+            }}
+            animate={{
+              y: 0,
+              transition: { type: 'spring', duration: 1.5, delay: 1 },
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            Our Staff
+          </motion.h2>
+        </LECS>
+        <PAYMENT
+          to="/payment-details"
+          position="top: 50%; left: 10%; transform: translate(-50%, -50%);"
+        >
+          <motion.h2
+            initial={{
+              y: -200,
+              transition: { type: 'spring', duration: 1.5, delay: 1 },
+            }}
+            animate={{
+              y: 0,
+              transition: { type: 'spring', duration: 1.5, delay: 1 },
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            Fees
+          </motion.h2>
+        </PAYMENT>
         <BottomBar>
           <ABOUT to="/about" click={+click}>
             <motion.h2
@@ -215,7 +293,7 @@ const Main = () => {
               About Us
             </motion.h2>
           </ABOUT>
-          <SKILLS to="/skills">
+          <SKILLS to="/intro-us">
             <motion.h2
               initial={{
                 y: 200,

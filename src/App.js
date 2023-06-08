@@ -13,6 +13,8 @@ import WorkPage from './components/WorkPage';
 import MySkillsPage from './components/MySkillsPage';
 import SoundBar from './subComponents/SoundBar';
 import AdminDashboard from './components/AdminDashboard';
+import PaymentDetails from './components/PaymentDetails';
+import Management from './components/Managment';
 
 function App() {
   const location = useLocation();
@@ -35,13 +37,17 @@ function App() {
 
             <Route path="/about" element={<AboutPage />} />
 
-            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/courses" element={<BlogPage />} />
 
-            <Route path="/work" element={<WorkPage />} />
+            <Route path="/time-table" element={<WorkPage />} />
 
-            <Route path="/skills" element={<MySkillsPage />} />
+            <Route path="/intro-us" element={<MySkillsPage />} />
 
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
+
+            <Route path="/payment-details" element={<PaymentDetails />} />
+
+            <Route path="/management" element={<Management />} />
             {/* Below is to catch all the other routes and send the user to main component,
 you can add custom 404 component or message instead of Main component*/}
             <Route path="*" element={<Main />} />
