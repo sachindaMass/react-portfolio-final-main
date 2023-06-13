@@ -3,7 +3,6 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme } from './components/Themes';
 import { AnimatePresence } from 'framer-motion';
 import GlobalStyle from './globalStyles';
-// import { BrowserRouter } from 'react-router-dom';
 
 //Components
 import Main from './components/Main';
@@ -48,6 +47,7 @@ function App() {
             <Route path="/payment-details" element={<PaymentDetails />} />
 
             <Route path="/management" element={<Management />} />
+            <Route path="/admin" element={<Management />} />
             {/* Below is to catch all the other routes and send the user to main component,
 you can add custom 404 component or message instead of Main component*/}
             <Route path="*" element={<Main />} />
