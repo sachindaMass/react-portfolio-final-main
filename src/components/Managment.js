@@ -160,9 +160,8 @@ const Managment = () => {
         <MiddleContainerBlue>
           <Management>
             <h2>
-              <u>Managment</u>
+              Management
             </h2>
-            <br></br>
             <br></br>
             <ParentElement
               whileHover={{ rotate: 360, scale: 1 }}
