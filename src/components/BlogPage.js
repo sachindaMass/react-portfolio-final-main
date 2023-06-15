@@ -51,7 +51,7 @@ const Main1 = styled.div`
   width: 80%; /* Set width to a percentage value for responsiveness */
   max-width: 800px; /* Set a max-width for larger screens */
   height: auto;
-  line-height: 1, 5;
+  line-height: 1.5;
   display: flex;
   flex-direction: column;
   justify-content: center;
