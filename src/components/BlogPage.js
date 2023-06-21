@@ -27,7 +27,7 @@ const Main = styled.div`
   width: 80%; /* Set width to a percentage value for responsiveness */
   max-width: 800px; /* Set a max-width for larger screens */
   height: auto;
-  line-height: 1.5;
+  line-height: 1.2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +42,18 @@ const Main = styled.div`
   font-family: 'Ubuntu Mono', monospace;
   font-style: italic;
   // font-weight: bold; /* Set font style as bold */
+
+  @media (max-width: 768px) {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 1rem; /* Adjust padding for smaller screens */
+    font-size: calc(0.5rem + 1vw); /* Adjust font size for smaller screens */
+  }
+
+  @media (max-width: 576px) {
+    width: 95%; /* Adjust width for even smaller screens */
+    padding: 0.5rem; /* Adjust padding for even smaller screens */
+    font-size: calc(0.7rem + 1vw); /* Adjust font size for even smaller screens */
+  }
 `;
 
 const Main1 = styled.div`
@@ -51,9 +63,9 @@ const Main1 = styled.div`
   width: 80%; /* Set width to a percentage value for responsiveness */
   max-width: 800px; /* Set a max-width for larger screens */
   height: auto;
-  line-height: 1.5;
+  line-height: 1.2;
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: calc(0.3rem + 1vw);
@@ -231,7 +243,7 @@ const BlogPage = () => {
           </Main>
         </Box>
         <Box>
-          <Main>
+          <Main1>
             <motion.p
               initial={{ scale: 0 }}
               animate={{ rotate: 360, scale: 1 }}
@@ -280,7 +292,7 @@ const BlogPage = () => {
                 <li> The student can choose when to begin the course.</li>
               </ul>
             </motion.p>
-          </Main>
+          </Main1>
         </Box>
         <Box>
           <Main1>
@@ -297,7 +309,6 @@ const BlogPage = () => {
                 <b>
                   <center> Standard Courses for General English</center>
                 </b>
-                <br></br>
                 <br></br>
                 The maximum number of students in a class is 4.
                 <br></br>
@@ -362,7 +373,6 @@ const BlogPage = () => {
                 </center>
               </b>
               <br></br>
-              <br></br>
               Exam preparation classes for students wanting to enrol for
               universities, polytechnics or other advanced studies.
               <br></br>
@@ -403,7 +413,7 @@ const BlogPage = () => {
               </b>
               <br></br>
               <br></br>
-              xam preparation for the TOEIC test.
+              Exam preparation for the TOEIC test.
               <br></br>
               <br></br>
               Each course has four 1.5 hour lessons held once weekly.

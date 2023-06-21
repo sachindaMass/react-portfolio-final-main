@@ -41,6 +41,11 @@ const Main = styled.div`
   font-family: 'Ubuntu Mono', monospace;
   font-style: italic;
   font-weight: bold; /* Set font style as bold */
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    font-size: calc(0.6rem + 1vw);
+  }
 `;
 
 const Button = styled(motion.button)`
@@ -51,6 +56,11 @@ const Button = styled(motion.button)`
   font-size: 1.2rem;
   border-radius: 5px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+  }
 `;
 const FooterContainer = styled.div`
   background-color: lightblue;
