@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const Navbar = () => {
 
-    const [users,setUsers]=useState([])
-    const [fees,setFees]=useState([])
-    const [timeTableSaturday,setSaturday]=useState([])
-    const [timeTableMonday,setMonday]=useState([])
-    const [timeTableTuesday,setTuesday]=useState([])
-    const [timeTableWednesday,setWednesday]=useState([])
-    const [timeTableThursday,setThursday]=useState([])
-    const [timeTableFriday,setFriday]=useState([])
+    const [users, setUsers] = useState([])
+    const [fees, setFees] = useState([])
+    const [timeTableSaturday, setSaturday] = useState([])
+    const [timeTableMonday, setMonday] = useState([])
+    const [timeTableTuesday, setTuesday] = useState([])
+    const [timeTableWednesday, setWednesday] = useState([])
+    const [timeTableThursday, setThursday] = useState([])
+    const [timeTableFriday, setFriday] = useState([])
+
+    const [isDeleted, setIsDeleted] = useState(false);
+
+    const {id} = useParams();
 
     useEffect(() => {
         loadUsers();
@@ -22,41 +26,147 @@ const Navbar = () => {
         loadWednesday();
         loadThursday();
         loadFriday();
-    },[]);
+    }, []);
 
-    const loadUsers=async () =>{
-        const result=await axios.get("http://localhost:8080/courses")
+    const loadUsers = async () => {
+        const result = await axios.get("http://localhost:8080/courses")
         setUsers(result.data)
     }
 
-    const loadFees=async () => {
-        const result=await axios.get("http://localhost:8080/fees")
+    const deleteCourse = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/courses/${id}`)
+                loadUsers()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadUsers()
+            }
+        }
+    }
+
+    const loadFees = async () => {
+        const result = await axios.get("http://localhost:8080/fees")
         setFees(result.data)
     }
-    const loadSaturday=async () => {
-        const result=await axios.get("http://localhost:8080/time-table/saturday")
+
+    const deleteFees = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/fees/${id}`)
+                loadFees()
+            } catch (error) {
+                console.error('Error deleting fees:', error);
+                loadFees()
+            }
+        }
+
+    }
+    const loadSaturday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/saturday")
         setSaturday(result.data)
     }
-    const loadMonday=async () => {
-        const result=await axios.get("http://localhost:8080/time-table/monday")
+
+    const deleteSaturday = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/time-table/saturday/${id}`)
+                loadSaturday()
+            } catch (error) {
+                console.error('Error deleting saturday:', error);
+                loadSaturday()
+            }
+        }
+
+    }
+    const loadMonday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/monday")
         setMonday(result.data)
     }
 
-    const loadTuesday=async () => {
-        const result=await axios.get("http://localhost:8080/time-table/tuesday")
+    const deleteMonday = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/time-table/monday/${id}`)
+                loadMonday()
+            } catch (error) {
+                console.error('Error deleting monday:', error);
+                loadMonday()
+            }
+        }
+    }
+
+    const loadTuesday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/tuesday")
         setTuesday(result.data)
     }
-    const loadWednesday=async () => {
-        const result=await axios.get("http://localhost:8080/time-table/wednesday")
+
+    const deleteTuesday = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/time-table/tuesday/${id}`)
+                loadTuesday()
+            } catch (error) {
+                console.error('Error deleting tuesday:', error);
+                loadTuesday()
+            }
+        }
+    }
+    const loadWednesday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/wednesday")
         setWednesday(result.data)
     }
-    const loadThursday=async () => {
-        const result=await axios.get("http://localhost:8080/time-table/thursday")
+
+    const deleteWednesday = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/time-table/wednesday/${id}`)
+                loadWednesday()
+            } catch (error) {
+                console.error('Error deleting wednesday:', error);
+                loadWednesday()
+            }
+        }
+    }
+    const loadThursday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/thursday")
         setThursday(result.data)
     }
-    const loadFriday=async () => {
-        const result=await axios.get("http://localhost:8080/time-table/friday")
+
+    const deleteThursday = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/time-table/thursday/${id}`)
+                loadThursday()
+            } catch (error) {
+                console.error('Error deleting thursday:', error);
+                loadThursday()
+            }
+        }
+    }
+    const loadFriday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/friday")
         setFriday(result.data)
+    }
+    const deleteFriday = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/time-table/friday/${id}`)
+                loadFriday()
+            } catch (error) {
+                console.error('Error deleting friday:', error);
+                loadFriday()
+            }
+        }
+
     }
     return (
         <div>
@@ -87,46 +197,55 @@ const Navbar = () => {
                 <b>Course Details Table</b>
                 <div className='py-4'>
                     <div className='table-responsive'>
-                    <table className="table border shadow">
-                        <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">other Courses</th>
-                            <th scope="col">english Lessons</th>
-                            <th scope="col">special Courses</th>
-                            <th scope="col">standard Courses For English</th>
-                            <th scope="col">academic English Courses</th>
-                            <th scope="col">business English Courses</th>
-                            <th scope="col">mini English Courses</th>
-                            <th scope="col">proof Reading And Editing</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            users.map((user,index) => (
-                                <tr>
-                                <th scope="row" key={index}>{index+1}</th>
-                                <td>{user.otherCourses}</td>
-                                <td>{user.englishLessons}</td>
-                                <td>{user.specialCourses}</td>
-                                <td>{user.strandardCoursesForEnglish}</td>
-                                <td>{user.academicEnglishCourses}</td>
-                                <td>{user.bussinesEnglishCourses}</td>
-                                <td>{user.miniEnglishCourses}</td>
-                                <td>{user.proofReadingAndEditing}</td>
-                                <td>
-                                    <Link to="/courses" className="btn btn-primary mx-2">View Courses</Link>
-                                    <button className="btn btn-secondary mx-2">Update</button>
-                                    <button className="btn btn-danger mx-2">Delete</button>
-                                </td>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">other Courses</th>
+                                <th scope="col">english Lessons</th>
+                                <th scope="col">special Courses</th>
+                                <th scope="col">standard Courses For English</th>
+                                <th scope="col">academic English Courses</th>
+                                <th scope="col">business English Courses</th>
+                                <th scope="col">mini English Courses</th>
+                                <th scope="col">proof Reading And Editing</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                users.map((user, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{user.otherCourses}</td>
+                                        <td>{user.englishLessons}</td>
+                                        <td>{user.specialCourses}</td>
+                                        <td>{user.strandardCoursesForEnglish}</td>
+                                        <td>{user.academicEnglishCourses}</td>
+                                        <td>{user.bussinesEnglishCourses}</td>
+                                        <td>{user.miniEnglishCourses}</td>
+                                        <td>{user.proofReadingAndEditing}</td>
+                                        <td>
+                                            <Link to="/courses" className="btn btn-primary mx-2">View Courses</Link>
+                                            <button className="btn btn-secondary mx-2">Edit Course</button>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Course deleted successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteCourse(user.id)}
+                                                >
+                                                    Delete Course
+                                                </button>
+                                            )}
+                                        </td>
 
-                                </tr>
-                            ))
-                        }
+                                    </tr>
+                                ))
+                            }
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -153,9 +272,9 @@ const Navbar = () => {
                             </thead>
                             <tbody>
                             {
-                                fees.map((fee,index) => (
+                                fees.map((fee, index) => (
                                     <tr>
-                                        <th scope="row" key={index}>{index+1}</th>
+                                        <th scope="row" key={index}>{index + 1}</th>
                                         <td>{fee.fees}</td>
                                         <td>{fee.bank}</td>
                                         <td>{fee.bankName}</td>
@@ -164,9 +283,21 @@ const Navbar = () => {
                                         <td>{fee.code}</td>
                                         <td>{fee.reference}</td>
                                         <td>
-                                            <Link to="/payment-details" className="btn btn-primary mx-2">View Fees</Link>
-                                            <button className="btn btn-secondary mx-2">Update</button>
-                                            <button className="btn btn-danger mx-2">Delete</button>
+                                            <Link to="/payment-details" className="btn btn-primary mx-2">View
+                                                Fees</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-fees/${fee.id}`}
+                                            >Edit Fees</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Fee deleted successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteFees(fee.id)}
+                                                >
+                                                    Delete Fees
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -176,7 +307,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-             {/*------------------------------ SATURDAY -----------------------------*/}
+            {/*------------------------------ SATURDAY -----------------------------*/}
             <br/>
             <br/>
             <div className='container'>
@@ -196,16 +327,28 @@ const Navbar = () => {
                             </thead>
                             <tbody>
                             {
-                                timeTableSaturday.map((saturday,index) => (
+                                timeTableSaturday.map((saturday, index) => (
                                     <tr>
-                                        <th scope="row" key={index}>{index+1}</th>
+                                        <th scope="row" key={index}>{index + 1}</th>
                                         <td>{saturday.grade}</td>
                                         <td>{saturday.subject}</td>
                                         <td>{saturday.time}</td>
                                         <td>
                                             <Link to="/time-table" className="btn btn-primary mx-2">View SATURDAY</Link>
-                                            <button className="btn btn-secondary mx-2">Update</button>
-                                            <button className="btn btn-danger mx-2">Delete</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-saturday/${saturday.id}`}
+                                            >Edit Saturday</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Saturday deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteSaturday(saturday.id)}
+                                                >
+                                                    Delete Saturday
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -235,16 +378,28 @@ const Navbar = () => {
                             </thead>
                             <tbody>
                             {
-                                timeTableMonday.map((monday,index) => (
+                                timeTableMonday.map((monday, index) => (
                                     <tr>
-                                        <th scope="row" key={index}>{index+1}</th>
+                                        <th scope="row" key={index}>{index + 1}</th>
                                         <td>{monday.grade}</td>
                                         <td>{monday.subject}</td>
                                         <td>{monday.time}</td>
                                         <td>
                                             <Link to="/time-table" className="btn btn-primary mx-2">View MONDAY</Link>
-                                            <button className="btn btn-secondary mx-2">Update</button>
-                                            <button className="btn btn-danger mx-2">Delete</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-monday/${monday.id}`}
+                                            >Edit Monday</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Monday deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteMonday(monday.id)}
+                                                >
+                                                    Delete Monday
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -274,16 +429,28 @@ const Navbar = () => {
                             </thead>
                             <tbody>
                             {
-                                timeTableTuesday.map((tuesday,index) => (
+                                timeTableTuesday.map((tuesday, index) => (
                                     <tr>
-                                        <th scope="row" key={index}>{index+1}</th>
+                                        <th scope="row" key={index}>{index + 1}</th>
                                         <td>{tuesday.grade}</td>
                                         <td>{tuesday.subject}</td>
                                         <td>{tuesday.time}</td>
                                         <td>
                                             <Link to="/time-table" className="btn btn-primary mx-2">View TUESDAY</Link>
-                                            <button className="btn btn-secondary mx-2">Update</button>
-                                            <button className="btn btn-danger mx-2">Delete</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-tuesday/${tuesday.id}`}
+                                            >Edit Tuesday</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Tuesday deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteTuesday(tuesday.id)}
+                                                >
+                                                    Delete Tuesday
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -313,16 +480,29 @@ const Navbar = () => {
                             </thead>
                             <tbody>
                             {
-                                timeTableWednesday.map((Wednesday,index) => (
+                                timeTableWednesday.map((Wednesday, index) => (
                                     <tr>
-                                        <th scope="row" key={index}>{index+1}</th>
+                                        <th scope="row" key={index}>{index + 1}</th>
                                         <td>{Wednesday.grade}</td>
                                         <td>{Wednesday.subject}</td>
                                         <td>{Wednesday.time}</td>
                                         <td>
-                                            <Link to="/time-table" className="btn btn-primary mx-2">View WEDNESDAY</Link>
-                                            <button className="btn btn-secondary mx-2">Update</button>
-                                            <button className="btn btn-danger mx-2">Delete</button>
+                                            <Link to="/time-table" className="btn btn-primary mx-2">View
+                                                WEDNESDAY</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-wednesday/${Wednesday.id}`}
+                                            >Edit Wednesday</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Wednesday deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteWednesday(Wednesday.id)}
+                                                >
+                                                    Delete Wednesday
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -352,16 +532,28 @@ const Navbar = () => {
                             </thead>
                             <tbody>
                             {
-                                timeTableThursday.map((thursday,index) => (
+                                timeTableThursday.map((thursday, index) => (
                                     <tr>
-                                        <th scope="row" key={index}>{index+1}</th>
+                                        <th scope="row" key={index}>{index + 1}</th>
                                         <td>{thursday.grade}</td>
                                         <td>{thursday.subject}</td>
                                         <td>{thursday.time}</td>
                                         <td>
                                             <Link to="/time-table" className="btn btn-primary mx-2">View THURSDAY</Link>
-                                            <button className="btn btn-secondary mx-2">Update</button>
-                                            <button className="btn btn-danger mx-2">Delete</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-thursday/${thursday.id}`}
+                                            >Edit Thursday</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Thursday deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteThursday(thursday.id)}
+                                                >
+                                                    Delete Thursday
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))
@@ -391,16 +583,28 @@ const Navbar = () => {
                             </thead>
                             <tbody>
                             {
-                                timeTableFriday.map((friday,index) => (
+                                timeTableFriday.map((friday, index) => (
                                     <tr>
-                                        <th scope="row" key={index}>{index+1}</th>
+                                        <th scope="row" key={index}>{index + 1}</th>
                                         <td>{friday.grade}</td>
                                         <td>{friday.subject}</td>
                                         <td>{friday.time}</td>
                                         <td>
                                             <Link to="/time-table" className="btn btn-primary mx-2">View FRIDAY</Link>
-                                            <button className="btn btn-secondary mx-2">Update</button>
-                                            <button className="btn btn-danger mx-2">Delete</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-friday/${friday.id}`}
+                                            >Edit Friday</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Friday deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteFriday(friday.id)}
+                                                >
+                                                    Delete Friday
+                                                </button>
+                                            )}
                                         </td>
                                     </tr>
                                 ))

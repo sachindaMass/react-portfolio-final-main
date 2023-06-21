@@ -14,7 +14,6 @@ import MySkillsPage from './components/MySkillsPage';
 import SoundBar from './subComponents/SoundBar';
 import PaymentDetails from './components/PaymentDetails';
 import Management from './components/Managment';
-// import WorkPage from './components/WorkPage';
 import Navbar from './layout/Navbar';
 import AddCourses from './courses/AddCourses';
 import AddFees from './fees/AddFees';
@@ -24,49 +23,62 @@ import AddTUESDAY from "./TimeTable/AddTUESDAY";
 import AddWEDNESDAY from "./TimeTable/AddWEDNESDAY";
 import AddTHURSDAY from "./TimeTable/AddTHURSDAY";
 import AddFRIDAY from "./TimeTable/AddFRIDAY";
-
+import EditFees from "./fees/EditFees";
+import EditFriday from "./TimeTable/EditFriday";
+import EditMonday from "./TimeTable/EditMonday";
+import EditSaturday from "./TimeTable/EditSaturday";
+import EditTuesday from "./TimeTable/EditTuesday";
+import EditWednesday from "./TimeTable/EditWednesday";
+import EditThursday from "./TimeTable/EditThursday";
 function App() {
     const location = useLocation();
     return (
         <>
-            <GlobalStyle />
-            <Navbar />
+            <GlobalStyle/>
+            <Navbar/>
 
             <ThemeProvider theme={lightTheme}>
-                <SoundBar />
+                <SoundBar/>
 
                 {/* For framer-motion animation on page change! */}
                 {/* Changed prop from exitBefore to mode */}
                 <AnimatePresence mode='wait'>
                     {/* Changed Switch to Routes */}
 
-                    <Routes key={location.pathname} location={location} >
+                    <Routes key={location.pathname} location={location}>
                         {/* Changed component to element */}
 
-                        <Route path="/" element={<Main />} />
+                        <Route path="/" element={<Main/>}/>
 
-                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/about" element={<AboutPage/>}/>
 
-                        <Route path="/courses" element={<BlogPage />} />
+                        <Route path="/courses" element={<BlogPage/>}/>
 
                         {/*<Route path="/work" element={<WorkPage />} />*/}
 
-                        <Route path="/intro-us" element={<MySkillsPage />} />
-                        <Route path="/admin" element={<Navbar />} />
-                        <Route path="/management" element={<Management />} />
-                        <Route path="/time-table" element={<WorkPage />} />
-                        <Route path="/payment-details" element={<PaymentDetails />} />
-                        <Route path="/add-course" element={<AddCourses />} />
-                        <Route path="/add-fees" element={<AddFees />} />
-                        <Route path="/add-SATURDAY" element={<AddSATURDAY />} />
-                        <Route path="/add-MONDAY" element={<AddMONDAY />} />
-                        <Route path="/add-TUESDAY" element={<AddTUESDAY />} />
-                        <Route path="/add-WEDNESDAY" element={<AddWEDNESDAY />} />
-                        <Route path="/add-THURSDAY" element={<AddTHURSDAY />} />
-                        <Route path="/add-FRIDAY" element={<AddFRIDAY />} />
+                        <Route path="/intro-us" element={<MySkillsPage/>}/>
+                        <Route path="/admin" element={<Navbar/>}/>
+                        <Route path="/management" element={<Management/>}/>
+                        <Route path="/time-table" element={<WorkPage/>}/>
+                        <Route path="/payment-details" element={<PaymentDetails/>}/>
+                        <Route path="/add-course" element={<AddCourses/>}/>
+                        <Route path="/add-fees" element={<AddFees/>}/>
+                        <Route path="/add-SATURDAY" element={<AddSATURDAY/>}/>
+                        <Route path="/add-MONDAY" element={<AddMONDAY/>}/>
+                        <Route path="/add-TUESDAY" element={<AddTUESDAY/>}/>
+                        <Route path="/add-WEDNESDAY" element={<AddWEDNESDAY/>}/>
+                        <Route path="/add-THURSDAY" element={<AddTHURSDAY/>}/>
+                        <Route path="/add-FRIDAY" element={<AddFRIDAY/>}/>
+                        <Route path="/edit-fees/:id" element={<EditFees/>}/>
+                        <Route path="/edit-friday/:id" element={<EditFriday/>}/>
+                        <Route path="/edit-monday/:id" element={<EditMonday/>}/>
+                        <Route path="/edit-saturday/:id" element={<EditSaturday/>}/>
+                        <Route path="/edit-tuesday/:id" element={<EditTuesday/>}/>
+                        <Route path="/edit-wednesday/:id" element={<EditWednesday/>}/>
+                        <Route path="/edit-thursday/:id" element={<EditThursday/>}/>
                         {/* Below is to catch all the other routes and send the user to main component,
 you can add custom 404 component or message instead of Main component*/}
-                        <Route path="*" element={<Main />} />
+                        <Route path="*" element={<Main/>}/>
                     </Routes>
                 </AnimatePresence>
             </ThemeProvider>
