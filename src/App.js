@@ -14,7 +14,7 @@ import MySkillsPage from './components/MySkillsPage';
 import SoundBar from './subComponents/SoundBar';
 import PaymentDetails from './components/PaymentDetails';
 import Management from './components/Managment';
-import Navbar from './layout/Navbar';
+import AdminNavbar from './layout/AdminNavbar';
 import AddCourses from './courses/AddCourses';
 import AddFees from './fees/AddFees';
 import AddSATURDAY from "./TimeTable/AddSATURDAY";
@@ -30,12 +30,20 @@ import EditSaturday from "./TimeTable/EditSaturday";
 import EditTuesday from "./TimeTable/EditTuesday";
 import EditWednesday from "./TimeTable/EditWednesday";
 import EditThursday from "./TimeTable/EditThursday";
+
+import AddCourseProofReading from "./courses/AddCourseProofReading";
+import AddCourseEnglish from "./courses/AddCourseEnglish";
+import AddCourseSpecailCourse from "./courses/AddCourseSpecailCourse";
+import AddCourseStandard from "./courses/AddCourseStandard";
+import AddCourseAcademic from "./courses/AddCourseAcademic";
+import AddBusinessEnglish from "./courses/AddBusinessEnglish";
+import AddCourseMiniEnglish from "./courses/AddCourseMiniEnglish";
 function App() {
     const location = useLocation();
     return (
         <>
             <GlobalStyle/>
-            <Navbar/>
+            <AdminNavbar/>
 
             <ThemeProvider theme={lightTheme}>
                 <SoundBar/>
@@ -57,11 +65,18 @@ function App() {
                         {/*<Route path="/work" element={<WorkPage />} />*/}
 
                         <Route path="/intro-us" element={<MySkillsPage/>}/>
-                        <Route path="/admin" element={<Navbar/>}/>
+                        <Route path="/admin" element={<AdminNavbar/>}/>
                         <Route path="/management" element={<Management/>}/>
                         <Route path="/time-table" element={<WorkPage/>}/>
                         <Route path="/payment-details" element={<PaymentDetails/>}/>
                         <Route path="/add-course" element={<AddCourses/>}/>
+                        <Route path="/add-course-english" element={<AddCourseEnglish/>}/>
+                        <Route path="/add-course-special-course-english" element={<AddCourseSpecailCourse/>}/>
+                        <Route path="/add-course-standard" element={<AddCourseStandard/>}/>
+                        <Route path="/add-course-academic" element={<AddCourseAcademic/>}/>
+                        <Route path="/add-course-business" element={<AddBusinessEnglish/>}/>
+                        <Route path="/add-course-mini-English" element={<AddCourseMiniEnglish/>}/>
+                        <Route path="/add-course-proofReading-course-english" element={<AddCourseProofReading/>}/>
                         <Route path="/add-fees" element={<AddFees/>}/>
                         <Route path="/add-SATURDAY" element={<AddSATURDAY/>}/>
                         <Route path="/add-MONDAY" element={<AddMONDAY/>}/>

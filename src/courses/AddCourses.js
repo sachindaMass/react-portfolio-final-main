@@ -7,6 +7,7 @@ const AddCourses = () => {
     let navigate = useNavigate();
     const [user, setUser] = useState({
         otherCourses: "",
+        otherCoursesSecondPara:"",
         englishLessons: "",
         specialCourses: "",
         strandardCoursesForEnglish: "",
@@ -17,6 +18,7 @@ const AddCourses = () => {
     })
     const {
         otherCourses,
+        otherCoursesSecondPara,
         englishLessons,
         specialCourses,
         strandardCoursesForEnglish,
@@ -47,9 +49,22 @@ const AddCourses = () => {
                             <input
                                 type={"text"}
                                 className="form-control"
-                                placeholder="Enter data to 1st box"
+                                placeholder="Enter data to 1st box 1st Paragraph"
                                 name="otherCourses"
                                 value={otherCourses}
+                                onChange={(e) => onInputChange(e)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Name" className="form-label">
+                                other Courses SecondPara
+                            </label>
+                            <input
+                                type={"text"}
+                                className="form-control"
+                                placeholder="Enter data to 1st box second Paragraph"
+                                name="otherCoursesSecondPara"
+                                value={otherCoursesSecondPara}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>
