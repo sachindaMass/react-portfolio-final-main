@@ -202,7 +202,7 @@ const Main = () => {
                 <Button
                     as={NavLink}
                     to="/courses"
-                    position="top: 15%; left: 30%; transform: translate(-50%, -50%);"
+                    position="top: 25%; left: 30%; transform: translate(-50%, -50%);"
                 >
                     <motion.h2
                         initial={{
@@ -221,7 +221,7 @@ const Main = () => {
                 </Button>
                 <WORK
                     to="/time-table"
-                    position="top: 15%; left: 70%; transform: translate(-50%, -50%);"
+                    position="top: 25%; left: 70%; transform: translate(-50%, -50%);"
                 >
                     <motion.h2
                         initial={{

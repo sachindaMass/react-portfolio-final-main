@@ -52,7 +52,7 @@ function App() {
     return (
         <>
             <GlobalStyle/>
-            <AdminNavbar/>
+            {/*<AdminNavbar/>*/}
 
             <ThemeProvider theme={lightTheme}>
                 <SoundBar/>
