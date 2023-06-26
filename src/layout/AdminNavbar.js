@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import {Nav, Navbar, NavDropdown} from 'react-bootstrap';
 
 const AdminNavbar = () => {
 
@@ -13,7 +13,11 @@ const AdminNavbar = () => {
     const [academicCourse, setAcademicCourse] = useState([])
     const [businessCourse, setBusinessCourse] = useState([])
     const [miniEnglishCourse, setminiEnglishCourse] = useState([])
+
+    const [staffManagement, setstaffManagement] = useState([])
+
     const [fees, setFees] = useState([])
+
     const [timeTableSaturday, setSaturday] = useState([])
     const [timeTableMonday, setMonday] = useState([])
     const [timeTableTuesday, setTuesday] = useState([])
@@ -27,13 +31,16 @@ const AdminNavbar = () => {
 
     useEffect(() => {
         loadUsers();
+
         loadFees();
+
         loadSaturday();
         loadMonday();
         loadTuesday();
         loadWednesday();
         loadThursday();
         loadFriday();
+
         loadProofReading();
         loadEnglish();
         loadSpecialCourse();
@@ -41,6 +48,8 @@ const AdminNavbar = () => {
         loadAcademicCourse();
         loadBusinessCourse();
         loadMiniEnglishCourse();
+
+        loadStaffManagement();
     }, []);
 
     const loadProofReading = async () => {
@@ -73,6 +82,11 @@ const AdminNavbar = () => {
     const loadMiniEnglishCourse = async () => {
         const result = await axios.get("http://localhost:8080/miniEnglish")
         setminiEnglishCourse(result.data)
+    }
+
+    const loadStaffManagement = async () => {
+        const result = await axios.get("http://localhost:8080/management")
+        setstaffManagement(result.data)
     }
 
     const deleteEnglsih = async (id) => {
@@ -160,6 +174,18 @@ const AdminNavbar = () => {
             } catch (error) {
                 console.error('Error deleting course:', error);
                 loadProofReading()
+            }
+        }
+    }
+    const deleteStaffManagement = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/management/${id}`)
+                loadStaffManagement()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffManagement()
             }
         }
     }
@@ -308,7 +334,7 @@ const AdminNavbar = () => {
         <div>
             <Navbar bg="primary" expand="lg" variant="dark">
                 <Navbar.Brand href="#">Admin Dashboard</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbarSupportedContent" />
+                <Navbar.Toggle aria-controls="navbarSupportedContent"/>
                 <Navbar.Collapse id="navbarSupportedContent">
                     <Nav className="me-auto">
                         <NavDropdown title="Add Course" id="addCourseDropdown">
@@ -335,6 +361,32 @@ const AdminNavbar = () => {
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-proofReading-course-english">
                                 Add Course proofreading Course
+                            </NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="Add Staff Members" id="addStaffDropDown">
+                            <NavDropdown.Item as={Link} to="/add-staff-management">
+                                Add Staff management
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-staff-members">
+                                Add Staff members
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-staff-maths-and-physics">
+                                Add Staff maths and physics
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-staff-chemistry">
+                                Add Staff chemistry
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-staff-biology">
+                                Add Staff biology
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-staff-science">
+                                Add Staff science
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-staff-english">
+                                Add Staff english
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-staff-account-and-commerce">
+                                Add Staff account and commerce
                             </NavDropdown.Item>
                         </NavDropdown>
                         <NavDropdown title="Time Table" id="timeTableDropdown">
@@ -752,7 +804,6 @@ const AdminNavbar = () => {
             <br/>
             <br/>
             {/*------------------------------------- Course Details For Proof Reading -----------------------------*/}
-
             <div className='container'>
                 <br/>
                 <b>Course ProofReading Table</b>
@@ -807,6 +858,57 @@ const AdminNavbar = () => {
             </div>
             <br/>
             <br/>
+            {/*----------------------------------- staff Management ----------------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff Management Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">management Heading</th>
+                                <th scope="col">management Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffManagement.map((staffManagements, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffManagements.managementHeading}</td>
+                                        <td>{staffManagements.managementContent}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Management</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-management/${staffManagements.id}`}
+                                            >Edit Staff Management</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Staff Management deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffManagement(staffManagements.id)}
+                                                >
+                                                    Delete Staff Management
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*-------------------------------------------- Fees Table ------------------------------------*/}
             <div className='container'>
                 <br/>
                 <b>Fees Table</b>
@@ -863,6 +965,8 @@ const AdminNavbar = () => {
                     </div>
                 </div>
             </div>
+            <br/>
+            <br/>
             {/*------------------------------ SATURDAY -----------------------------*/}
             <br/>
             <br/>

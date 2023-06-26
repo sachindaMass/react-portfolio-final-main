@@ -47,12 +47,30 @@ import EditCourseAcademic from "./courses/EditCourseAcademic";
 import EditBusinessEnglish from "./courses/EditBusinessEnglish";
 import EditCourseMiniEnglish from "./courses/EditCourseMiniEnglish";
 import EditCourseProofReading from "./courses/EditCourseProofReading";
+
+import AddStaffManagment from "./StaffMembers/AddStaffManagment";
+import AddStaffStaffMembers from "./StaffMembers/AddStaffStaffMembers";
+import AddStaffMaths from "./StaffMembers/AddStaffMaths";
+import AddStaffChemistry from "./StaffMembers/AddStaffChemistry";
+import AddStaffBiology from "./StaffMembers/AddStaffBiology";
+import AddStaffScience from "./StaffMembers/AddStaffScience";
+import AddStaffEnglish from "./StaffMembers/AddStaffEnglish";
+import AddStaffAccountAndCommerce from "./StaffMembers/AddStaffAccountAndCommerce";
+
+import EditStaffManagement from "./StaffMembers/EditStaffManagement";
+import EditStaffStaffMemebers from "./StaffMembers/EditStaffStaffMemebers";
+import EditStaffMaths from "./StaffMembers/EditStaffMaths";
+import EditStaffChemistry from "./StaffMembers/EditStaffChemistry";
+import EditStaffBiology from "./StaffMembers/EditStaffBiology";
+import EditStaffScience from "./StaffMembers/EditStaffScience";
+import EditStaffEnglish from "./StaffMembers/EditStaffEnglish";
+import EditStaffAccountAndCommerce from "./StaffMembers/EditStaffAccountAndCommerce";
 function App() {
     const location = useLocation();
     return (
         <>
             <GlobalStyle/>
-            {/*<AdminNavbar/>*/}
+            <AdminNavbar/>
 
             <ThemeProvider theme={lightTheme}>
                 <SoundBar/>
@@ -78,6 +96,7 @@ function App() {
                         <Route path="/management" element={<Management/>}/>
                         <Route path="/time-table" element={<WorkPage/>}/>
                         <Route path="/payment-details" element={<PaymentDetails/>}/>
+
                         <Route path="/add-course" element={<AddCourses/>}/>
                         <Route path="/add-course-english" element={<AddCourseEnglish/>}/>
                         <Route path="/add-course-special-course-english" element={<AddCourseSpecailCourse/>}/>
@@ -86,13 +105,26 @@ function App() {
                         <Route path="/add-course-business" element={<AddBusinessEnglish/>}/>
                         <Route path="/add-course-mini-English" element={<AddCourseMiniEnglish/>}/>
                         <Route path="/add-course-proofReading-course-english" element={<AddCourseProofReading/>}/>
+
+                        <Route path="/add-staff-management" element={<AddStaffManagment/>}/>
+                        <Route path="/add-staff-members" element={<AddStaffStaffMembers/>}/>
+                        <Route path="/add-staff-maths-and-physics" element={<AddStaffMaths/>}/>
+                        <Route path="/add-staff-chemistry" element={<AddStaffChemistry/>}/>
+                        <Route path="/add-staff-biology" element={<AddStaffBiology/>}/>
+                        <Route path="/add-staff-science" element={<AddStaffScience/>}/>
+                        <Route path="/add-staff-english" element={<AddStaffEnglish/>}/>
+                        <Route path="/add-staff-account-and-commerce" element={<AddStaffAccountAndCommerce/>}/>
+
                         <Route path="/add-fees" element={<AddFees/>}/>
+
                         <Route path="/add-SATURDAY" element={<AddSATURDAY/>}/>
                         <Route path="/add-MONDAY" element={<AddMONDAY/>}/>
                         <Route path="/add-TUESDAY" element={<AddTUESDAY/>}/>
                         <Route path="/add-WEDNESDAY" element={<AddWEDNESDAY/>}/>
                         <Route path="/add-THURSDAY" element={<AddTHURSDAY/>}/>
                         <Route path="/add-FRIDAY" element={<AddFRIDAY/>}/>
+
+                        <Route path="/edit-management/:id" element={<EditStaffManagement/>}/>
 
                         <Route path="/edit-courses/:id" element={<EditCourses/>}/>
                         <Route path="/edit-courses-english/:id" element={<EditCourseEnglish/>}/>
