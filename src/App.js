@@ -38,6 +38,15 @@ import AddCourseStandard from "./courses/AddCourseStandard";
 import AddCourseAcademic from "./courses/AddCourseAcademic";
 import AddBusinessEnglish from "./courses/AddBusinessEnglish";
 import AddCourseMiniEnglish from "./courses/AddCourseMiniEnglish";
+
+import EditCourses from "./courses/EditCourses";
+import EditCourseSpecailCourse from "./courses/EditCourseSpecailCourse";
+import EditCourseEnglish from "./courses/EditCourseEnglish";
+import EditCourseStandard from "./courses/EditCourseStandard";
+import EditCourseAcademic from "./courses/EditCourseAcademic";
+import EditBusinessEnglish from "./courses/EditBusinessEnglish";
+import EditCourseMiniEnglish from "./courses/EditCourseMiniEnglish";
+import EditCourseProofReading from "./courses/EditCourseProofReading";
 function App() {
     const location = useLocation();
     return (
@@ -84,8 +93,19 @@ function App() {
                         <Route path="/add-WEDNESDAY" element={<AddWEDNESDAY/>}/>
                         <Route path="/add-THURSDAY" element={<AddTHURSDAY/>}/>
                         <Route path="/add-FRIDAY" element={<AddFRIDAY/>}/>
+
+                        <Route path="/edit-courses/:id" element={<EditCourses/>}/>
+                        <Route path="/edit-courses-english/:id" element={<EditCourseEnglish/>}/>
+                        <Route path="/edit-special-course/:id" element={<EditCourseSpecailCourse/>}/>
+                        <Route path="/edit-standard-course/:id" element={<EditCourseStandard/>}/>
+                        <Route path="/edit-academic-course/:id" element={<EditCourseAcademic/>}/>
+                        <Route path="/edit-business-course/:id" element={<EditBusinessEnglish/>}/>
+                        <Route path="/edit-mini-english-course/:id" element={<EditCourseMiniEnglish/>}/>
+                        <Route path="/edit-proofReading-course/:id" element={<EditCourseProofReading/>}/>
+
                         <Route path="/edit-fees/:id" element={<EditFees/>}/>
                         <Route path="/edit-friday/:id" element={<EditFriday/>}/>
+                        <Route path="/edit-course/:id" element={<EditFriday/>}/>
                         <Route path="/edit-monday/:id" element={<EditMonday/>}/>
                         <Route path="/edit-saturday/:id" element={<EditSaturday/>}/>
                         <Route path="/edit-tuesday/:id" element={<EditTuesday/>}/>

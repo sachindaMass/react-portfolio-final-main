@@ -402,7 +402,10 @@ const AdminNavbar = () => {
                                         <td>{user.proofReadingAndEditing}</td>
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View Courses</Link>
-                                            <button className="btn btn-secondary mx-2">Edit Course</button>
+                                            {/*<button className="btn btn-secondary mx-2">Edit Course</button>*/}
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-courses/${user.id}`}
+                                            >Edit Course</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">Course deleted successfully!</div>
                                             ) : (
@@ -453,7 +456,9 @@ const AdminNavbar = () => {
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 English Course</Link>
-                                            <button className="btn btn-secondary mx-2">Edit English Course</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-courses-english/${englishs.id}`}
+                                            >Course English</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">English Course deleted
                                                     successfully!</div>
@@ -506,7 +511,9 @@ const AdminNavbar = () => {
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Special Course</Link>
-                                            <button className="btn btn-secondary mx-2">Edit Special Course</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-special-course/${specialCourses.id}`}
+                                            >Edit Special Courses</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">Special Course deleted
                                                     successfully!</div>
@@ -561,7 +568,9 @@ const AdminNavbar = () => {
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Standard Course</Link>
-                                            <button className="btn btn-secondary mx-2">Edit Standard Course</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-standard-course/${standardCourses.id}`}
+                                            >Edit Standard Courses</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">Standard Course deleted
                                                     successfully!</div>
@@ -612,7 +621,9 @@ const AdminNavbar = () => {
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Academic Course</Link>
-                                            <button className="btn btn-secondary mx-2">Edit Academic Course</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-academic-course/${academicCourses.id}`}
+                                            >Edit Academic Courses</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">Academic deleted
                                                     successfully!</div>
@@ -663,7 +674,9 @@ const AdminNavbar = () => {
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Business Course</Link>
-                                            <button className="btn btn-secondary mx-2">Edit Business Course</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-business-course/${businessCourses.id}`}
+                                            >Edit Business Courses</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">Business deleted
                                                     successfully!</div>
@@ -712,7 +725,9 @@ const AdminNavbar = () => {
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Mini English Course</Link>
-                                            <button className="btn btn-secondary mx-2">Edit Mini English Course</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-mini-english-course/${miniEnglishCourses.id}`}
+                                            >Edit Mini English Courses</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">Mini English deleted
                                                     successfully!</div>
@@ -766,7 +781,9 @@ const AdminNavbar = () => {
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 ProofReading</Link>
-                                            <button className="btn btn-secondary mx-2">Edit ProofReading</button>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-proofReading-course/${proof.id}`}
+                                            >Edit ProofReading Courses</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">ProofReading deleted
                                                     successfully!</div>
