@@ -125,6 +125,13 @@ function App() {
                         <Route path="/add-FRIDAY" element={<AddFRIDAY/>}/>
 
                         <Route path="/edit-management/:id" element={<EditStaffManagement/>}/>
+                        <Route path="/edit-staff-members/:id" element={<EditStaffStaffMemebers/>}/>
+                        <Route path="/edit-staff-maths-and-physics/:id" element={<EditStaffMaths/>}/>
+                        <Route path="/edit-staff-chemistry/:id" element={<EditStaffChemistry/>}/>
+                        <Route path="/edit-staff-biology/:id" element={<EditStaffBiology/>}/>
+                        <Route path="/edit-staff-science/:id" element={<EditStaffScience/>}/>
+                        <Route path="/edit-staff-english/:id" element={<EditStaffEnglish/>}/>
+                        <Route path="/edit-staff-account-and-commerce/:id" element={<EditStaffAccountAndCommerce/>}/>
 
                         <Route path="/edit-courses/:id" element={<EditCourses/>}/>
                         <Route path="/edit-courses-english/:id" element={<EditCourseEnglish/>}/>

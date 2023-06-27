@@ -15,6 +15,13 @@ const AdminNavbar = () => {
     const [miniEnglishCourse, setminiEnglishCourse] = useState([])
 
     const [staffManagement, setstaffManagement] = useState([])
+    const [staffMembers, setstaffMembers] = useState([])
+    const [staffMaths, setstaffMaths] = useState([])
+    const [staffChemistry, setstaffChemistry] = useState([])
+    const [staffBiology, setstaffBiology] = useState([])
+    const [staffScience, setstaffScience] = useState([])
+    const [staffEnglish, setstaffEnglish] = useState([])
+    const [staffAccount, setstaffAccount] = useState([])
 
     const [fees, setFees] = useState([])
 
@@ -50,6 +57,13 @@ const AdminNavbar = () => {
         loadMiniEnglishCourse();
 
         loadStaffManagement();
+        loadStaffMemebers();
+        loadStaffMaths();
+        loadStaffChemistry();
+        loadStaffBiology();
+        loadStaffScience();
+        loadStaffEnglish();
+        loadStaffAccount();
     }, []);
 
     const loadProofReading = async () => {
@@ -87,6 +101,34 @@ const AdminNavbar = () => {
     const loadStaffManagement = async () => {
         const result = await axios.get("http://localhost:8080/management")
         setstaffManagement(result.data)
+    }
+    const loadStaffMemebers = async () => {
+        const result = await axios.get("http://localhost:8080/staffMembers")
+        setstaffMembers(result.data)
+    }
+    const loadStaffMaths = async () => {
+        const result = await axios.get("http://localhost:8080/mathsAndPhysic")
+        setstaffMaths(result.data)
+    }
+    const loadStaffChemistry = async () => {
+        const result = await axios.get("http://localhost:8080/chemistry")
+        setstaffChemistry(result.data)
+    }
+    const loadStaffBiology = async () => {
+        const result = await axios.get("http://localhost:8080/biology")
+        setstaffBiology(result.data)
+    }
+    const loadStaffScience = async () => {
+        const result = await axios.get("http://localhost:8080/science")
+        setstaffScience(result.data)
+    }
+    const loadStaffEnglish = async () => {
+        const result = await axios.get("http://localhost:8080/english")
+        setstaffEnglish(result.data)
+    }
+    const loadStaffAccount = async () => {
+        const result = await axios.get("http://localhost:8080/accountingAndCommerce")
+        setstaffAccount(result.data)
     }
 
     const deleteEnglsih = async (id) => {
@@ -186,6 +228,90 @@ const AdminNavbar = () => {
             } catch (error) {
                 console.error('Error deleting course:', error);
                 loadStaffManagement()
+            }
+        }
+    }
+    const deleteStaffMembers = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/staffMembers/${id}`)
+                loadStaffMemebers()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffMemebers()
+            }
+        }
+    }
+    const deleteStaffMaths = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/mathsAndPhysic/${id}`)
+                loadStaffMemebers()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffMemebers()
+            }
+        }
+    }
+    const deleteStaffChemistry = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/chemistry/${id}`)
+                loadStaffChemistry()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffChemistry()
+            }
+        }
+    }
+    const deleteStaffBiology = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/biology/${id}`)
+                loadStaffBiology()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffBiology()
+            }
+        }
+    }
+    const deleteStaffScience = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/science/${id}`)
+                loadStaffScience()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffScience()
+            }
+        }
+    }
+    const deleteStaffEnglish = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/english/${id}`)
+                loadStaffEnglish()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffEnglish()
+            }
+        }
+    }
+    const deleteStaffAccount = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/accountingAndCommerce/${id}`)
+                loadStaffAccount()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStaffAccount()
             }
         }
     }
@@ -332,7 +458,7 @@ const AdminNavbar = () => {
     }
     return (
         <div>
-            <Navbar bg="primary" expand="lg" variant="dark">
+            <Navbar bg="primary" expand="lg" variant="dark" fixed="top">
                 <Navbar.Brand href="#">Admin Dashboard</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarSupportedContent"/>
                 <Navbar.Collapse id="navbarSupportedContent">
@@ -882,7 +1008,7 @@ const AdminNavbar = () => {
                                         <td>{staffManagements.managementContent}</td>
                                         <td>
                                             <Link to="/management" className="btn btn-primary mx-2">View
-                                                Management</Link>
+                                                Our Staff</Link>
                                             <Link className="btn btn-secondary mx-2"
                                                   to={`/edit-management/${staffManagements.id}`}
                                             >Edit Staff Management</Link>
@@ -895,6 +1021,356 @@ const AdminNavbar = () => {
                                                     onClick={() => deleteStaffManagement(staffManagements.id)}
                                                 >
                                                     Delete Staff Management
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*---------------------------------------- staffStaffMembers-----------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff Members Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">staff Members Heading</th>
+                                <th scope="col">staff Members Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffMembers.map((staffMember, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffMember.staffMembersHeading}</td>
+                                        <td>{staffMember.staffMenebersContent}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Our Staff</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-staff-members/${staffMember.id}`}
+                                            >Edit Staff Members</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Staff Members deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffMembers(staffMember.id)}
+                                                >
+                                                    Delete Staff Members
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*------------------------------------------ StaffMaths -------------------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff Maths Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">maths And Physics Heading</th>
+                                <th scope="col">maths And Physics Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffMaths.map((staffMath, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffMath.mathsHeading}</td>
+                                        <td>{staffMath.mathsContent}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Our Staff</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-staff-maths-and-physics/${staffMath.id}`}
+                                            >Edit Maths And physic Members</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Maths Members deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffMaths(staffMath.id)}
+                                                >
+                                                    Delete Staff Maths
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*-----------------------------------------StaffChemistry----------------------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff Chemistry Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">chemistry Heading</th>
+                                <th scope="col">chemisty Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffChemistry.map((staffChemistrys, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffChemistrys.chemistryHeading}</td>
+                                        <td>{staffChemistrys.chemistryHeading}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Our Staff</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-staff-chemistry/${staffChemistrys.id}`}
+                                            >Edit Chemistry Members</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Chemistry Members deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffChemistry(staffChemistrys.id)}
+                                                >
+                                                    Delete Staff Chemistry
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*----------------------------------------StaffBiology------------------------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff Biology Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">bio Heading</th>
+                                <th scope="col">bio Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffBiology.map((staffBiologys, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffBiologys.bioHeading}</td>
+                                        <td>{staffBiologys.bioContent}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Our Staff</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-staff-biology/${staffBiologys.id}`}
+                                            >Edit Biology Members</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Biology Members deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffBiology(staffBiologys.id)}
+                                                >
+                                                    Delete Staff Biology
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*-------------------------------------------StaffScience------------------------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff Science Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">science Heading</th>
+                                <th scope="col">science Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffScience.map((staffSciences, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffSciences.scienceHeading}</td>
+                                        <td>{staffSciences.scienceContent}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Our Staff</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-staff-science/${staffSciences.id}`}
+                                            >Edit Science Members</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Science Members deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffScience(staffSciences.id)}
+                                                >
+                                                    Delete Staff Biology
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*-------------------------------------------------StaffEnglish----------------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff English Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">english Heading</th>
+                                <th scope="col">english Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffEnglish.map((staffEnglish, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffEnglish.englishHeading}</td>
+                                        <td>{staffEnglish.englishHeading}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Our Staff</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-staff-english/${staffEnglish.id}`}
+                                            >Edit English Members</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">English Members deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffEnglish(staffEnglish.id)}
+                                                >
+                                                    Delete Staff English
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*----------------------------------------------staffAccountAndCommerce--------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Staff Account And Commerce Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">account Heading</th>
+                                <th scope="col">account Content</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                staffAccount.map((staffAccounts, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{staffAccounts.accountHeading}</td>
+                                        <td>{staffAccounts.accountContent}</td>
+                                        <td>
+                                            <Link to="/management" className="btn btn-primary mx-2">View
+                                                Our Staff</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-staff-account-and-commerce/${staffAccounts.id}`}
+                                            >Edit Account and Commerce Members</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Account and Commerce Members deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteStaffAccount(staffAccounts.id)}
+                                                >
+                                                    Delete Staff Account and Commerce
                                                 </button>
                                             )}
                                         </td>

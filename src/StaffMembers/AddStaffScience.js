@@ -18,7 +18,7 @@ const AddStaffScience = () => {
     };
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/scienceContent", user);
+        await axios.post("http://localhost:8080/science", user);
         window.location.reload();
         navigate("/");
     };
