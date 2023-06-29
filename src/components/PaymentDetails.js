@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import { lightThemeforOthers } from './Themes';
+import React, {useEffect, useRef, useState} from 'react';
+import styled, {ThemeProvider} from 'styled-components';
+import {lightThemeforOthers} from './Themes';
 import './styles.css';
 import PowerButton from '../subComponents/PowerButton';
 import img from '../assets/Images/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg';
-import { motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 import AnchorComponent from '../subComponents/Anchor';
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
+import axios from "axios";
 
 const Container1 = styled.div`
   display: flex;
@@ -58,6 +59,7 @@ const StyledTable = styled.table`
   th {
     background-color: lightgray;
   }
+
   // background-color: lightblue;
 `;
 const MainContainer = styled.div`
@@ -99,211 +101,243 @@ const ContainerforAncor = styled.div`
 `;
 
 const PaymentDetails = () => {
-  const ref = useRef(null);
-  const hiddenRef = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      let scrollPosition = window.pageYOffset;
-      let windowSize = window.innerHeight;
-      let bodyHeight = document.body.offsetHeight;
+    const [fees, setFees] = useState([])
 
-      let diff = Math.max(bodyHeight - (scrollPosition + windowSize));
-      let diffP = (diff * 100) / (bodyHeight - windowSize);
+    const loadFees = async () => {
+        const result = await axios.get("http://localhost:8080/fees")
+        setFees(result.data)
+    }
+    const ref = useRef(null);
+    const hiddenRef = useRef(null);
 
-      ref.current.style.transform = `translateY(${-diffP}%)`;
+    useEffect(() => {
+        loadFees();
 
-      if (window.pageYOffset > 5) {
-        hiddenRef.current.style.display = 'none';
-      } else {
-        hiddenRef.current.style.display = 'block';
-      }
-    };
+        axios.get('/fees/{id}')
+            .then(response => {
+                setFees(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching timetable data', error)
+            });
 
-    window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => {
+            let scrollPosition = window.pageYOffset;
+            let windowSize = window.innerHeight;
+            let bodyHeight = document.body.offsetHeight;
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+            let diff = Math.max(bodyHeight - (scrollPosition + windowSize));
+            let diffP = (diff * 100) / (bodyHeight - windowSize);
 
-  useEffect(() => {}, []);
+            ref.current.style.transform = `translateY(${-diffP}%)`;
 
-  const numbers = 20; // Replace with your desired number of links
+            if (window.pageYOffset > 5) {
+                hiddenRef.current.style.display = 'none';
+            } else {
+                hiddenRef.current.style.display = 'block';
+            }
+        };
 
-  return (
-    <ThemeProvider theme={lightThemeforOthers}>
-      <ContainerforAncor>
-        <AnchorComponent number={numbers} />
-      </ContainerforAncor>
-      <MainContainer>
-        <Container1>
-          <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton />
-        </Container1>
-        {/* Fees */}
-        <Container1>
-          <Importance>
-            <center>
-              <h2>
-                <u>Fees</u>
-              </h2>
-            </center>
-            <br></br>
-            <ParentElement
-              whileHover={{ rotate: 360, scale: 1 }}
-              transition={{
-                type: 'spring',
-                stiffness: 260,
-                damping: 20,
-              }}
-            >
-              <motion.p
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                <center>
-                  Need to pay fees monthly, so please pay at the beginning of
-                  the month to the RIE account. All payments are through bank
-                  transfer only, if you need any assistance please talk to the
-                  management at any time.
-                </center>
-              </motion.p>
-            </ParentElement>
-            <br></br>
-          </Importance>
-        </Container1>
-        {/* Bank Details */}
-        <Container1>
-          <Importance>
-            <center>
-              <h2>
-                <u>Bank Details</u>
-              </h2>
-            </center>
-            <br></br>
-            <center>
-              <ParentElement
-                whileHover={{ rotate: 360, scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                <motion.p
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 260,
-                    damping: 20,
-                  }}
-                >
-                  Bank: ANZ Account
-                </motion.p>
-              </ParentElement>
-            </center>
-            <center>
-              <ParentElement
-                whileHover={{ rotate: 360, scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                <motion.p
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 260,
-                    damping: 20,
-                  }}
-                >
-                  {' '}
-                  Name: Royal Institute
-                </motion.p>
-              </ParentElement>
-            </center>
-            <center>
-              <ParentElement
-                whileHover={{ rotate: 360, scale: 1 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 260,
-                  damping: 20,
-                }}
-              >
-                <motion.p
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 260,
-                    damping: 20,
-                  }}
-                >
-                  {' '}
-                  Account number: 01-0815-0128371-00
-                </motion.p>
-              </ParentElement>
-            </center>
+        window.addEventListener('scroll', handleScroll);
 
-            <br></br>
-          </Importance>
-        </Container1>
-        {/* bank payment */}
-        <Container1>
-          <Importance>
-            <center>
-              <h2>
-                <u>Details to be added in the bank payment</u>
-              </h2>
-            </center>
-            <br></br>
-            <TableContainer>
-              <StyledTable>
-                <thead>
-                  <tr>
-                    <th>Particulars</th>
-                    <th>Code</th>
-                    <th>Reference</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Students' first name</td>
-                    <td>Class e.g., NCEA L1</td>
-                    <td>Paying month e.g., January</td>
-                  </tr>
-                  {/* Add more rows if needed */}
-                </tbody>
-              </StyledTable>
-            </TableContainer>
-          </Importance>
-        </Container1>
-        {/* Footer */}
-        <FooterContainer>
-          <p>
-            All rights reserved by Royal Institute Epsom. Web Development by{' '}
-            <a
-              href="https://github.com/sachindaMass"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              OneBinduwa
-            </a>
-          </p>
-        </FooterContainer>
-      </MainContainer>
-    </ThemeProvider>
-  );
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    useEffect(() => {
+    }, []);
+
+    const numbers = 20; // Replace with your desired number of links
+
+    return (
+        <ThemeProvider theme={lightThemeforOthers}>
+            <ContainerforAncor>
+                <AnchorComponent number={numbers}/>
+            </ContainerforAncor>
+            <MainContainer>
+                <Container1>
+                    <LogoComponent theme="light"/>
+                    <SocialIcons theme="light"/>
+                    <PowerButton/>
+                </Container1>
+                {/* Fees */}
+                <Container1>
+                    <Importance>
+                        <center>
+                            <h2>
+                                <u>Fees</u>
+                            </h2>
+                        </center>
+                        <br></br>
+                        <ParentElement
+                            whileHover={{rotate: 360, scale: 1}}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 260,
+                                damping: 20,
+                            }}
+                        >
+                            <motion.p
+                                initial={{scale: 0}}
+                                animate={{scale: 1}}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 260,
+                                    damping: 20,
+                                }}
+                            >
+                                <center>
+                                    {fees.map((item, index) => (
+                                        item.fees
+                                    ))}
+                                </center>
+                            </motion.p>
+                        </ParentElement>
+                        <br></br>
+                    </Importance>
+                </Container1>
+                {/* Bank Details */}
+                <Container1>
+                    <Importance>
+                        <center>
+                            <h2>
+                                <u>Bank Details</u>
+                            </h2>
+                        </center>
+                        <br></br>
+                        <center>
+                            <ParentElement
+                                whileHover={{rotate: 360, scale: 1}}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 260,
+                                    damping: 20,
+                                }}
+                            >
+                                <motion.p
+                                    initial={{scale: 0}}
+                                    animate={{scale: 1}}
+                                    transition={{
+                                        type: 'spring',
+                                        stiffness: 260,
+                                        damping: 20,
+                                    }}
+                                >
+                                    Bank: &nbsp;&nbsp;
+                                    {fees.map((item, index) => (
+                                        item.bank
+                                    ))}
+                                </motion.p>
+                            </ParentElement>
+                        </center>
+                        <center>
+                            <ParentElement
+                                whileHover={{rotate: 360, scale: 1}}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 260,
+                                    damping: 20,
+                                }}
+                            >
+                                <motion.p
+                                    initial={{scale: 0}}
+                                    animate={{scale: 1}}
+                                    transition={{
+                                        type: 'spring',
+                                        stiffness: 260,
+                                        damping: 20,
+                                    }}
+                                >
+                                    {' '}
+                                    Name: &nbsp;&nbsp;
+                                    {fees.map((item, index) => (
+                                        item.bankName
+                                    ))}
+                                </motion.p>
+                            </ParentElement>
+                        </center>
+                        <center>
+                            <ParentElement
+                                whileHover={{rotate: 360, scale: 1}}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 260,
+                                    damping: 20,
+                                }}
+                            >
+                                <motion.p
+                                    initial={{scale: 0}}
+                                    animate={{scale: 1}}
+                                    transition={{
+                                        type: 'spring',
+                                        stiffness: 260,
+                                        damping: 20,
+                                    }}
+                                >
+                                    {' '}
+                                    Account number: &nbsp;&nbsp;
+                                    {fees.map((item, index) => (
+                                        item.accountNumber
+                                    ))}
+                                </motion.p>
+                            </ParentElement>
+                        </center>
+
+                        <br></br>
+                    </Importance>
+                </Container1>
+                {/* bank payment */}
+                <Container1>
+                    <Importance>
+                        <center>
+                            <h2>
+                                <u>Details to be added in the bank payment</u>
+                            </h2>
+                        </center>
+                        <br></br>
+                        <TableContainer>
+                            <StyledTable>
+                                <thead>
+                                <tr>
+                                    <th>Particulars</th>
+                                    <th>Code</th>
+                                    <th>Reference</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>{fees.map((item, index) => (
+                                        item.particular
+                                    ))}</td>
+                                    <td>{fees.map((item, index) => (
+                                        item.code
+                                    ))}</td>
+                                    <td>{fees.map((item, index) => (
+                                        item.reference
+                                    ))}</td>
+                                </tr>
+                                {/* Add more rows if needed */}
+                                </tbody>
+                            </StyledTable>
+                        </TableContainer>
+                    </Importance>
+                </Container1>
+                {/* Footer */}
+                <FooterContainer>
+                    <p>
+                        All rights reserved by Royal Institute Epsom. Web Development by{' '}
+                        <a
+                            href="https://github.com/sachindaMass"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            OneBinduwa
+                        </a>
+                    </p>
+                </FooterContainer>
+            </MainContainer>
+        </ThemeProvider>
+    );
 };
 
 export default PaymentDetails;
