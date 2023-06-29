@@ -65,12 +65,14 @@ import EditStaffBiology from "./StaffMembers/EditStaffBiology";
 import EditStaffScience from "./StaffMembers/EditStaffScience";
 import EditStaffEnglish from "./StaffMembers/EditStaffEnglish";
 import EditStaffAccountAndCommerce from "./StaffMembers/EditStaffAccountAndCommerce";
+
+import ViewManagement from "./StaffMembers/ViewManagement";
 function App() {
     const location = useLocation();
     return (
         <>
-            <GlobalStyle/>
             <AdminNavbar/>
+            {/*<GlobalStyle/>*/}
 
             <ThemeProvider theme={lightTheme}>
                 <SoundBar/>
@@ -94,6 +96,7 @@ function App() {
                         <Route path="/intro-us" element={<MySkillsPage/>}/>
                         <Route path="/admin" element={<AdminNavbar/>}/>
                         <Route path="/management" element={<Management/>}/>
+                        <Route path="/view-management" element={<ViewManagement/>}/>
                         <Route path="/time-table" element={<WorkPage/>}/>
                         <Route path="/payment-details" element={<PaymentDetails/>}/>
 

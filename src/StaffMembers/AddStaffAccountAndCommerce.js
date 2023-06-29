@@ -8,10 +8,12 @@ const AddStaffAccountAndCommerce = () => {
     const [user, setUser] = useState({
         accountHeading: "",
         accountContent: "",
+        accountContentTwo:"",
     })
     const {
         accountHeading,
-        accountContent
+        accountContent,
+        accountContentTwo
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -51,6 +53,19 @@ const AddStaffAccountAndCommerce = () => {
                                 placeholder="Enter data to staff account Content"
                                 name="accountContent"
                                 value={accountContent}
+                                onChange={(e) => onInputChange(e)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Name" className="form-label">
+                                account Content accountContentTwo
+                            </label>
+                            <input
+                                type={"text"}
+                                className="form-control"
+                                placeholder="Enter data to staff account Content Two"
+                                name="accountContentTwo"
+                                value={accountContentTwo}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

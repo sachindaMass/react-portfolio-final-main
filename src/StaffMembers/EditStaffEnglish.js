@@ -9,10 +9,12 @@ const EditStaffEnglish = () => {
     const [user, setUser] = useState({
         englishHeading: "",
         englishContent: "",
+        englishContentTwo:"",
     })
     const {
         englishHeading,
-        englishContent
+        englishContent,
+        englishContentTwo
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -59,6 +61,19 @@ const EditStaffEnglish = () => {
                                 placeholder="Enter data to staff english Content"
                                 name="englishContent"
                                 value={englishContent}
+                                onChange={(e) => onInputChange(e)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Name" className="form-label">
+                                english Content Two
+                            </label>
+                            <input
+                                type={"text"}
+                                className="form-control"
+                                placeholder="Enter data to staff english Content two"
+                                name="englishContentTwo"
+                                value={englishContentTwo}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

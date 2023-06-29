@@ -8,10 +8,12 @@ const AddStaffChemistry = () => {
     const [user, setUser] = useState({
         chemistryHeading: "",
         chemistyContent: "",
+        chemistyContentTwo:"",
     })
     const {
         chemistryHeading,
-        chemistyContent
+        chemistyContent,
+        chemistyContentTwo
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -51,6 +53,19 @@ const AddStaffChemistry = () => {
                                 placeholder="Enter data to staff chemistry Content"
                                 name="chemistyContent"
                                 value={chemistyContent}
+                                onChange={(e) => onInputChange(e)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Name" className="form-label">
+                                Chemistry Content two
+                            </label>
+                            <input
+                                type={"text"}
+                                className="form-control"
+                                placeholder="Enter data to staff chemistry Content two"
+                                name="chemistyContentTwo"
+                                value={chemistyContentTwo}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

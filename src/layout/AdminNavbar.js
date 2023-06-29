@@ -459,83 +459,83 @@ const AdminNavbar = () => {
     return (
         <div>
             <Navbar bg="primary" expand="lg" variant="dark" fixed="top">
-                <Navbar.Brand href="#">Admin Dashboard</Navbar.Brand>
+                <Link className="navbar-brand" to="/">&nbsp;&nbsp;&nbsp;&nbsp;Admin</Link>
                 <Navbar.Toggle aria-controls="navbarSupportedContent"/>
                 <Navbar.Collapse id="navbarSupportedContent">
                     <Nav className="me-auto">
-                        <NavDropdown title="Add Course" id="addCourseDropdown">
+                        <NavDropdown title="&nbsp;&nbsp;&nbsp;&nbsp;Add Course" id="addCourseDropdown">
                             <NavDropdown.Item as={Link} to="/add-course">
-                                Add Course Details
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course Headers Details
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-english">
-                                Add Course English
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course English
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-special-course-english">
-                                Add Course Special Course
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course Special Course
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-standard">
-                                Add Course Standard Course
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course Standard Course
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-academic">
-                                Add Course Academic Course
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course Academic Course
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-business">
-                                Add Course Business Course
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course Business Course
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-mini-English">
-                                Add Course mini Course
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course mini Course
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-proofReading-course-english">
-                                Add Course proofreading Course
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course proofreading Course
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <NavDropdown title="Add Staff Members" id="addStaffDropDown">
+                        <NavDropdown title="&nbsp;&nbsp;&nbsp;&nbsp;Add Staff Members" id="addStaffDropDown">
                             <NavDropdown.Item as={Link} to="/add-staff-management">
-                                Add Staff management
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff management
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-staff-members">
-                                Add Staff members
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff members
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-staff-maths-and-physics">
-                                Add Staff maths and physics
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff maths and physics
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-staff-chemistry">
-                                Add Staff chemistry
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff chemistry
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-staff-biology">
-                                Add Staff biology
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff biology
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-staff-science">
-                                Add Staff science
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff science
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-staff-english">
-                                Add Staff english
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff english
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-staff-account-and-commerce">
-                                Add Staff account and commerce
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Staff account and commerce
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <NavDropdown title="Time Table" id="timeTableDropdown">
+                        <NavDropdown title="&nbsp;&nbsp;&nbsp;&nbsp;Time Table" id="timeTableDropdown">
                             <NavDropdown.Item as={Link} to="/add-SATURDAY">
-                                Add SATURDAY Time Table
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add SATURDAY Time Table
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-MONDAY">
-                                Add MONDAY Time Table
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add MONDAY Time Table
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-TUESDAY">
-                                Add TUESDAY Time Table
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add TUESDAY Time Table
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-WEDNESDAY">
-                                Add WEDNESDAY Time Table
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add WEDNESDAY Time Table
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-THURSDAY">
-                                Add THURSDAY Time Table
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add THURSDAY Time Table
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-FRIDAY">
-                                Add FRIDAY Time Table
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add FRIDAY Time Table
                             </NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as={Link} to="/add-fees">Add Fees Details</Nav.Link>
+                        <Nav.Link as={Link} to="/add-fees">&nbsp;&nbsp;&nbsp;&nbsp;Add Fees Details</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -545,7 +545,7 @@ const AdminNavbar = () => {
             {/*------------------------------- Course Details Table -------------------------------------*/}
             <div className='container'>
                 <br/>
-                <b>Course Details Table</b>
+                <b>Course Details Headers Table</b>
                 <div className='py-4'>
                     <div className='table-responsive'>
                         <table className="table border shadow">
@@ -1096,6 +1096,7 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">maths And Physics Heading</th>
                                 <th scope="col">maths And Physics Content</th>
+                                <th scope="col">maths And Physics Content Two</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -1106,6 +1107,7 @@ const AdminNavbar = () => {
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{staffMath.mathsHeading}</td>
                                         <td>{staffMath.mathsContent}</td>
+                                        <td>{staffMath.physicsContent}</td>
                                         <td>
                                             <Link to="/management" className="btn btn-primary mx-2">View
                                                 Our Staff</Link>
@@ -1146,6 +1148,7 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">chemistry Heading</th>
                                 <th scope="col">chemisty Content</th>
+                                <th scope="col">chemisty Content Two</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -1156,6 +1159,7 @@ const AdminNavbar = () => {
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{staffChemistrys.chemistryHeading}</td>
                                         <td>{staffChemistrys.chemistryHeading}</td>
+                                        <td>{staffChemistrys.chemistyContentTwo}</td>
                                         <td>
                                             <Link to="/management" className="btn btn-primary mx-2">View
                                                 Our Staff</Link>
@@ -1196,6 +1200,7 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">bio Heading</th>
                                 <th scope="col">bio Content</th>
+                                <th scope="col">bio Content Two</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -1206,6 +1211,7 @@ const AdminNavbar = () => {
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{staffBiologys.bioHeading}</td>
                                         <td>{staffBiologys.bioContent}</td>
+                                        <td>{staffBiologys.bioContentTwo}</td>
                                         <td>
                                             <Link to="/management" className="btn btn-primary mx-2">View
                                                 Our Staff</Link>
@@ -1246,6 +1252,7 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">science Heading</th>
                                 <th scope="col">science Content</th>
+                                <th scope="col">science Content Two</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -1256,6 +1263,7 @@ const AdminNavbar = () => {
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{staffSciences.scienceHeading}</td>
                                         <td>{staffSciences.scienceContent}</td>
+                                        <td>{staffSciences.scienceContentTwo}</td>
                                         <td>
                                             <Link to="/management" className="btn btn-primary mx-2">View
                                                 Our Staff</Link>
@@ -1296,6 +1304,7 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">english Heading</th>
                                 <th scope="col">english Content</th>
+                                <th scope="col">english Content Two</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -1305,7 +1314,8 @@ const AdminNavbar = () => {
                                     <tr>
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{staffEnglish.englishHeading}</td>
-                                        <td>{staffEnglish.englishHeading}</td>
+                                        <td>{staffEnglish.englishContent}</td>
+                                        <td>{staffEnglish.englishContentTwo}</td>
                                         <td>
                                             <Link to="/management" className="btn btn-primary mx-2">View
                                                 Our Staff</Link>
@@ -1346,6 +1356,7 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">account Heading</th>
                                 <th scope="col">account Content</th>
+                                <th scope="col">account Content Two</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -1356,6 +1367,7 @@ const AdminNavbar = () => {
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{staffAccounts.accountHeading}</td>
                                         <td>{staffAccounts.accountContent}</td>
+                                        <td>{staffAccounts.accountContentTwo}</td>
                                         <td>
                                             <Link to="/management" className="btn btn-primary mx-2">View
                                                 Our Staff</Link>

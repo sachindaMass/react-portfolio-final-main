@@ -8,10 +8,12 @@ const AddStaffBiology = () => {
     const [user, setUser] = useState({
         bioHeading: "",
         bioContent: "",
+        bioContentTwo:"",
     })
     const {
         bioHeading,
-        bioContent
+        bioContent,
+        bioContentTwo
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -51,6 +53,19 @@ const AddStaffBiology = () => {
                                 placeholder="Enter data to staff bio Content"
                                 name="bioContent"
                                 value={bioContent}
+                                onChange={(e) => onInputChange(e)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Name" className="form-label">
+                                bio Content two
+                            </label>
+                            <input
+                                type={"text"}
+                                className="form-control"
+                                placeholder="Enter data to staff bio Content two"
+                                name="bioContentTwo"
+                                value={bioContentTwo}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

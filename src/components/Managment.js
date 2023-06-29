@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled, {ThemeProvider} from 'styled-components';
 import {lightThemeforOthers} from './Themes';
 import './styles.css';
@@ -8,6 +8,8 @@ import {motion} from 'framer-motion';
 import AnchorComponent from '../subComponents/Anchor';
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
+import {useParams} from "react-router-dom";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -116,10 +118,96 @@ const ContainerforAncor = styled.div`
 `;
 
 const Managment = () => {
+    const [staffManagement, setstaffManagement] = useState([])
+    const [staffMembers, setstaffMembers] = useState([])
+    const [staffMaths, setstaffMaths] = useState([])
+    const [staffChemistry, setstaffChemistry] = useState([])
+    const [staffBiology, setstaffBiology] = useState([])
+    const [staffScience, setstaffScience] = useState([])
+    const [staffEnglish, setstaffEnglish] = useState([])
+    const [staffAccount, setstaffAccount] = useState([])
+
+    const [user, setUser] = useState({
+        managementHeading: "",
+        managementContent: "",
+        staffMembersHeading: "",
+        staffMenebersContent: "",
+        mathsHeading: "",
+        mathsContent: "",
+        physicsContent:"",
+        chemistryHeading: "",
+        chemistyContent: "",
+        chemistyContentTwo: "",
+        bioHeading: "",
+        bioContent: "",
+        bioContentTwo:"",
+        scienceHeading: "",
+        scienceContent: "",
+        scienceContentTwo:"",
+        englishHeading: "",
+        englishContent: "",
+        englishContentTwo:"",
+        accountHeading: "",
+        accountContent: "",
+        accountContentTwo:"",
+    })
+    const loadManagement = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/management");
+            setstaffManagement(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    const loadStaffMemebers = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/staffMembers");
+            setstaffMembers(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    const loadStaffMaths = async () => {
+        const result = await axios.get("http://localhost:8080/mathsAndPhysic")
+        setstaffMaths(result.data)
+    }
+    const loadStaffBiology = async () => {
+        const result = await axios.get("http://localhost:8080/biology")
+        setstaffBiology(result.data)
+    }
+    const loadStaffScience = async () => {
+        const result = await axios.get("http://localhost:8080/science")
+        setstaffScience(result.data)
+    }
+    const loadStaffEnglish = async () => {
+        const result = await axios.get("http://localhost:8080/english")
+        setstaffEnglish(result.data)
+    }
+    const loadStaffAccount = async () => {
+        const result = await axios.get("http://localhost:8080/accountingAndCommerce")
+        setstaffAccount(result.data)
+    }
+
+    const loadStaffChemistry = async () => {
+        const result = await axios.get("http://localhost:8080/chemistry")
+        setstaffChemistry(result.data)
+    }
+    const {id} = useParams();
+
     const ref = useRef(null);
     const hiddenRef = useRef(null);
 
     useEffect(() => {
+        loadManagement();
+        loadStaffMemebers();
+        loadStaffMaths();
+        loadStaffChemistry();
+        loadStaffBiology();
+        loadStaffScience();
+        loadStaffEnglish();
+        loadStaffAccount();
+
+
         const handleScroll = () => {
             let scrollPosition = window.pageYOffset;
             let windowSize = window.innerHeight;
@@ -128,22 +216,25 @@ const Managment = () => {
             let diff = Math.max(bodyHeight - (scrollPosition + windowSize));
             let diffP = (diff * 100) / (bodyHeight - windowSize);
 
-            ref.current.style.transform = `translateY(${-diffP}%)`;
+            if (ref.current) {
+                ref.current.style.transform = `translateY(${-diffP}%)`;
+            }
 
-            if (window.pageYOffset > 5) {
-                hiddenRef.current.style.display = 'none';
-            } else {
-                hiddenRef.current.style.display = 'block';
+            if (hiddenRef.current) {
+                if (window.pageYOffset > 5) {
+                    hiddenRef.current.style.display = 'none';
+                } else {
+                    hiddenRef.current.style.display = 'block';
+                }
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    useEffect(() => {
-    }, []);
+        // Make sure to check if ref.current and hiddenRef.current exist before accessing their properties
+        if (ref.current && hiddenRef.current) {
+            window.addEventListener('scroll', handleScroll);
+            return () => window.removeEventListener('scroll', handleScroll);
+        }
+    }, [id]);
 
     const numbers = 20; // Replace with your desired number of links
 
@@ -161,7 +252,9 @@ const Managment = () => {
                 <MiddleContainerBlue>
                     <Management>
                         <h2>
-                            Management
+                            <u>{staffManagement.map((staffManagement, index) => (
+                                <div key={index}>{staffManagement.managementHeading}</div>
+                            ))}</u>
                         </h2>
                         <br></br>
                         <ParentElement
@@ -181,20 +274,11 @@ const Managment = () => {
                                     damping: 20,
                                 }}
                             >
-                                RIE is managed by a qualified and experienced team. Director,
-                                Dr. Sydney Fernando worked as a Senior Advisor in the Ministry
-                                of Agriculture and Forestry in Wellington, NZ, and later joined
-                                the education sector in Auckland. He managed Educational
-                                Institutes over 13 years in Auckland and worked as a Director of
-                                Studies, Associate Principal, and as a General Manager. Thus,
-                                understand the NZ education system and experience in managing
-                                them. Further, well experienced in the NZ professional pathways.
-                                Teachers are also professionals from respective subject areas
-                                and bring the experience and current world challenges to the
-                                classroom with their own experience. In order to guide students
-                                better, parents and students are encouraged to discuss their
-                                academic pathways and subjects with tutors.
+                                {staffManagement.map((staffManagement, index) => (
+                                    <div key={index}>{staffManagement.managementContent}</div>
+                                ))}
                             </motion.p>
+
                         </ParentElement>
                         <br></br>
                     </Management>
@@ -202,9 +286,10 @@ const Managment = () => {
                 <MiddleContainerBlue>
                     <Management>
                         <h2>
-                            <u>Some of Our Staff Members</u>
+                            <u>{staffMembers.map((staffMembers, index) => (
+                                <div key={index}>{staffMembers.staffMembersHeading}</div>
+                            ))}</u>
                         </h2>
-                        <br></br>
                         <br></br>
                         <ParentElement
                             whileHover={{rotate: 360, scale: 1}}
@@ -223,11 +308,9 @@ const Managment = () => {
                                     damping: 20,
                                 }}
                             >
-                                RIE recruit professionals with teaching experience in respective
-                                subject areas. Professionals like Gayan, James, Devaki, Chintha,
-                                Milidu, Sarath, Navidu, Panchali, and others make your learning,
-                                exam practice perfect. They know where you are heading, they
-                                have gone through the same path you are just entering.
+                                {staffMembers.map((staffMembers, index) => (
+                                <div key={index}>{staffMembers.staffMenebersContent}</div>
+                                ))}
                             </motion.p>
                         </ParentElement>
                         <br></br>
@@ -236,7 +319,7 @@ const Managment = () => {
                 <Management></Management>
 
                 <Container>
-                    {/* <Row> */}
+                    {/* <h3>Maths & Physics</h3> */}
                     <div class="cards-container">
                         <div class="card-1 flip-card">
                             <div class="flip-card-inner">
@@ -244,21 +327,29 @@ const Managment = () => {
                                     <ul>
                                         {/* <li>Two Mechatronics Engineers</li>
                     <li>Auckland university graduates</li> */}
-                                        <p>Click to see Maths & Physics</p>
+                                        {staffMaths.map((staffMaths, index) => (
+                                            <div key={index}>{staffMaths.mathsHeading}</div>
+                                        ))}
                                     </ul>
                                 </div>
                                 <div class="flip-card-back">
-                                    {/* <h3>Maths & Physics</h3> */}
+
                                     <ul>
-                                        <li>Two Mechatronics Engineers</li>
+                                        <li>{staffMaths.map((staffMaths, index) => (
+                                            <div key={index}>{staffMaths.mathsContent}</div>
+                                        ))}</li>
                                         <br></br>
-                                        <li>Auckland university graduates</li>
+                                        <li>{staffMaths.map((staffMaths, index) => (
+                                            <div key={index}>{staffMaths.physicsContent}</div>
+                                        ))}</li>
+                                        {/*<li>Auckland university graduates</li>*/}
                                         <br></br>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {/* Chemesitry */}
                     <br></br>
                     <div class="cards-container">
                         <div class="card-1 flip-card">
@@ -266,14 +357,22 @@ const Managment = () => {
                                 <div class="flip-card-front">
                                     {/* <li>Two Mechatronics Engineers</li>
                     <li>Auckland university graduates</li> */}
-                                    <p>Click to see Chemistry</p>
+                                    <p>{staffChemistry.map((staffChemistry, index) => (
+                                        <div key={index}>{staffChemistry.chemistryHeading}</div>
+                                    ))}</p>
                                 </div>
                                 <div class="flip-card-back">
                                     {/* <h3>Maths & Physics</h3> */}
                                     <ul>
-                                        <li>Chemical Engineer (PhD) Auckland Uni graduate</li>
+                                        {/*<li>Chemical Engineer (PhD) Auckland Uni graduate</li>*/}
+                                        <li>{staffChemistry.map((staffChemistry, index) => (
+                                            <div key={index}>{staffChemistry.chemistyContent}</div>
+                                        ))}</li>
                                         <br></br>
-                                        <li>Auckland Uni Medical Student</li>
+                                        {/*<li>Auckland Uni Medical Student</li>*/}
+                                        <li>{staffChemistry.map((staffChemistry, index) => (
+                                            <div key={index}>{staffChemistry.chemistyContentTwo}</div>
+                                        ))}</li>
                                         <br></br>
                                     </ul>
                                 </div>
@@ -281,20 +380,59 @@ const Managment = () => {
                         </div>
                     </div>
                     <br></br>
+                    {/* Biology */}
                     <div class="cards-container">
                         <div class="card-1 flip-card">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
-                                    {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                                    <p>Click to see Biology</p>
+
+                                    {/*<p>Click to see Biology</p>*/}
+                                    <p>{staffBiology.map((staffBiology, index) => (
+                                        <div key={index}>{staffBiology.bioHeading}</div>
+                                    ))}</p>
                                 </div>
                                 <div class="flip-card-back">
-                                    {/* <h3>Maths & Physics</h3> */}
+
                                     <ul>
-                                        <li>Researcher (PhD)</li>
+                                        {/*<li>Researcher (PhD)</li>*/}
+                                        <li>{staffBiology.map((staffBiology, index) => (
+                                            <div key={index}>{staffBiology.bioContent}</div>
+                                        ))}</li>
                                         <br></br>
-                                        <li>Masters Student researching at Auckland University.</li>
+                                        {/*<li>Masters Student researching at Auckland University.</li>*/}
+                                        <li>{staffBiology.map((staffBiology, index) => (
+                                            <div key={index}>{staffBiology.bioContentTwo}</div>
+                                        ))}</li>
+                                        <br></br>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br></br>
+                    {/* Science */}
+                    <div class="cards-container">
+                        <div class="card-1 flip-card">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    {/*<p>Click to see Science</p>*/}
+                                    <p>{staffScience.map((staffScience, index) => (
+                                        <div key={index}>{staffScience.scienceHeading}</div>
+                                    ))}</p>
+                                </div>
+                                <div class="flip-card-back">
+
+                                    <ul>
+                                        {/*<li>Graduate Teacher</li>*/}
+                                        <li>{staffScience.map((staffScience, index) => (
+                                            <div key={index}>{staffScience.scienceContent}</div>
+                                        ))}</li>
+                                        <br></br>
+                                        {/*<li>Over 20 years tutoring in Auckland</li>*/}
+                                        <li>{staffScience.map((staffScience, index) => (
+                                            <div key={index}>{staffScience.scienceContentTwo}</div>
+                                        ))}</li>
                                         <br></br>
                                     </ul>
                                 </div>
@@ -302,43 +440,33 @@ const Managment = () => {
                         </div>
                     </div>
                     <br></br>
+                    {/* English */}
                     <div class="cards-container">
                         <div class="card-1 flip-card">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
-                                    {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                                    <p>Click to see Science</p>
+
+                                    {/*<p>Click to see English</p>*/}
+                                    <p>{staffEnglish.map((staffEnglish, index) => (
+                                        <div key={index}>{staffEnglish.englishHeading}</div>
+                                    ))}</p>
                                 </div>
                                 <div class="flip-card-back">
                                     {/* <h3>Maths & Physics</h3> */}
                                     <ul>
-                                        <li>Graduate Teacher</li>
-                                        <br></br>
-                                        <li>Over 20 years tutoring in Auckland</li>
-                                        <br></br>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br></br>
-                    <div class="cards-container">
-                        <div class="card-1 flip-card">
-                            <div class="flip-card-inner">
-                                <div class="flip-card-front">
-                                    {/* <li>Two Mechatronics Engineers</li>
-                    <li>Auckland university graduates</li> */}
-                                    <p>Click to see English</p>
-                                </div>
-                                <div class="flip-card-back">
-                                    {/* <h3>Maths & Physics</h3> */}
-                                    <ul>
+                                        {/*<li>*/}
+                                        {/*    Experience in teaching English to people of all ages*/}
+                                        {/*</li>*/}
                                         <li>
-                                            Experience in teaching English to people of all ages
+                                            {staffEnglish.map((staffEnglish, index) => (
+                                                <div key={index}>{staffEnglish.englishContent}</div>
+                                            ))}
                                         </li>
                                         <br></br>
-                                        <li>Accredited English tutors</li>
+                                        {/*<li>Accredited English tutors</li>*/}
+                                        <li>{staffEnglish.map((staffEnglish, index) => (
+                                            <div key={index}>{staffEnglish.englishContentTwo}</div>
+                                        ))}</li>
                                         <br></br>
                                     </ul>
                                 </div>
@@ -346,21 +474,31 @@ const Managment = () => {
                         </div>
                     </div>
                     <br></br>
+                    {/* Account */}
                     <div class="cards-container">
                         <div class="card-1 flip-card">
                             <div class="flip-card-inner">
                                 <div class="flip-card-front">
                                     {/* <li>Two Mechatronics Engineers</li>
                     <li>Auckland university graduates</li> */}
-                                    <p>Click to see Accounting & Commerce</p>
+                                    {/*<p>Click to see Accounting & Commerce</p>*/}
+                                    <p>{staffAccount.map((staffAccount, index) => (
+                                        <div key={index}>{staffAccount.accountHeading}</div>
+                                    ))}</p>
                                 </div>
 
                                 <div class="flip-card-back">
-                                    {/* <h3>Maths & Physics</h3> */}
+
                                     <ul>
-                                        <li>University lecturer (PhD) Auckland Uni graduate</li>
+                                        {/*<li>University lecturer (PhD) Auckland Uni graduate</li>*/}
+                                        <li>{staffAccount.map((staffAccount, index) => (
+                                            <div key={index}>{staffAccount.accountContent}</div>
+                                        ))}</li>
                                         <br></br>
-                                        <li>Experience tutor</li>
+                                        {/*<li>Experience tutor</li>*/}
+                                        <li>{staffAccount.map((staffAccount, index) => (
+                                            <div key={index}>{staffAccount.accountContentTwo}</div>
+                                        ))}</li>
                                         <br></br>
                                     </ul>
                                 </div>

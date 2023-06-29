@@ -9,10 +9,12 @@ const EditStaffScience = () => {
     const [user, setUser] = useState({
         scienceHeading: "",
         scienceContent: "",
+        scienceContentTwo:"",
     })
     const {
         scienceHeading,
-        scienceContent
+        scienceContent,
+        scienceContentTwo
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -59,6 +61,19 @@ const EditStaffScience = () => {
                                 placeholder="Enter data to staff science Content"
                                 name="scienceContent"
                                 value={scienceContent}
+                                onChange={(e) => onInputChange(e)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Name" className="form-label">
+                                science Content Two
+                            </label>
+                            <input
+                                type={"text"}
+                                className="form-control"
+                                placeholder="Enter data to staff science Content Two"
+                                name="scienceContentTwo"
+                                value={scienceContentTwo}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>
