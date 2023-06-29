@@ -1,5 +1,5 @@
-import React, {useRef, useEffect} from 'react';
-import styled, {keyframes, ThemeProvider} from 'styled-components';
+import React, {useEffect, useRef, useState} from 'react';
+import styled, {ThemeProvider} from 'styled-components';
 import {lightTheme} from './Themes';
 
 import LogoComponent from '../subComponents/LogoComponent';
@@ -11,6 +11,7 @@ import {motion} from 'framer-motion';
 
 import img from '../assets/Images/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg';
 import BigTitle from '../subComponents/BigTitlte';
+import axios from "axios";
 
 const Box = styled.div`
   background-color: ${(props) => props.theme.body};
@@ -118,10 +119,98 @@ const TableHeading = styled.th`
 `;
 
 const WorkPage = () => {
+
+    const [timeTableSaturday, setSaturday] = useState([])
+    const [timeTableMonday, setMonday] = useState([])
+    const [timeTableTuesday, setTuesday] = useState([])
+    const [timeTableWednesday, setWednesday] = useState([])
+    const [timeTableThursday, setThursday] = useState([])
+    const [timeTableFriday, setFriday] = useState([])
+
+    const loadSaturday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/saturday")
+        setSaturday(result.data)
+    }
+    const loadMonday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/monday")
+        setMonday(result.data)
+    }
+    const loadTuesday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/tuesday")
+        setTuesday(result.data)
+    }
+    const loadWednesday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/wednesday")
+        setWednesday(result.data)
+    }
+    const loadThursday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/thursday")
+        setThursday(result.data)
+    }
+    const loadFriday = async () => {
+        const result = await axios.get("http://localhost:8080/time-table/friday")
+        setFriday(result.data)
+    }
+
     const ref = useRef(null);
     const hiddenRef = useRef(null);
 
     useEffect(() => {
+        loadSaturday();
+        loadMonday();
+        loadTuesday();
+        loadWednesday();
+        loadThursday();
+        loadFriday();
+
+        axios.get('/time-table/saturday/{id}')
+            .then(response => {
+                setSaturday(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching timetable data', error)
+            });
+
+        axios.get('/time-table/monday/{id}')
+            .then(response => {
+                setMonday(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching timetable data', error)
+            });
+
+        axios.get('/time-table/tuesday/{id}')
+            .then(response => {
+                setTuesday(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching timetable data', error)
+            });
+
+        axios.get('/time-table/wednesday/{id}')
+            .then(response => {
+                setWednesday(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching timetable data', error)
+            });
+
+        axios.get('/time-table/thursday/{id}')
+            .then(response => {
+                setThursday(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching timetable data', error)
+            });
+
+        axios.get('/time-table/friday/{id}')
+            .then(response => {
+                setFriday(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching timetable data', error)
+            });
+
         const handleScroll = () => {
             let scrollPosition = window.pageYOffset;
             let windowSize = window.innerHeight;
@@ -163,14 +252,11 @@ const WorkPage = () => {
                 </Container>
                 <br/>
                 <br/>
+                {/*---------------------------SATURDAY TIMETABLE--------------------------*/}
                 <Box>
                     <LogoComponent theme="light"/>
                     <SocialIcons theme="light"/>
                     <PowerButton/>
-                    {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
                     <Main>
                         <TimetableTable>
                             <thead>
@@ -184,91 +270,22 @@ const WorkPage = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr style={{backgroundColor: '#72cc8c'}}>
-                                <td>Year 8</td>
-                                <td>Maths</td>
-                                <td>09.30 - 10.30 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#72cc8c'}}>
-                                <td>Year 8</td>
-                                <td>English</td>
-                                <td>10.45 - 11.45 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#f5f7f6'}}>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr style={{backgroundColor: '#5db2e3'}}>
-                                <td>Year 9</td>
-                                <td>Science</td>
-                                <td>09.30 - 10.30 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#5db2e3'}}>
-                                <td>Year 9</td>
-                                <td>Maths</td>
-                                <td>10.45 - 11.45 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#5db2e3'}}>
-                                <td>Year 9</td>
-                                <td>English</td>
-                                <td>12.00 - 01.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#f5f7f6'}}>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b8a2fa'}}>
-                                <td>Year 10</td>
-                                <td>English</td>
-                                <td>09.30 - 10.30 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b8a2fa'}}>
-                                <td>Year 10</td>
-                                <td>Science</td>
-                                <td>10.45 - 11.45 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b8a2fa'}}>
-                                <td>Year 10</td>
-                                <td>Maths</td>
-                                <td>12.00 - 01.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#f5f7f6'}}>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b3bec4'}}>
-                                <td>Year 6</td>
-                                <td>Maths</td>
-                                <td>01.15 - 02.15 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b3bec4'}}>
-                                <td>Year 6</td>
-                                <td>English</td>
-                                <td>02.30 - 03.30 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#f5f7f6'}}>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr style={{backgroundColor: '#ded79e'}}>
-                                <td>Year 7</td>
-                                <td>English</td>
-                                <td>01.15 - 02.15 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#ded79e'}}>
-                                <td>Year 7</td>
-                                <td>Maths</td>
-                                <td>03.00 - 04.00 PM</td>
-                            </tr>
+                            {timeTableSaturday.map((item, index) => (
+                                <tr style={{backgroundColor: '#72cc8c'}}>
+                                    {/*<td>Year 8</td>*/}
+                                    {/*<td>Maths</td>*/}
+                                    {/*<td>09.30 - 10.30 AM</td>*/}
+                                    <td>{item.grade}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
                             </tbody>
                         </TimetableTable>
                     </Main>
-                    {/* </motion.p> */}
+
                 </Box>
+                {/*---------------------------Monday TIMETABLE--------------------------*/}
                 <Box>
                     <Main>
                         <TimetableTable>
@@ -283,35 +300,20 @@ const WorkPage = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr style={{backgroundColor: '#6a82bd'}}>
-                                <td>Year 12</td>
-                                <td>Chemistry NCEA</td>
-                                <td>06.30 - 07.30 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#ad6874'}}>
-                                <td>Year 13</td>
-                                <td>Maths NCEA</td>
-                                <td>06.00 - 07.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#79ba99'}}>
-                                <td>Year 13</td>
-                                <td>Maths A2 (Cambridge)</td>
-                                <td>07.15 - 08.15 PM</td>
-                            </tr>
+                            {timeTableMonday.map((item, index) => (
+                                <tr style={{backgroundColor: '#6a82bd'}}>
+                                    <td>{item.grade}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
                             {/* Add more rows here */}
                             </tbody>
                         </TimetableTable>
                     </Main>
                 </Box>
+                {/*---------------------------TUESDAY TIMETABLE--------------------------*/}
                 <Box>
-                    {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-                    {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
                     <Main>
                         <TimetableTable>
                             <thead>
@@ -325,50 +327,20 @@ const WorkPage = () => {
                             </tr>
                             </thead>
                             <tbody>
-                            <tr style={{backgroundColor: '#79ba99'}}>
-                                <td>Year 11</td>
-                                <td>Physics</td>
-                                <td>06.00 - 07.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b8a2fa'}}>
-                                <td>Year 11</td>
-                                <td> Science</td>
-                                <td>07.15 - 08.15 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#9ebae8'}}>
-                                <td>Year 12</td>
-                                <td> Maths NCEA</td>
-                                <td>06.00 - 07.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#79ba99'}}>
-                                <td>Year 12</td>
-                                <td>Physics NCEA</td>
-                                <td>07.15 - 08.15 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#bbbd6a'}}>
-                                <td>Year 13</td>
-                                <td> Economics NCEA</td>
-                                <td>07.15 - 08.15 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#ad6874'}}>
-                                <td>Year 13</td>
-                                <td> Physics NCEA</td>
-                                <td> 08.30 - 09.30 PM</td>
-                            </tr>
+                            {timeTableTuesday.map((item, index) => (
+                                <tr style={{backgroundColor: '#ad6874'}}>
+                                    <td>{item.grade}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
                             {/* Add more rows here */}
                             </tbody>
                         </TimetableTable>
                     </Main>
                 </Box>
+                {/*---------------------------WEDNESDAY TIMETABLE--------------------------*/}
                 <Box>
-                    {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-                    {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
                     <Main>
                         <TimetableTable>
                             <thead>
@@ -383,56 +355,19 @@ const WorkPage = () => {
                             </thead>
                             <tbody>
                             {/* Existing rows */}
-                            <tr style={{backgroundColor: '#6a82bd'}}>
-                                <td>Year 7</td>
-                                <td>Science</td>
-                                <td>06.00 - 07.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#ad6874'}}>
-                                <td>Year 8</td>
-                                <td>Science</td>
-                                <td> 07.15 - 08.15 PM</td>
-                            </tr>
-                            {/* ... other existing rows ... */}
-                            {/* Wednesday timetable */}
-                            <tr style={{backgroundColor: '#79ba99'}}>
-                                <td>Year 11</td>
-                                <td>Maths</td>
-                                <td> 07:15 - 08:15 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b8a2fa'}}>
-                                <td>Year 11</td>
-                                <td>Chemistry NCEA</td>
-                                <td> 07:15 - 08:15 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#9ebae8'}}>
-                                <td>Year 12</td>
-                                <td> English NCEA</td>
-                                <td> 06.00 - 07.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#bbbd6a'}}>
-                                <td>Year 12</td>
-                                <td> Economics NCEA</td>
-                                <td>07.15 - 08.15 AM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#79ba99'}}>
-                                <td>Year 13</td>
-                                <td>Calculus NCEA</td>
-                                <td>06.00 - 07.00 PM</td>
-                            </tr>
+                            {timeTableWednesday.map((item, index) => (
+                                <tr style={{backgroundColor: '#b8a2fa'}}>
+                                    <td>{item.grade}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
                             </tbody>
                         </TimetableTable>
                     </Main>
                 </Box>
+                {/*---------------------------THURSDAY TIMETABLE--------------------------*/}
                 <Box>
-                    {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-                    {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
-
                     <Main>
                         <TimetableTable>
                             <thead>
@@ -447,40 +382,20 @@ const WorkPage = () => {
                             </thead>
                             <tbody>
                             {/* Existing rows */}
-                            <tr style={{backgroundColor: '#b8a2fa'}}>
-                                <td>Year 11</td>
-                                <td>English</td>
-                                <td> 06:00 - 7.00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#bbbd6a'}}>
-                                <td>Year 11</td>
-                                <td>Economics</td>
-                                <td>07.15 - 08.15 AM</td>
-                            </tr>
-                            {/* ... other existing rows ... */}
-                            {/* Thursday timetable */}
-                            <tr style={{backgroundColor: '#ad6874'}}>
-                                <td>Year 13</td>
-                                <td>Chemistry NCEA</td>
-                                <td>06:00 - 7:00 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#79ba99'}}>
-                                <td>Year 12</td>
-                                <td>Maths AS (Cambridge)</td>
-                                <td>06.00 - 07.00 PM</td>
-                            </tr>
+                            {timeTableThursday.map((item, index) => (
+                                <tr style={{backgroundColor: '#eb7bed'}}>
+                                    <td>{item.grade}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
+                            {/*</tr>*/}
                             </tbody>
                         </TimetableTable>
                     </Main>
                 </Box>
+                {/*---------------------------FRIDAY TIMETABLE--------------------------*/}
                 <Box>
-                    {/* <LogoComponent theme="light" />
-          <SocialIcons theme="light" />
-          <PowerButton /> */}
-
-                    {/* <Spaceman>
-            <img src={astronaut} alt="spaceman" />
-          </Spaceman> */}
 
                     <Main>
                         <TimetableTable>
@@ -496,33 +411,13 @@ const WorkPage = () => {
                             </thead>
                             <tbody>
                             {/* Existing rows */}
-                            <tr style={{backgroundColor: '#79ba99'}}>
-                                <td>Year 4&5</td>
-                                <td>English</td>
-                                <td>05:30 - 06:30</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b8a2fa'}}>
-                                <td>Year 11</td>
-                                <td>Accounting</td>
-                                <td>05:15 - 06:15 PM</td>
-                            </tr>
-                            {/* ... other existing rows ... */}
-                            {/* Friday timetable */}
-                            <tr style={{backgroundColor: '#cccccc'}}>
-                                <td>Year 13</td>
-                                <td>Accounting</td>
-                                <td>05:45 - 06:45 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#ad6874'}}>
-                                <td>Year 12</td>
-                                <td> AS Accounting</td>
-                                <td>07.30 - 08.30 PM</td>
-                            </tr>
-                            <tr style={{backgroundColor: '#b3bec4'}}>
-                                <td>Year 12</td>
-                                <td>Accounting NCEA</td>
-                                <td>08.00 - 09.00 PM</td>
-                            </tr>
+                            {timeTableFriday.map((item, index) => (
+                                <tr style={{backgroundColor: '#cccccc'}}>
+                                    <td>{item.grade}</td>
+                                    <td>{item.subject}</td>
+                                    <td>{item.time}</td>
+                                </tr>
+                            ))}
                             </tbody>
                         </TimetableTable>
                     </Main>
