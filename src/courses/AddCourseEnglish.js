@@ -7,12 +7,10 @@ const AddCourseEnglish = () => {
     let navigate = useNavigate();
     const [user, setUser] = useState({
         englishLessonFirstPara: "",
-        englishLessonCategory: "",
         englishSecondPara: "",
     })
     const {
         englishLessonFirstPara,
-        englishLessonCategory,
         englishSecondPara
     } = user
     const onInputChange = (e) => {
@@ -40,19 +38,6 @@ const AddCourseEnglish = () => {
                                 placeholder="Enter data to 1st box 1st Paragraph"
                                 name="englishLessonFirstPara"
                                 value={englishLessonFirstPara}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                english Lesson Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 2nd box english Lesson Category"
-                                name="englishLessonCategory"
-                                value={englishLessonCategory}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

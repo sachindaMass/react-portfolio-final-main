@@ -201,7 +201,7 @@ const Main = () => {
                 </Contact>
                 <Button
                     as={NavLink}
-                    to="/courses"
+                    to="/login-page"
                     position="top: 25%; left: 30%; transform: translate(-50%, -50%);"
                 >
                     <motion.h2
@@ -217,6 +217,26 @@ const Main = () => {
                         whileTap={{scale: 0.9}}
                     >
                         Courses
+                    </motion.h2>
+                </Button>
+                <Button
+                    as={NavLink}
+                    to="/courses"
+                    position="top: 5%; left: 10%; transform: translate(-50%, -50%);"
+                >
+                    <motion.h2
+                        initial={{
+                            y: -200,
+                            transition: {type: 'spring', duration: 1.5, delay: 1},
+                        }}
+                        animate={{
+                            y: 0,
+                            transition: {type: 'spring', duration: 1.5, delay: 1},
+                        }}
+                        whileHover={{scale: 1.1}}
+                        whileTap={{scale: 0.9}}
+                    >
+                        Admin
                     </motion.h2>
                 </Button>
                 <WORK

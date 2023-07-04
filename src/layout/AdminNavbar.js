@@ -7,12 +7,19 @@ const AdminNavbar = () => {
 
     const [users, setUsers] = useState([])
     const [proof, setProof] = useState([])
+    const [proofCategory, setProofCategory] = useState([])
     const [english, setEnglish] = useState([])
+    const [englishCategory, setEnglishCategory] = useState([])
     const [specialCourse, setSpecialCourse] = useState([])
+    const [specialCourseCategory, setSpecialCourseCategory] = useState([])
     const [standardCourse, setstandardCourse] = useState([])
+    const [standardCourseCategory, setstandardCourseCategory] = useState([])
     const [academicCourse, setAcademicCourse] = useState([])
+    const [academicCourseCategory, setAcademicCourseCategory] = useState([])
     const [businessCourse, setBusinessCourse] = useState([])
+    const [businessCourseCategory, setBusinessCourseCategory] = useState([])
     const [miniEnglishCourse, setminiEnglishCourse] = useState([])
+    const [miniEnglishCourseCategory, setminiEnglishCourseCategory] = useState([])
 
     const [staffManagement, setstaffManagement] = useState([])
     const [staffMembers, setstaffMembers] = useState([])
@@ -56,6 +63,7 @@ const AdminNavbar = () => {
         loadBusinessCourse();
         loadMiniEnglishCourse();
 
+
         loadStaffManagement();
         loadStaffMemebers();
         loadStaffMaths();
@@ -64,7 +72,51 @@ const AdminNavbar = () => {
         loadStaffScience();
         loadStaffEnglish();
         loadStaffAccount();
+
+        loadProofReadingCategory();
+        loadEnglishCategory();
+        loadSpecialCourseCategory();
+        loadStandardCourseCategory();
+        loadAcademicCourseCategory();
+        loadBusinessCourseCategory();
+        loadMiniEnglishCateory();
     }, []);
+
+    // -----------------------------Course-------------------------------
+    const loadProofReadingCategory = async () => {
+        const result = await axios.get("http://localhost:8080/proofReading/category")
+        setProofCategory(result.data)
+    }
+
+    const loadEnglishCategory = async () => {
+        const result = await axios.get("http://localhost:8080/englishLesson/category")
+        setEnglishCategory(result.data)
+    }
+
+    const loadSpecialCourseCategory = async () => {
+        const result = await axios.get("http://localhost:8080/specialCourseIndvidual/category")
+        setSpecialCourseCategory(result.data)
+    }
+
+    const loadStandardCourseCategory = async () => {
+        const result = await axios.get("http://localhost:8080/standardCourseEnglish/category")
+        setstandardCourseCategory(result.data)
+    }
+
+    const loadAcademicCourseCategory = async () => {
+        const result = await axios.get("http://localhost:8080/academicEnglishSecondLang/category")
+        setAcademicCourseCategory(result.data)
+    }
+
+    const loadBusinessCourseCategory = async () => {
+        const result = await axios.get("http://localhost:8080/businessEnglishSecondLang/category")
+        setBusinessCourseCategory(result.data)
+    }
+
+    const loadMiniEnglishCateory = async () => {
+        const result = await axios.get("http://localhost:8080/miniEnglish/category")
+        setminiEnglishCourseCategory(result.data)
+    }
 
     const loadProofReading = async () => {
         const result = await axios.get("http://localhost:8080/proofReading")
@@ -85,23 +137,27 @@ const AdminNavbar = () => {
         const result = await axios.get("http://localhost:8080/academicEnglishSecondLang")
         setAcademicCourse(result.data)
     }
+
     const loadStandardCourse = async () => {
         const result = await axios.get("http://localhost:8080/standardCourseEnglish")
         setstandardCourse(result.data)
     }
+
     const loadBusinessCourse = async () => {
         const result = await axios.get("http://localhost:8080/businessEnglishSecondLang")
         setBusinessCourse(result.data)
     }
+
     const loadMiniEnglishCourse = async () => {
         const result = await axios.get("http://localhost:8080/miniEnglish")
         setminiEnglishCourse(result.data)
     }
-
+// ------------------------Staff-------------------------------------
     const loadStaffManagement = async () => {
         const result = await axios.get("http://localhost:8080/management")
         setstaffManagement(result.data)
     }
+
     const loadStaffMemebers = async () => {
         const result = await axios.get("http://localhost:8080/staffMembers")
         setstaffMembers(result.data)
@@ -143,6 +199,19 @@ const AdminNavbar = () => {
             }
         }
     }
+    const deleteEnglsihCategory = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/englishLesson/category/${id}`)
+                loadEnglishCategory()
+            } catch (error) {
+                console.error('Error deleting english category:', error);
+                loadEnglishCategory()
+            }
+        }
+    }
+
     const deleteSpecialCourse = async (id) => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
@@ -152,6 +221,18 @@ const AdminNavbar = () => {
             } catch (error) {
                 console.error('Error deleting course:', error);
                 loadSpecialCourse()
+            }
+        }
+    }
+    const deleteSpecialCourseCategory = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/specialCourseIndvidual/category/${id}`)
+                loadSpecialCourseCategory()
+            } catch (error) {
+                console.error('Error deleting special category:', error);
+                loadSpecialCourseCategory()
             }
         }
     }
@@ -168,6 +249,18 @@ const AdminNavbar = () => {
             }
         }
     }
+    const deleteStandardCourseCategory = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/standardCourseEnglish/category/${id}`)
+                loadStandardCourseCategory()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadStandardCourseCategory()
+            }
+        }
+    }
 
     const deleteAcademicCourse = async (id) => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
@@ -178,6 +271,18 @@ const AdminNavbar = () => {
             } catch (error) {
                 console.error('Error deleting course:', error);
                 loadAcademicCourse()
+            }
+        }
+    }
+    const deleteAcademicCourseCategory = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/academicEnglishSecondLang/category/${id}`)
+                loadAcademicCourseCategory()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadAcademicCourseCategory()
             }
         }
     }
@@ -194,6 +299,19 @@ const AdminNavbar = () => {
             }
         }
     }
+    const deleteBusinessCourseCategory = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/businessEnglishSecondLang/category/${id}`)
+                loadBusinessCourseCategory()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadBusinessCourseCategory()
+            }
+        }
+    }
+
     const deleteMiniEnglishCourse = async (id) => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
@@ -203,6 +321,18 @@ const AdminNavbar = () => {
             } catch (error) {
                 console.error('Error deleting course:', error);
                 loadMiniEnglishCourse()
+            }
+        }
+    }
+    const deleteMiniEnglishCourseCategory = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/miniEnglish/category/${id}`)
+                loadMiniEnglishCateory()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadMiniEnglishCateory()
             }
         }
     }
@@ -219,6 +349,19 @@ const AdminNavbar = () => {
             }
         }
     }
+    const deleteProofReadingCategory = async (id) => {
+        const confirmed = window.confirm('Are you sure want to delete this field?');
+        if (confirmed) {
+            try {
+                await axios.delete(`http://localhost:8080/proofReading/category/${id}`)
+                loadProofReading()
+            } catch (error) {
+                console.error('Error deleting course:', error);
+                loadProofReading()
+            }
+        }
+    }
+
     const deleteStaffManagement = async (id) => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
@@ -459,7 +602,7 @@ const AdminNavbar = () => {
     return (
         <div>
             <Navbar bg="primary" expand="lg" variant="dark" fixed="top">
-                <Link className="navbar-brand" to="/">&nbsp;&nbsp;&nbsp;&nbsp;Admin</Link>
+                <Link className="navbar-brand" to="#">&nbsp;&nbsp;&nbsp;&nbsp;Admin</Link>
                 <Navbar.Toggle aria-controls="navbarSupportedContent"/>
                 <Navbar.Collapse id="navbarSupportedContent">
                     <Nav className="me-auto">
@@ -470,24 +613,45 @@ const AdminNavbar = () => {
                             <NavDropdown.Item as={Link} to="/add-course-english">
                                 &nbsp;&nbsp;&nbsp;&nbsp;Add Course English
                             </NavDropdown.Item>
+                            {/*<NavDropdown.Item as={Link} to="/add-course-english-category">*/}
+                            {/*    &nbsp;&nbsp;&nbsp;&nbsp;Add Course English Category*/}
+                            {/*</NavDropdown.Item>*/}
                             <NavDropdown.Item as={Link} to="/add-course-special-course-english">
                                 &nbsp;&nbsp;&nbsp;&nbsp;Add Course Special Course
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/add-course-special-category">
+                                &nbsp;&nbsp;&nbsp;&nbsp;Add Course Special Course Category
                             </NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/add-course-standard">
                                 &nbsp;&nbsp;&nbsp;&nbsp;Add Course Standard Course
                             </NavDropdown.Item>
+                            {/*<NavDropdown.Item as={Link} to="/add-course-standard-category">*/}
+                            {/*    &nbsp;&nbsp;&nbsp;&nbsp;Add Course Standard Course Category*/}
+                            {/*</NavDropdown.Item>*/}
                             <NavDropdown.Item as={Link} to="/add-course-academic">
                                 &nbsp;&nbsp;&nbsp;&nbsp;Add Course Academic Course
                             </NavDropdown.Item>
+                            {/*<NavDropdown.Item as={Link} to="/add-course-academic-category">*/}
+                            {/*    &nbsp;&nbsp;&nbsp;&nbsp;Add Course Academic Course Category*/}
+                            {/*</NavDropdown.Item>*/}
                             <NavDropdown.Item as={Link} to="/add-course-business">
                                 &nbsp;&nbsp;&nbsp;&nbsp;Add Course Business Course
                             </NavDropdown.Item>
+                            {/*<NavDropdown.Item as={Link} to="/add-course-business-category">*/}
+                            {/*    &nbsp;&nbsp;&nbsp;&nbsp;Add Course Business Course Category*/}
+                            {/*</NavDropdown.Item>*/}
                             <NavDropdown.Item as={Link} to="/add-course-mini-English">
                                 &nbsp;&nbsp;&nbsp;&nbsp;Add Course mini Course
                             </NavDropdown.Item>
+                            {/*<NavDropdown.Item as={Link} to="/add-course-mini-english-category">*/}
+                            {/*    &nbsp;&nbsp;&nbsp;&nbsp;Add Course mini Course Category*/}
+                            {/*</NavDropdown.Item>*/}
                             <NavDropdown.Item as={Link} to="/add-course-proofReading-course-english">
                                 &nbsp;&nbsp;&nbsp;&nbsp;Add Course proofreading Course
                             </NavDropdown.Item>
+                            {/*<NavDropdown.Item as={Link} to="/add-course-proofReading-category">*/}
+                            {/*    &nbsp;&nbsp;&nbsp;&nbsp;Add Course proofreading Course Category*/}
+                            {/*</NavDropdown.Item>*/}
                         </NavDropdown>
                         <NavDropdown title="&nbsp;&nbsp;&nbsp;&nbsp;Add Staff Members" id="addStaffDropDown">
                             <NavDropdown.Item as={Link} to="/add-staff-management">
@@ -538,6 +702,7 @@ const AdminNavbar = () => {
                         <Nav.Link as={Link} to="/add-fees">&nbsp;&nbsp;&nbsp;&nbsp;Add Fees Details</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
+                <Link className="navbar-brand" to="/">&nbsp;&nbsp;&nbsp;&nbsp;Log Out</Link>
             </Navbar>
 
             <br/>
@@ -618,7 +783,6 @@ const AdminNavbar = () => {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">english Lesson First Para</th>
-                                <th scope="col">english Lesson Category</th>
                                 <th scope="col">english Second Para</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -629,14 +793,13 @@ const AdminNavbar = () => {
                                     <tr>
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{englishs.englishLessonFirstPara}</td>
-                                        <td>{englishs.englishLessonCategory}</td>
                                         <td>{englishs.englishSecondPara}</td>
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 English Course</Link>
                                             <Link className="btn btn-secondary mx-2"
                                                   to={`/edit-courses-english/${englishs.id}`}
-                                            >Course English</Link>
+                                            >Edit Course English</Link>
                                             {isDeleted ? (
                                                 <div className="alert alert-success">English Course deleted
                                                     successfully!</div>
@@ -660,6 +823,55 @@ const AdminNavbar = () => {
             </div>
             <br/>
             <br/>
+            {/*---------------------------------- Course Details For English Category ---------------------------------*/}
+            {/*<div className='container'>*/}
+            {/*    <br/>*/}
+            {/*    <b>Course English lesson for aged 16+ Category Table </b>*/}
+            {/*    <div className='py-4'>*/}
+            {/*        <div className='table-responsive'>*/}
+            {/*            <table className="table border shadow">*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th scope="col">#</th>*/}
+            {/*                    <th scope="col">englishCategory</th>*/}
+            {/*                    <th scope="col">Action</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {*/}
+            {/*                    englishCategory.map((englishCategory, index) => (*/}
+            {/*                        <tr>*/}
+            {/*                            <th scope="row" key={index}>{index + 1}</th>*/}
+            {/*                            <td>{englishCategory.englishCategory}</td>*/}
+            {/*                            <td>*/}
+            {/*                                <Link to="/courses" className="btn btn-primary mx-2">View*/}
+            {/*                                    English Course Category</Link>*/}
+            {/*                                <Link className="btn btn-secondary mx-2"*/}
+            {/*                                      to={`/edit-course-english-category/${englishCategory.id}`}*/}
+            {/*                                >Edit Course English Category</Link>*/}
+            {/*                                {isDeleted ? (*/}
+            {/*                                    <div className="alert alert-success">English Course deleted*/}
+            {/*                                        successfully!</div>*/}
+            {/*                                ) : (*/}
+            {/*                                    <button*/}
+            {/*                                        className="btn btn-danger mx-2"*/}
+            {/*                                        onClick={() => deleteEnglsihCategory(englishCategory.id)}*/}
+            {/*                                    >*/}
+            {/*                                        Delete Course English Category*/}
+            {/*                                    </button>*/}
+            {/*                                )}*/}
+            {/*                            </td>*/}
+            {/*                        </tr>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+
+            {/*                </tbody>*/}
+            {/*            </table>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <br/>
+            <br/>
             {/*----------------------------------- Course Details For Special -----------------------------------*/}
             <div className='container'>
                 <br/>
@@ -670,10 +882,8 @@ const AdminNavbar = () => {
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">special Course Individual Category</th>
                                 <th scope="col">special Course Individual First Para</th>
                                 <th scope="col">special Course Individual Second Para</th>
-                                <th scope="col">special Course Individual Second Category</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -682,10 +892,8 @@ const AdminNavbar = () => {
                                 specialCourse.map((specialCourses, index) => (
                                     <tr>
                                         <th scope="row" key={index}>{index + 1}</th>
-                                        <td>{specialCourses.specialCourseIndividualCategory}</td>
                                         <td>{specialCourses.specialCourseIndividualFirstPara}</td>
                                         <td>{specialCourses.specailCourseIndividualSecondPara}</td>
-                                        <td>{specialCourses.specailCourseIndividualSecondCategory}</td>
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Special Course</Link>
@@ -699,6 +907,65 @@ const AdminNavbar = () => {
                                                 <button
                                                     className="btn btn-danger mx-2"
                                                     onClick={() => deleteSpecialCourse(specialCourses.id)}
+                                                >
+                                                    Delete Special Course
+                                                </button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            {/*---------------------------------- Course Details For Special Category ---------------------------------*/}
+            <div className='container'>
+                <br/>
+                <b>Course Details For Special Category Table</b>
+                <div className='py-4'>
+                    <div className='table-responsive'>
+                        <table className="table border shadow">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Special Individual Category One</th>
+                                <th scope="col">Special Individual Category Two</th>
+                                <th scope="col">Special Individual Category Three</th>
+                                <th scope="col">Special Individual Category Four</th>
+                                <th scope="col">Special Individual Category Six</th>
+                                <th scope="col">Special Individual Category </th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {
+                                specialCourseCategory.map((specialCourseCategory, index) => (
+                                    <tr>
+                                        <th scope="row" key={index}>{index + 1}</th>
+                                        <td>{specialCourseCategory.specialIndividualCategoryOne}</td>
+                                        <td>{specialCourseCategory.specialIndividualCategoryTwo}</td>
+                                        <td>{specialCourseCategory.specialIndividualCategoryThree}</td>
+                                        <td>{specialCourseCategory.specialIndividualCategoryFour}</td>
+                                        <td>{specialCourseCategory.specialIndividualCategoryFive}</td>
+                                        <td>{specialCourseCategory.specialIndividualCategoryFive}</td>
+                                        <td>
+                                            <Link to="/courses" className="btn btn-primary mx-2">View
+                                                Special Course Category</Link>
+                                            <Link className="btn btn-secondary mx-2"
+                                                  to={`/edit-course-special-category/${specialCourseCategory.id}`}
+                                            >Edit Special Courses Category</Link>
+                                            {isDeleted ? (
+                                                <div className="alert alert-success">Special Course deleted
+                                                    successfully!</div>
+                                            ) : (
+                                                <button
+                                                    className="btn btn-danger mx-2"
+                                                    onClick={() => deleteSpecialCourseCategory(specialCourseCategory.id)}
                                                 >
                                                     Delete Special Course
                                                 </button>
@@ -729,7 +996,6 @@ const AdminNavbar = () => {
                                 <th scope="col">standard Course English Second Para</th>
                                 <th scope="col">standard Course English Third Para</th>
                                 <th scope="col">standard Course English Fourth Para</th>
-                                <th scope="col">standard Course English For First Category</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -742,7 +1008,6 @@ const AdminNavbar = () => {
                                         <td>{standardCourses.standardCourseEnglushSecondPara}</td>
                                         <td>{standardCourses.standardCourseEnglishThirdPara}</td>
                                         <td>{standardCourses.standardCourseEnglishFourthPara}</td>
-                                        <td>{standardCourses.standardCourseEnglishForFirstCategory}</td>
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Standard Course</Link>
@@ -772,6 +1037,55 @@ const AdminNavbar = () => {
             </div>
             <br/>
             <br/>
+            {/*------------------------------------ Course Details For Standard Courses category --------------------------*/}
+            {/*<div className='container'>*/}
+            {/*    <br/>*/}
+            {/*    <b>Standard Courses for General English Category Table</b>*/}
+            {/*    <div className='py-4'>*/}
+            {/*        <div className='table-responsive'>*/}
+            {/*            <table className="table border shadow">*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th scope="col">#</th>*/}
+            {/*                    <th scope="col">Standard Category</th>*/}
+            {/*                    <th scope="col">Action</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {*/}
+            {/*                    standardCourseCategory.map((standardCourseCategory, index) => (*/}
+            {/*                        <tr>*/}
+            {/*                            <th scope="row" key={index}>{index + 1}</th>*/}
+            {/*                            <td>{standardCourseCategory.standardCategory}</td>*/}
+            {/*                            <td>*/}
+            {/*                                <Link to="/courses" className="btn btn-primary mx-2">View*/}
+            {/*                                    Standard Course Category</Link>*/}
+            {/*                                <Link className="btn btn-secondary mx-2"*/}
+            {/*                                      to={`/edit-course-standard-category/${standardCourseCategory.id}`}*/}
+            {/*                                >Edit Standard Courses</Link>*/}
+            {/*                                {isDeleted ? (*/}
+            {/*                                    <div className="alert alert-success">Standard Course deleted*/}
+            {/*                                        successfully!</div>*/}
+            {/*                                ) : (*/}
+            {/*                                    <button*/}
+            {/*                                        className="btn btn-danger mx-2"*/}
+            {/*                                        onClick={() => deleteStandardCourseCategory(standardCourseCategory.id)}*/}
+            {/*                                    >*/}
+            {/*                                        Delete Standard Course*/}
+            {/*                                    </button>*/}
+            {/*                                )}*/}
+            {/*                            </td>*/}
+            {/*                        </tr>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+
+            {/*                </tbody>*/}
+            {/*            </table>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <br/>
+            <br/>
             {/*----------------------------------------- Course Details for Academic Course --------------------------------------------------------*/}
             <div className='container'>
                 <br/>
@@ -784,7 +1098,6 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">academic English Second Lang First Para</th>
                                 <th scope="col">academic English Second Lang Second Para</th>
-                                <th scope="col">academic English Second Lang First Category</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -795,7 +1108,6 @@ const AdminNavbar = () => {
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{academicCourses.academicEnglishSecondLangFirstPara}</td>
                                         <td>{academicCourses.academicEnglishSecondLangSecondPara}</td>
-                                        <td>{academicCourses.academicEnglishSecondLangFirstCategory}</td>
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Academic Course</Link>
@@ -825,6 +1137,55 @@ const AdminNavbar = () => {
             </div>
             <br/>
             <br/>
+            {/*----------------------------------------- Course Details for Academic Category Course --------------------------------------------------------*/}
+            {/*<div className='container'>*/}
+            {/*    <br/>*/}
+            {/*    <b>Academic Course for General English Category Table</b>*/}
+            {/*    <div className='py-4'>*/}
+            {/*        <div className='table-responsive'>*/}
+            {/*            <table className="table border shadow">*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th scope="col">#</th>*/}
+            {/*                    <th scope="col">Academic Category</th>*/}
+            {/*                    <th scope="col">Action</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {*/}
+            {/*                    academicCourseCategory.map((academicCourseCategory, index) => (*/}
+            {/*                        <tr>*/}
+            {/*                            <th scope="row" key={index}>{index + 1}</th>*/}
+            {/*                            <td>{academicCourseCategory.academicCategory}</td>*/}
+            {/*                            <td>*/}
+            {/*                                <Link to="/courses" className="btn btn-primary mx-2">View*/}
+            {/*                                    Academic Course</Link>*/}
+            {/*                                <Link className="btn btn-secondary mx-2"*/}
+            {/*                                      to={`/edit-course-academic-category/${academicCourseCategory.id}`}*/}
+            {/*                                >Edit Academic Courses</Link>*/}
+            {/*                                {isDeleted ? (*/}
+            {/*                                    <div className="alert alert-success">Academic deleted*/}
+            {/*                                        successfully!</div>*/}
+            {/*                                ) : (*/}
+            {/*                                    <button*/}
+            {/*                                        className="btn btn-danger mx-2"*/}
+            {/*                                        onClick={() => deleteAcademicCourseCategory(academicCourseCategory.id)}*/}
+            {/*                                    >*/}
+            {/*                                        Delete Academic Course*/}
+            {/*                                    </button>*/}
+            {/*                                )}*/}
+            {/*                            </td>*/}
+            {/*                        </tr>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+
+            {/*                </tbody>*/}
+            {/*            </table>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <br/>
+            <br/>
             {/*--------------------------------------------- Course Details for business Course -----------------------------------*/}
             <div className='container'>
                 <br/>
@@ -837,7 +1198,6 @@ const AdminNavbar = () => {
                                 <th scope="col">#</th>
                                 <th scope="col">business English Second Lang First Para</th>
                                 <th scope="col">business English Second Lang Second Para</th>
-                                <th scope="col">business English Second Lang First Category</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -848,7 +1208,6 @@ const AdminNavbar = () => {
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{businessCourses.businessEnglishSecondLangFirstPara}</td>
                                         <td>{businessCourses.businessEnglishSecondLangSecondPara}</td>
-                                        <td>{businessCourses.businessEnglishSecondLangFirstCategory}</td>
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Business Course</Link>
@@ -878,6 +1237,55 @@ const AdminNavbar = () => {
             </div>
             <br/>
             <br/>
+            {/*--------------------------------------------- Course Details for business Category Course -----------------------------------*/}
+            {/*<div className='container'>*/}
+            {/*    <br/>*/}
+            {/*    <b>business Course for business English Table</b>*/}
+            {/*    <div className='py-4'>*/}
+            {/*        <div className='table-responsive'>*/}
+            {/*            <table className="table border shadow">*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th scope="col">#</th>*/}
+            {/*                    <th scope="col">Business Category</th>*/}
+            {/*                    <th scope="col">Action</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {*/}
+            {/*                    businessCourseCategory.map((businessCourseCategory, index) => (*/}
+            {/*                        <tr>*/}
+            {/*                            <th scope="row" key={index}>{index + 1}</th>*/}
+            {/*                            <td>{businessCourseCategory.businessCategory}</td>*/}
+            {/*                            <td>*/}
+            {/*                                <Link to="/courses" className="btn btn-primary mx-2">View*/}
+            {/*                                    Business Course</Link>*/}
+            {/*                                <Link className="btn btn-secondary mx-2"*/}
+            {/*                                      to={`/edit-course-business-category/${businessCourseCategory.id}`}*/}
+            {/*                                >Edit Business Courses</Link>*/}
+            {/*                                {isDeleted ? (*/}
+            {/*                                    <div className="alert alert-success">Business deleted*/}
+            {/*                                        successfully!</div>*/}
+            {/*                                ) : (*/}
+            {/*                                    <button*/}
+            {/*                                        className="btn btn-danger mx-2"*/}
+            {/*                                        onClick={() => deleteBusinessCourseCategory(businessCourseCategory.id)}*/}
+            {/*                                    >*/}
+            {/*                                        Delete Business Course*/}
+            {/*                                    </button>*/}
+            {/*                                )}*/}
+            {/*                            </td>*/}
+            {/*                        </tr>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+
+            {/*                </tbody>*/}
+            {/*            </table>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <br/>
+            <br/>
             {/*-------------------------------------------- Course Details For Mini English Course-------------------------*/}
             <div className='container'>
                 <br/>
@@ -889,7 +1297,6 @@ const AdminNavbar = () => {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">mini English First Para</th>
-                                <th scope="col">miniEnglishCategory</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -899,7 +1306,6 @@ const AdminNavbar = () => {
                                     <tr>
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{miniEnglishCourses.miniEnglishFirstPara}</td>
-                                        <td>{miniEnglishCourses.miniEnglishCategory}</td>
                                         <td>
                                             <Link to="/courses" className="btn btn-primary mx-2">View
                                                 Mini English Course</Link>
@@ -929,6 +1335,55 @@ const AdminNavbar = () => {
             </div>
             <br/>
             <br/>
+            {/*-------------------------------------------- Course Details For Mini English Category-------------------------*/}
+            {/*<div className='container'>*/}
+            {/*    <br/>*/}
+            {/*    <b>Mini English Courses Category For mini English Table</b>*/}
+            {/*    <div className='py-4'>*/}
+            {/*        <div className='table-responsive'>*/}
+            {/*            <table className="table border shadow">*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th scope="col">#</th>*/}
+            {/*                    <th scope="col">Mini English Category</th>*/}
+            {/*                    <th scope="col">Action</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {*/}
+            {/*                    miniEnglishCourseCategory.map((miniEnglishCourseCategory, index) => (*/}
+            {/*                        <tr>*/}
+            {/*                            <th scope="row" key={index}>{index + 1}</th>*/}
+            {/*                            <td>{miniEnglishCourseCategory.miniEnglishCategory}</td>*/}
+            {/*                            <td>*/}
+            {/*                                <Link to="/courses" className="btn btn-primary mx-2">View*/}
+            {/*                                    Mini English Course</Link>*/}
+            {/*                                <Link className="btn btn-secondary mx-2"*/}
+            {/*                                      to={`/edit-course-mini-english-category/${miniEnglishCourseCategory.id}`}*/}
+            {/*                                >Edit Mini English Courses</Link>*/}
+            {/*                                {isDeleted ? (*/}
+            {/*                                    <div className="alert alert-success">Mini English deleted*/}
+            {/*                                        successfully!</div>*/}
+            {/*                                ) : (*/}
+            {/*                                    <button*/}
+            {/*                                        className="btn btn-danger mx-2"*/}
+            {/*                                        onClick={() => deleteMiniEnglishCourseCategory(miniEnglishCourseCategory.id)}*/}
+            {/*                                    >*/}
+            {/*                                        Delete Mini English Course*/}
+            {/*                                    </button>*/}
+            {/*                                )}*/}
+            {/*                            </td>*/}
+            {/*                        </tr>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+
+            {/*                </tbody>*/}
+            {/*            </table>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            <br/>
+            <br/>
             {/*------------------------------------- Course Details For Proof Reading -----------------------------*/}
             <div className='container'>
                 <br/>
@@ -940,7 +1395,6 @@ const AdminNavbar = () => {
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">proof Reading FirstPara</th>
-                                <th scope="col">proof Reading First Category</th>
                                 <th scope="col">proof Reading SecondPara</th>
                                 <th scope="col">proof Reading Third Para</th>
                                 <th scope="col">Action</th>
@@ -952,7 +1406,6 @@ const AdminNavbar = () => {
                                     <tr>
                                         <th scope="row" key={index}>{index + 1}</th>
                                         <td>{proof.proofReadingFirstPara}</td>
-                                        <td>{proof.proofReadingFirstCategory}</td>
                                         <td>{proof.proofReadingSecondPara}</td>
                                         <td>{proof.proofReadingThridPara}</td>
                                         <td>
@@ -982,6 +1435,55 @@ const AdminNavbar = () => {
                     </div>
                 </div>
             </div>
+            <br/>
+            <br/>
+            {/*------------------------------------- Course Details For Proof Reading Category -----------------------------*/}
+            {/*<div className='container'>*/}
+            {/*    <br/>*/}
+            {/*    <b>Course ProofReading Category Table</b>*/}
+            {/*    <div className='py-4'>*/}
+            {/*        <div className='table-responsive'>*/}
+            {/*            <table className="table border shadow">*/}
+            {/*                <thead>*/}
+            {/*                <tr>*/}
+            {/*                    <th scope="col">#</th>*/}
+            {/*                    <th scope="col">Proof Reading Category</th>*/}
+            {/*                    <th scope="col">Action</th>*/}
+            {/*                </tr>*/}
+            {/*                </thead>*/}
+            {/*                <tbody>*/}
+            {/*                {*/}
+            {/*                    proofCategory.map((proofCategory, index) => (*/}
+            {/*                        <tr>*/}
+            {/*                            <th scope="row" key={index}>{index + 1}</th>*/}
+            {/*                            <td>{proofCategory.proofReadingCategory}</td>*/}
+            {/*                            <td>*/}
+            {/*                                <Link to="/courses" className="btn btn-primary mx-2">View*/}
+            {/*                                    ProofReading</Link>*/}
+            {/*                                <Link className="btn btn-secondary mx-2"*/}
+            {/*                                      to={`/edit-course-proofReading-category/${proofCategory.id}`}*/}
+            {/*                                >Edit ProofReading Courses</Link>*/}
+            {/*                                {isDeleted ? (*/}
+            {/*                                    <div className="alert alert-success">ProofReading deleted*/}
+            {/*                                        successfully!</div>*/}
+            {/*                                ) : (*/}
+            {/*                                    <button*/}
+            {/*                                        className="btn btn-danger mx-2"*/}
+            {/*                                        onClick={() => deleteProofReadingCategory(proofCategory.id)}*/}
+            {/*                                    >*/}
+            {/*                                        Delete ProofReading*/}
+            {/*                                    </button>*/}
+            {/*                                )}*/}
+            {/*                            </td>*/}
+            {/*                        </tr>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+
+            {/*                </tbody>*/}
+            {/*            </table>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <br/>
             <br/>
             {/*----------------------------------- staff Management ----------------------------------*/}

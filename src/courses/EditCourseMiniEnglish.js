@@ -9,12 +9,9 @@ const EditCourseMiniEnglish = () => {
     const {id} = useParams();
     const [user, setUser] = useState({
         miniEnglishFirstPara: "",
-        miniEnglishCategory: "",
-
     })
     const {
         miniEnglishFirstPara,
-        miniEnglishCategory
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -48,19 +45,6 @@ const EditCourseMiniEnglish = () => {
                                 placeholder="Enter data to 7th box 1st para"
                                 name="miniEnglishFirstPara"
                                 value={miniEnglishFirstPara}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                mini English Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 7th box 1st para"
-                                name="miniEnglishCategory"
-                                value={miniEnglishCategory}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

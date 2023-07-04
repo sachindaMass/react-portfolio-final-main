@@ -7,13 +7,11 @@ const AddCourseProofReading = () => {
     let navigate = useNavigate();
     const [user, setUser] = useState({
         proofReadingFirstPara: "",
-        proofReadingFirstCategory: "",
         proofReadingSecondPara: "",
         proofReadingThridPara: "",
     })
     const {
         proofReadingFirstPara,
-        proofReadingFirstCategory,
         proofReadingSecondPara,
         proofReadingThridPara
     } = user
@@ -42,19 +40,6 @@ const AddCourseProofReading = () => {
                                 placeholder="Enter data to 5th box 1st para"
                                 name="proofReadingFirstPara"
                                 value={proofReadingFirstPara}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                proof Reading First Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 5th box 1st para"
-                                name="proofReadingFirstCategory"
-                                value={proofReadingFirstCategory}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

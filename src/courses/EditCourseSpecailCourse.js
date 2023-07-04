@@ -8,16 +8,13 @@ const EditCourseSpecailCourse = () => {
 
     const {id} = useParams();
     const [user, setUser] = useState({
-        specialCourseIndividualCategory: "",
         specialCourseIndividualFirstPara: "",
         specailCourseIndividualSecondPara: "",
 
     })
     const {
-        specialCourseIndividualCategory,
         specialCourseIndividualFirstPara,
-        specailCourseIndividualSecondPara,
-        specailCourseIndividualSecondCategory
+        specailCourseIndividualSecondPara
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -43,19 +40,6 @@ const EditCourseSpecailCourse = () => {
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className="mb-3">
                             <label htmlFor="Name" className="form-label">
-                                special Course Individual Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 3rd box 1st category"
-                                name="specialCourseIndividualCategory"
-                                value={specialCourseIndividualCategory}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
                                 special Course Individual First Paragraph
                             </label>
                             <input
@@ -77,19 +61,6 @@ const EditCourseSpecailCourse = () => {
                                 placeholder="Enter data to 3rd box 3rd Paragraph"
                                 name="specailCourseIndividualSecondPara"
                                 value={specailCourseIndividualSecondPara}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                special Course Individual Second Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 3rd box 3rd second category"
-                                name="specailCourseIndividualSecondCategory"
-                                value={specailCourseIndividualSecondCategory}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

@@ -6,16 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const AddCourseSpecailCourse = () => {
     let navigate = useNavigate();
     const [user, setUser] = useState({
-        specialCourseIndividualCategory: "",
         specialCourseIndividualFirstPara: "",
         specailCourseIndividualSecondPara: "",
-
     })
     const {
-        specialCourseIndividualCategory,
         specialCourseIndividualFirstPara,
-        specailCourseIndividualSecondPara,
-        specailCourseIndividualSecondCategory
+        specailCourseIndividualSecondPara
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -32,19 +28,7 @@ const AddCourseSpecailCourse = () => {
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
                     <h2 className="text-center m-4">Register Special Course</h2>
                     <form onSubmit={(e) => onSubmit(e)}>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                special Course Individual Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 3rd box 1st category"
-                                name="specialCourseIndividualCategory"
-                                value={specialCourseIndividualCategory}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
+
                         <div className="mb-3">
                             <label htmlFor="Name" className="form-label">
                                 special Course Individual First Paragraph
@@ -68,19 +52,6 @@ const AddCourseSpecailCourse = () => {
                                 placeholder="Enter data to 3rd box 3rd Paragraph"
                                 name="specailCourseIndividualSecondPara"
                                 value={specailCourseIndividualSecondPara}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                special Course Individual Second Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 3rd box 3rd second category"
-                                name="specailCourseIndividualSecondCategory"
-                                value={specailCourseIndividualSecondCategory}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

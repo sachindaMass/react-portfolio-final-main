@@ -1,6 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { lightTheme } from './Themes';
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
 import LogoComponent from '../subComponents/LogoComponent';
 import SocialIcons from '../subComponents/SocialIcons';
@@ -85,16 +87,6 @@ const Main1 = styled.div`
   }
 `;
 
-const LeftColumn = styled.div`
-  flex: 1;
-  /* Add any additional styles for the left column */
-`;
-
-const RightColumn = styled.div`
-  flex: 1;
-  /* Add any additional styles for the right column */
-`;
-
 const FooterContainer = styled.div`
   background-color: lightblue;
   padding: 10px;
@@ -129,10 +121,166 @@ const container = {
 };
 
 const BlogPage = () => {
+  const { id } = useParams();
   const ref = useRef(null);
   const hiddenRef = useRef(null);
 
+  const [users, setUsers] = useState([]);
+  const [proof, setProof] = useState([]);
+  const [proofCategory, setProofCategory] = useState([]);
+  const [english, setEnglish] = useState([]);
+  const [englishCategory, setEnglishCategory] = useState([]);
+  const [specialCourse, setSpecialCourse] = useState([]);
+  const [specialCourseCategory, setSpecialCourseCategory] = useState([]);
+  const [standardCourse, setstandardCourse] = useState([]);
+  const [standardCourseCategory, setstandardCourseCategory] = useState([]);
+  const [academicCourse, setAcademicCourse] = useState([]);
+  const [academicCourseCategory, setAcademicCourseCategory] = useState([]);
+  const [businessCourse, setBusinessCourse] = useState([]);
+  const [businessCourseCategory, setBusinessCourseCategory] = useState([]);
+  const [miniEnglishCourse, setminiEnglishCourse] = useState([]);
+  const [miniEnglishCourseCategory, setminiEnglishCourseCategory] = useState([]);
+
   useEffect(() => {
+    loadUsers();
+
+    loadProofReading();
+    loadEnglish();
+    loadSpecialCourse();
+    loadStandardCourse();
+    loadAcademicCourse();
+    loadBusinessCourse();
+    loadMiniEnglishCourse();
+
+    loadProofReadingCategory();
+    loadEnglishCategory();
+    loadSpecialCourseCategory();
+    loadStandardCourseCategory();
+    loadAcademicCourseCategory();
+    loadBusinessCourseCategory();
+    loadMiniEnglishCateory();
+
+    axios.get(`/courses/{id}`)
+        .then(response => {
+          setUsers(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/englishLesson/{id}`)
+        .then(response => {
+          setEnglish(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/englishLesson/category/{id}`)
+        .then(response => {
+          setEnglishCategory(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/specialCourseIndvidual/{id}`)
+        .then(response => {
+          setSpecialCourse(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/specialCourseIndvidual/category/{id}`)
+        .then(response => {
+          setSpecialCourseCategory(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/standardCourseEnglish/{id}`)
+        .then(response => {
+          setstandardCourse(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/standardCourseEnglish/category/{id}`)
+        .then(response => {
+          setstandardCourseCategory(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/academicEnglishSecondLang/{id}`)
+        .then(response => {
+          setAcademicCourse(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/academicEnglishSecondLang/category/{id}`)
+        .then(response => {
+          setAcademicCourseCategory(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/businessEnglishSecondLang/{id}`)
+        .then(response => {
+          setBusinessCourse(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/businessEnglishSecondLang/category/{id}`)
+        .then(response => {
+          setBusinessCourseCategory(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/miniEnglish/{id}`)
+        .then(response => {
+          setminiEnglishCourse(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/miniEnglish/category/{id}`)
+        .then(response => {
+          setminiEnglishCourseCategory(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/proofReading/{id}`)
+        .then(response => {
+          setProof(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+    axios.get(`/proofReading/category/{id}`)
+        .then(response => {
+          setProofCategory(response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching data', error);
+        });
+
+
     const handleScroll = () => {
       let scrollPosition = window.pageYOffset;
       let windowSize = window.innerHeight;
@@ -141,12 +289,18 @@ const BlogPage = () => {
       let diff = Math.max(bodyHeight - (scrollPosition + windowSize));
       let diffP = (diff * 100) / (bodyHeight - windowSize);
 
-      ref.current.style.transform = `translateY(${-diffP}%)`;
+      if (ref.current) {
+        ref.current.style.transform = `translateY(${-diffP}%)`;
+      }
 
       if (window.pageYOffset > 5) {
-        hiddenRef.current.style.display = 'none';
+        if (hiddenRef.current) {
+          hiddenRef.current.style.display = 'none';
+        }
       } else {
-        hiddenRef.current.style.display = 'block';
+        if (hiddenRef.current) {
+          hiddenRef.current.style.display = 'block';
+        }
       }
     };
 
@@ -154,6 +308,84 @@ const BlogPage = () => {
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+
+  // -----------------------------Course-------------------------------
+  const loadUsers = async () => {
+    const result = await axios.get("http://localhost:8080/courses")
+    setUsers(result.data)
+  }
+
+  const loadProofReadingCategory = async () => {
+    const result = await axios.get("http://localhost:8080/proofReading/category")
+    setProofCategory(result.data)
+  }
+
+  const loadEnglishCategory = async () => {
+    const result = await axios.get("http://localhost:8080/englishLesson/category")
+    setEnglishCategory(result.data)
+  }
+
+  const loadSpecialCourseCategory = async () => {
+    const result = await axios.get("http://localhost:8080/specialCourseIndvidual/category")
+    setSpecialCourseCategory(result.data)
+  }
+
+  const loadStandardCourseCategory = async () => {
+    const result = await axios.get("http://localhost:8080/standardCourseEnglish/category")
+    setstandardCourseCategory(result.data)
+  }
+
+  const loadAcademicCourseCategory = async () => {
+    const result = await axios.get("http://localhost:8080/academicEnglishSecondLang/category")
+    setAcademicCourseCategory(result.data)
+  }
+
+  const loadBusinessCourseCategory = async () => {
+    const result = await axios.get("http://localhost:8080/businessEnglishSecondLang/category")
+    setBusinessCourseCategory(result.data)
+  }
+
+  const loadMiniEnglishCateory = async () => {
+    const result = await axios.get("http://localhost:8080/miniEnglish/category")
+    setminiEnglishCourseCategory(result.data)
+  }
+
+  const loadProofReading = async () => {
+    const result = await axios.get("http://localhost:8080/proofReading")
+    setProof(result.data)
+  }
+
+  const loadEnglish = async () => {
+    const result = await axios.get("http://localhost:8080/englishLesson")
+    setEnglish(result.data)
+  }
+
+  const loadSpecialCourse = async () => {
+    const result = await axios.get("http://localhost:8080/specialCourseIndvidual")
+    setSpecialCourse(result.data)
+  }
+
+  const loadAcademicCourse = async () => {
+    const result = await axios.get("http://localhost:8080/academicEnglishSecondLang")
+    setAcademicCourse(result.data)
+  }
+
+  const loadStandardCourse = async () => {
+    const result = await axios.get("http://localhost:8080/standardCourseEnglish")
+    setstandardCourse(result.data)
+  }
+
+  const loadBusinessCourse = async () => {
+    const result = await axios.get("http://localhost:8080/businessEnglishSecondLang")
+    setBusinessCourse(result.data)
+  }
+
+  const loadMiniEnglishCourse = async () => {
+    const result = await axios.get("http://localhost:8080/miniEnglish")
+    setminiEnglishCourse(result.data)
+  }
 
   const numbers = 20; // Replace with your desired number of links
 
@@ -171,6 +403,7 @@ const BlogPage = () => {
         <Container>
           <AnchorComponent number={numbers} />
         </Container>
+        {/*------------------------------1st Box---------------------------*/}
         <Box>
           <LogoComponent theme="light" />
           <SocialIcons theme="light" />
@@ -185,15 +418,19 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              Following are the other courses we advertised this year:
+              {users.map((item, index) => (
+                  item.otherCourses
+              ))}
               <br></br>
               <br></br>
-              We are now starting the following courses, and please send us your
-              expression of interest. We will get back to you with more details:
+              {users.map((item, index) => (
+                  item.otherCoursesSecondPara
+              ))}
               <br></br>
             </motion.p>
           </Main>
         </Box>
+        {/*------------------------------2nd Box---------------------------*/}
         <Box>
           <LogoComponent theme="light" />
           <SocialIcons theme="light" />
@@ -208,40 +445,74 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <u>
-                English lessons for students aged 16+ are available for{' '}
-                <span
-                  style={{ textDecoration: 'underline double', color: 'blue' }}
-                >
+
+                <b>
+                  <center>{users.map((item, index) => (
+                      item.englishLessons
+                  ))}</center>
+                </b>
+              <br/>
+                {/*English lessons for students aged 16+ are available for{' '}*/}
+                {english.map((item, index) => (
+                    item.englishLessonFirstPara
+                ))}
+                {/*{' '}*/}
+                <ul>
+                    <li>
+                        <span
+                            style={{ textDecoration: 'underline double', color: 'blue' }}
+                        >
                   General English
+                            {/*{englishCategory.map((item, index) => (*/}
+                            {/*    item.englishCategory*/}
+                            {/*))}*/}
                 </span>
-                ,{' '}
-                <span
-                  style={{
-                    textDecoration: 'underline double',
-                    color: '#db35c2',
-                  }}
-                >
+                    </li>
+                    <li>
+                        <span
+                            style={{
+                                textDecoration: 'underline double',
+                                color: '#db35c2',
+                            }}
+                        >
                   Academic English
+                            {/*{englishCategory.map((item, index) => (*/}
+                            {/*    item.englishCategory*/}
+                            {/*))}*/}
                 </span>
-                , and{' '}
-                <span
-                  style={{
-                    textDecoration: 'underline double',
-                    color: '##7e2de0',
-                  }}
-                >
+                    </li>
+                    <li>
+                        <span
+                            style={{
+                                textDecoration: 'underline double',
+                                color: '##7e2de0',
+                            }}
+                        >
                   Business English
+                            {/*{englishCategory.map((item, index) => (*/}
+                            {/*    item.englishCategory*/}
+                            {/*))}*/}
                 </span>
-              </u>
+                    </li>
+                </ul>
+
+                {/*,{' '}*/}
+
+                {/*, and{' '}*/}
+
+
               <br></br>
-              <br></br>
-              There are lessons available for all levels: beginner through to
-              advanced.
+              {/*<br></br>*/}
+              {/*There are lessons available for all levels: beginner through to*/}
+              {/*advanced.*/}
+                {english.map((item, index) => (
+                    item.englishSecondPara
+                ))}
               <br></br>
             </motion.p>
           </Main>
         </Box>
+        {/*-----------------------------3rd Box---------------------------*/}
         <Box>
           <Main1>
             <motion.p
@@ -254,46 +525,80 @@ const BlogPage = () => {
               }}
             >
               <b>
-                <center> Special Courses for Individual Students:</center>
+                <center> {users.map((item, index) => (
+                    item.specialCourses
+                ))}</center>
               </b>
               <br></br>
               <br></br>
               <ul>
-                <li>General, Academic or Business English.</li>
                 <li>
-                  Preparation for <strong>TOEIC, TOEFL, IELTS</strong> and{' '}
-                  <strong> CAE</strong>
+                    {/*General, Academic or Business English.*/}
+                    {specialCourseCategory.map((item, index) => (
+                        item.specialIndividualCategoryOne
+                    ))}
+                </li>
+                <li>
+                  {/*Preparation for*/}
+                    {/*<strong>TOEIC, TOEFL, IELTS</strong> */}
+                    {/*and*/}
+                    {' '}
+                  {/*<strong> CAE</strong>*/}
+                    <strong>{specialCourseCategory.map((item, index) => (
+                        item.specialIndividualCategoryTwo
+                    ))}</strong>
                 </li>
               </ul>
               <br></br>
-              Courses for individual students are offered at all levels:
-              beginner – advanced.
+              {/*Courses for individual students are offered at all levels:*/}
+              {/*beginner – advanced.*/}
+                {specialCourse.map((item, index) => (
+                    item.specialCourseIndividualFirstPara
+                ))}
               <br></br>
-              They are designed to meet the student’s specific English language
-              needs.
+              {/*They are designed to meet the student’s specific English language*/}
+              {/*needs.*/}
+                {specialCourse.map((item, index) => (
+                    item.specailCourseIndividualSecondPara
+                ))}
               <br></br>
               <br></br>
               <ul>
                 <li>
-                  A free 1-hr assessment is provided before the course begins to
-                  determine these needs.
+                  {/*A free 1-hr assessment is provided before the course begins to*/}
+                  {/*determine these needs.*/}
+                    {specialCourseCategory.map((item, index) => (
+                        item.specialIndividualCategoryThree
+                    ))}
                 </li>
                 <br></br>
                 <li>
-                  A minimum of four 1.5 hour lessons is necessary to provide the
-                  opportunity for noticeable achievement.
+                  {/*A minimum of four 1.5 hour lessons is necessary to provide the*/}
+                  {/*opportunity for noticeable achievement.*/}
+                    {specialCourseCategory.map((item, index) => (
+                        item.specialIndividualCategoryFour
+                    ))}
                 </li>
                 <br></br>
                 <li>
-                  The student can determine how often lessons are taken, but a
-                  minimum of one lesson per week is necessary for success.
+                  {/*The student can determine how often lessons are taken, but a*/}
+                  {/*minimum of one lesson per week is necessary for success.*/}
+                    {specialCourseCategory.map((item, index) => (
+                        item.specialIndividualCategoryFive
+                    ))}
                 </li>
                 <br></br>
-                <li> The student can choose when to begin the course.</li>
+                <li>
+                    {/*The student can choose when to begin the course.*/}
+                    {specialCourseCategory.map((item, index) => (
+                        item.specialIndividualCategorySix
+                    ))}
+                </li>
               </ul>
             </motion.p>
           </Main1>
         </Box>
+        {/*-----------------------------4th Box---------------------------*/}
         <Box>
           <Main1>
             <motion.p
@@ -305,57 +610,108 @@ const BlogPage = () => {
                 damping: 20,
               }}
             >
-              <LeftColumn>
+                <br/>
                 <b>
-                  <center> Standard Courses for General English</center>
+                  <center> {users.map((item, index) => (
+                      item.strandardCoursesForEnglish
+                  ))}</center>
                 </b>
                 <br></br>
-                The maximum number of students in a class is 4.
+                {/*The maximum number of students in a class is 4.*/}
+                {standardCourse.map((item, index) => (
+                    item.standardCourseEnglishFirstPara
+                ))}
                 <br></br>
                 <br></br>
-                All courses comprise listening, speaking, reading and writing
-                skills, as well as grammar and punctuation, vocabulary and
-                spelling.
+                {/*All courses comprise listening, speaking, reading and writing*/}
+                {/*skills, as well as grammar and punctuation, vocabulary and*/}
+                {/*spelling.*/}
+                {standardCourse.map((item, index) => (
+                    item.standardCourseEnglushSecondPara
+                ))}
                 <br></br>
                 <br></br>
-                The standard courses each have 4 lessons of 1.5 hours. The
-                lessons are held once a week.
+                {/*The standard courses each have 4 lessons of 1.5 hours. The*/}
+                {/*lessons are held once a week.*/}
+                {standardCourse.map((item, index) => (
+                    item.standardCourseEnglishThirdPara
+                ))}
                 <br></br>
                 <br></br>
-                Prior to acceptance into a course the student will have a free
-                1–hour assessment with the teacher to determine the most useful
-                course for the student.
+                {/*Prior to acceptance into a course the student will have a free*/}
+                {/*1–hour assessment with the teacher to determine the most useful*/}
+                {/*course for the student.*/}
+                {standardCourse.map((item, index) => (
+                    item.standardCourseEnglishFourthPara
+                ))}
                 <br></br>
                 <br></br>
-              </LeftColumn>
-              <RightColumn>
+
                 <strong>
                   <ul>
-                    <li>General English Elementary Level 1</li>
+                    <li>
+                        General English Elementary Level 1.
+                        {/*{standardCourseCategory.map((item, index) => (*/}
+                        {/*    item.standardCategory*/}
+                        {/*))}*/}
+                    </li>
                     <br></br>
-                    <li>General English Elementary Level 2</li>
+                    <li>
+                        General English Elementary Level 2.
+                        {/*{standardCourseCategory.map((item, index) => (*/}
+                        {/*    item.standardCategory*/}
+                        {/*))}*/}
+                    </li>
                     <br></br>
-                    <li>General English Elementary Level 3</li>
+                    <li>
+                        General English Elementary Level 3.
+                        {/*{standardCourseCategory.map((item, index) => (*/}
+                        {/*    item.standardCategory*/}
+                        {/*))}*/}
+                    </li>
                     <br></br>
-                    <li>General English Intermediate Level 1</li>
+                    <li>
+                        General English Intermediate Level 1.
+                        {/*{standardCourseCategory.map((item, index) => (*/}
+                        {/*    item.standardCategory*/}
+                        {/*))}*/}
+                    </li>
                     <br></br>
-                    <li>General English Intermediate Level 2</li>
+                    <li>
+                        General English Intermediate Level 2.
+                        {/*{standardCourseCategory.map((item, index) => (*/}
+                        {/*    item.standardCategory*/}
+                        {/*))}*/}
+                    </li>
                     <br></br>
-                    <li>General English Intermediate Level 3</li>
+                    <li>
+                        General English Intermediate Level 3.
+                        {/*{standardCourseCategory.map((item, index) => (*/}
+                        {/*    item.standardCategory*/}
+                        {/*))}*/}
+                    </li>
                     <br></br>
-                    <li>Preparation the General IELTS Examination</li>
+                    <li>
+                        Preparation the General IELTS Examination.
+                        {/*{standardCourseCategory.map((item, index) => (*/}
+                        {/*    item.standardCategory*/}
+                        {/*))}*/}
+                    </li>
                     <br></br>
                     <li>
                       Preparation for the Cambridge Certificate of Advanced
-                      English (CAE) Exam
+                      English (CAE) Exam.
+                      {/*  {standardCourseCategory.map((item, index) => (*/}
+                      {/*      item.standardCategory*/}
+                      {/*  ))}*/}
                     </li>
                     <br></br>
                   </ul>
                 </strong>
-              </RightColumn>
             </motion.p>
           </Main1>
         </Box>
+        {/*-----------------------------5th Box---------------------------*/}
         <Box>
           <Main>
             <motion.p
@@ -369,32 +725,61 @@ const BlogPage = () => {
             >
               <b>
                 <center>
-                  Academic English for second language learners (ESL)
+                  {users.map((item, index) => (
+                      item.academicEnglishCourses
+                  ))}
                 </center>
               </b>
               <br></br>
               Exam preparation classes for students wanting to enrol for
               universities, polytechnics or other advanced studies.
+              {/*  {academicCourse.map((item, index) => (*/}
+              {/*      item.academicEnglishSecondLangFirstPara*/}
+              {/*  ))}*/}
               <br></br>
               <br></br>
               Each course has four 1.5 hour lessons held once weekly
+              {/*  {academicCourse.map((item, index) => (*/}
+              {/*      item.academicEnglishSecondLangSecondPara*/}
+              {/*  ))}*/}
               <br></br>
               <br></br>
               <strong>
                 <ul>
-                  <li>Academic IELTS Writing</li>
+                  <li>
+                      Academic IELTS Writing
+                      {/*{academicCourseCategory.map((item, index) => (*/}
+                      {/*    item.academicCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
-                  <li>Academic IELTS Reading</li>
+                  <li>
+                      Academic IELTS Reading
+                      {/*{academicCourseCategory.map((item, index) => (*/}
+                      {/*    item.academicCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
-                  <li>Academic IELTS listening</li>
+                  <li>
+                      Academic IELTS listening
+                      {/*{academicCourseCategory.map((item, index) => (*/}
+                      {/*    item.academicCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
-                  <li>Academic IELTS speaking</li>
+                  <li>
+                      Academic IELTS speaking
+                      {/*{academicCourseCategory.map((item, index) => (*/}
+                      {/*    item.academicCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
                 </ul>
               </strong>
             </motion.p>
           </Main>
         </Box>
+        {/*-----------------------------6th Box---------------------------*/}
         <Box>
           <Main>
             <motion.p
@@ -408,32 +793,61 @@ const BlogPage = () => {
             >
               <b>
                 <center>
-                  Business English for second language learners (ESL)
+                  {users.map((item, index) => (
+                      item.bussinesEnglishCourses
+                  ))}
                 </center>
               </b>
               <br></br>
               <br></br>
-              Exam preparation for the TOEIC test.
+              {/*Exam preparation for the TOEIC test.*/}
+                {businessCourse.map((item, index) => (
+                    item.businessEnglishSecondLangFirstPara
+                ))}
               <br></br>
               <br></br>
-              Each course has four 1.5 hour lessons held once weekly.
+              {/*Each course has four 1.5 hour lessons held once weekly.*/}
+                {businessCourse.map((item, index) => (
+                    item.businessEnglishSecondLangSecondPara
+                ))}
               <br></br>
               <br></br>
               <strong>
                 <ul>
-                  <li>TOEIC business English writing</li>
+                  <li>
+                      TOEIC business English writing
+                      {/*{businessCourseCategory.map((item, index) => (*/}
+                      {/*    item.businessCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
-                  <li>TOEIC business English reading</li>
+                  <li>
+                      TOEIC business English reading
+                      {/*{businessCourseCategory.map((item, index) => (*/}
+                      {/*    item.businessCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
-                  <li>TOEIC business English listening</li>
+                  <li>
+                      TOEIC business English listening
+                      {/*{businessCourseCategory.map((item, index) => (*/}
+                      {/*    item.businessCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
-                  <li>TOEIC business English speaking</li>
+                  <li>
+                      TOEIC business English speaking
+                      {/*{businessCourseCategory.map((item, index) => (*/}
+                      {/*    item.businessCategory*/}
+                      {/*))}*/}
+                  </li>
                   <br></br>
                 </ul>
               </strong>
             </motion.p>
           </Main>
         </Box>
+        {/*-----------------------------7th Box---------------------------*/}
         <Box>
           <Main>
             <motion.p
@@ -446,36 +860,87 @@ const BlogPage = () => {
               }}
             >
               <b>
-                <center>Mini English Courses</center>
+                <center>{users.map((item, index) => (
+                    item.miniEnglishCourses
+                ))}</center>
               </b>
               <br></br>
               <br></br>
-              Each course has four 1-hour lessons, at least one lesson a week.
+              {/*Each course has four 1-hour lessons, at least one lesson a week.*/}
+                {miniEnglishCourse.map((item, index) => (
+                    item.miniEnglishFirstPara
+                ))}
               <br></br>
               <br></br>
               <ul>
-                <li>1. Improve your English listening skills.</li>
+                <li>
+                    1. Improve your English listening skills.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>2. Improve your English Pronunciation.</li>
+                <li>
+                    2. Improve your English Pronunciation.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>3. Write an academic report.</li>
+                <li>
+                    3. Write an academic report.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>4. Give an academic presentation.</li>
+                <li>
+                    4. Give an academic presentation.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>5. Write your CV.</li>
+                <li>
+                    5. Write your CV.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>6. Practise for a job interview.</li>
+                <li>
+                    6. Practise for a job interview.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>7. Give a business presentation.</li>
+                <li>
+                    7. Give a business presentation.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>8. Write business letters and emails.</li>
+                <li>
+                    8. Write business letters and emails.
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>9. Write a business report</li>
+                <li>
+                    9. Write a business report
+                    {/*{miniEnglishCourseCategory.map((item, index) => (*/}
+                    {/*    item.miniEnglishCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
               </ul>
             </motion.p>
           </Main>
         </Box>
+        {/*-----------------------------8th Box---------------------------*/}
         <Box>
           <Main>
             <motion.p
@@ -489,34 +954,63 @@ const BlogPage = () => {
             >
               <b>
                 <center>
-                  Proofreading and Editing assistance for your writing
+                  {users.map((item, index) => (
+                      item.proofReadingAndEditing
+                  ))}
                 </center>
               </b>
               <br></br>
               <br></br>
-              Services are available for:
+              {/*Services are available for:*/}
+                {proof.map((item, index) => (
+                    item.proofReadingFirstPara
+                ))}
               <br></br>
               <br></br>
               <ul>
                 <li>
                   1. Personal writings such as memoirs or creative writing.
+                  {/*  {proofCategory.map((item, index) => (*/}
+                  {/*      item.proofReadingCategory*/}
+                  {/*  ))}*/}
                 </li>
                 <br></br>
-                <li>2. Business letters and reports.</li>
+                <li>
+                    2. Business letters and reports.
+                    {/*{proofCategory.map((item, index) => (*/}
+                    {/*    item.proofReadingCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>3. Academic dissertations and theses.</li>
+                <li>
+                    3. Academic dissertations and theses.
+                    {/*{proofCategory.map((item, index) => (*/}
+                    {/*    item.proofReadingCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
-                <li>4. Papers for academic publications.</li>
+                <li>
+                    4. Papers for academic publications.
+                    {/*{proofCategory.map((item, index) => (*/}
+                    {/*    item.proofReadingCategory*/}
+                    {/*))}*/}
+                </li>
                 <br></br>
               </ul>
               <br></br>
-              Note: All the teachers are well qualified and experienced Kiwi
-              teachers who have been teaching all the above subjects for many
-              years.
+              {/*Note: All the teachers are well qualified and experienced Kiwi*/}
+              {/*teachers who have been teaching all the above subjects for many*/}
+              {/*years.*/}
+                {proof.map((item, index) => (
+                    item.proofReadingSecondPara
+                ))}
               <br></br>
               <br></br>
-              All the classes are conducted online. So we can work with you to
-              find a suitable time based on your convenience.
+              {/*All the classes are conducted online. So we can work with you to*/}
+              {/*find a suitable time based on your convenience.*/}
+                {proof.map((item, index) => (
+                    item.proofReadingThridPara
+                ))}
             </motion.p>
           </Main>
         </Box>

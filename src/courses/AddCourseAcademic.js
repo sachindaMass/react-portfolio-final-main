@@ -8,12 +8,11 @@ const AddCourseAcademic = () => {
     const [user, setUser] = useState({
         academicEnglishSecondLangFirstPara: "",
         academicEnglishSecondLangSecondPara: "",
-        academicEnglishSecondLangFirstCategory: "",
     })
     const {
         academicEnglishSecondLangFirstPara,
-        academicEnglishSecondLangSecondPara,
-        academicEnglishSecondLangFirstCategory
+        academicEnglishSecondLangSecondPara
+
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -53,19 +52,6 @@ const AddCourseAcademic = () => {
                                 placeholder="Enter data to 5th box 2nd para"
                                 name="academicEnglishSecondLangSecondPara"
                                 value={academicEnglishSecondLangSecondPara}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                academic English Second Lang First Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 5th box 2nd para"
-                                name="academicEnglishSecondLangFirstCategory"
-                                value={academicEnglishSecondLangFirstCategory}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>

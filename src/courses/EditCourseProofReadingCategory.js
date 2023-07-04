@@ -3,17 +3,15 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const EditBusinessEnglish = () => {
+const EditCourseProofReadingCategory = () => {
     let navigate = useNavigate();
 
     const {id} = useParams();
     const [user, setUser] = useState({
-        businessEnglishSecondLangFirstPara: "",
-        businessEnglishSecondLangSecondPara: "",
+        proofReadingCategory: "",
     })
     const {
-        businessEnglishSecondLangFirstPara,
-        businessEnglishSecondLangSecondPara
+        proofReadingCategory
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -23,43 +21,30 @@ const EditBusinessEnglish = () => {
     }, []);
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:8080/businessEnglishSecondLang/${id}`, user);
+        await axios.put(`http://localhost:8080/proofReading/category/${id}`, user);
         window.location.reload();
         navigate("/");
     };
     const loadUser = async () => {
-        const result = await axios.get(`http://localhost:8080/businessEnglishSecondLang/${id}`);
+        const result = await axios.get(`http://localhost:8080/proofReading/category/${id}`);
         setUser(result.data);
     }
     return (
         <div className="container">
             <div className="row">
                 <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                    <h2 className="text-center m-4">Edit Business English Course</h2>
+                    <h2 className="text-center m-4">Edit ProofReading Course Category</h2>
                     <form onSubmit={(e) => onSubmit(e)}>
                         <div className="mb-3">
                             <label htmlFor="Name" className="form-label">
-                                businessEnglishSecondLangFirstPara
+                                proof Reading Category
                             </label>
                             <input
                                 type={"text"}
                                 className="form-control"
-                                placeholder="Enter data to 6th box 1st para"
-                                name="businessEnglishSecondLangFirstPara"
-                                value={businessEnglishSecondLangFirstPara}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                business English Second Lang Second Para
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 6th box 1st para"
-                                name="businessEnglishSecondLangSecondPara"
-                                value={businessEnglishSecondLangSecondPara}
+                                placeholder="Enter data to 5th box 1st para"
+                                name="proofReadingCategory"
+                                value={proofReadingCategory}
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>
@@ -77,4 +62,4 @@ const EditBusinessEnglish = () => {
     );
 };
 
-export default EditBusinessEnglish;
+export default EditCourseProofReadingCategory;

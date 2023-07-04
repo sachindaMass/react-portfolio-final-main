@@ -66,12 +66,29 @@ import EditStaffScience from "./StaffMembers/EditStaffScience";
 import EditStaffEnglish from "./StaffMembers/EditStaffEnglish";
 import EditStaffAccountAndCommerce from "./StaffMembers/EditStaffAccountAndCommerce";
 
+import AddCourseEnglishCategory from "./courses/AddCourseEnglishCategory";
+import AddCourseSpecialCourseCategory from "./courses/AddCourseSpecialCourseCategory";
+import AddCourseStandardCategory from "./courses/AddCourseStandardCategory";
+import AddCourseAcademicCategoryy from "./courses/AddCourseAcademicCategoryy";
+import AddBusinessEnglishCategory from "./courses/AddBusinessEnglishCategory";
+import AddCourseMiniEnglishCategory from "./courses/AddCourseMiniEnglishCategory";
+import AddCourseProofReadingCategory from "./courses/AddCourseProofReadingCategory";
+
 import ViewManagement from "./StaffMembers/ViewManagement";
+
+import EditCourseEnglishCategory from "./courses/EditCourseEnglishCategory";
+import EditCourseSpecialCourseCategory from "./courses/EditCourseSpecialCourseCategory";
+import EditCourseStandardCategory from "./courses/EditCourseStandardCategory";
+import EditCourseAcademicCategoryy from "./courses/EditCourseAcademicCategoryy";
+import EditBusinessEnglishCategory from "./courses/EditBusinessEnglishCategory";
+import EditCourseMiniEnglishCategory from "./courses/EditCourseMiniEnglishCategory";
+import EditCourseProofReadingCategory from "./courses/EditCourseProofReadingCategory";
+import LoginPage from "./LoginPage";
 function App() {
     const location = useLocation();
     return (
         <>
-            <AdminNavbar/>
+            {/*<AdminNavbar/>*/}
             {/*<GlobalStyle/>*/}
 
             <ThemeProvider theme={lightTheme}>
@@ -86,6 +103,7 @@ function App() {
                         {/* Changed component to element */}
 
                         <Route path="/" element={<Main/>}/>
+                        <Route path="/login-page" element={<LoginPage/>}/>
 
                         <Route path="/about" element={<AboutPage/>}/>
 
@@ -101,13 +119,52 @@ function App() {
                         <Route path="/payment-details" element={<PaymentDetails/>}/>
 
                         <Route path="/add-course" element={<AddCourses/>}/>
+                        <Route path="/edit-courses/:id" element={<EditCourses/>}/>
+
                         <Route path="/add-course-english" element={<AddCourseEnglish/>}/>
+                        <Route path="/edit-courses-english/:id" element={<EditCourseEnglish/>}/>
+
                         <Route path="/add-course-special-course-english" element={<AddCourseSpecailCourse/>}/>
+                        <Route path="/edit-special-course/:id" element={<EditCourseSpecailCourse/>}/>
+
                         <Route path="/add-course-standard" element={<AddCourseStandard/>}/>
+                        <Route path="/edit-standard-course/:id" element={<EditCourseStandard/>}/>
+
                         <Route path="/add-course-academic" element={<AddCourseAcademic/>}/>
+                        <Route path="/edit-academic-course/:id" element={<EditCourseAcademic/>}/>
+
                         <Route path="/add-course-business" element={<AddBusinessEnglish/>}/>
+                        <Route path="/edit-business-course/:id" element={<EditBusinessEnglish/>}/>
+
                         <Route path="/add-course-mini-English" element={<AddCourseMiniEnglish/>}/>
+                        <Route path="/edit-mini-english-course/:id" element={<EditCourseMiniEnglish/>}/>
+
                         <Route path="/add-course-proofReading-course-english" element={<AddCourseProofReading/>}/>
+                        <Route path="/edit-proofReading-course/:id" element={<EditCourseProofReading/>}/>
+
+                        {/*-------------------------------------Categories-----------------------------------*/}
+
+                        <Route path="/add-course-english-category" element={<AddCourseEnglishCategory/>}/>
+                        <Route path="/edit-course-english-category/:id" element={<EditCourseEnglishCategory/>}/>
+
+                        <Route path="/add-course-special-category" element={<AddCourseSpecialCourseCategory/>}/>
+                        <Route path="/edit-course-special-category/:id" element={<EditCourseSpecialCourseCategory/>}/>
+
+                        <Route path="/add-course-standard-category" element={<AddCourseStandardCategory/>}/>
+                        <Route path="/edit-course-standard-category/:id" element={<EditCourseStandardCategory/>}/>
+
+                        <Route path="/add-course-academic-category" element={<AddCourseAcademicCategoryy/>}/>
+                        <Route path="/edit-course-academic-category/:id" element={<EditCourseAcademicCategoryy/>}/>
+
+                        <Route path="/add-course-business-category" element={<AddBusinessEnglishCategory/>}/>
+                        <Route path="/edit-course-business-category/:id" element={<EditBusinessEnglishCategory/>}/>
+
+                        <Route path="/add-course-mini-english-category" element={<AddCourseMiniEnglishCategory/>}/>
+                        <Route path="/edit-course-mini-english-category/:id" element={<EditCourseMiniEnglishCategory/>}/>
+
+                        <Route path="/add-course-proofReading-category" element={<AddCourseProofReadingCategory/>}/>
+                        <Route path="/edit-course-proofReading-category/:id" element={<EditCourseProofReadingCategory/>}/>
+
 
                         <Route path="/add-staff-management" element={<AddStaffManagment/>}/>
                         <Route path="/add-staff-members" element={<AddStaffStaffMembers/>}/>
@@ -136,14 +193,6 @@ function App() {
                         <Route path="/edit-staff-english/:id" element={<EditStaffEnglish/>}/>
                         <Route path="/edit-staff-account-and-commerce/:id" element={<EditStaffAccountAndCommerce/>}/>
 
-                        <Route path="/edit-courses/:id" element={<EditCourses/>}/>
-                        <Route path="/edit-courses-english/:id" element={<EditCourseEnglish/>}/>
-                        <Route path="/edit-special-course/:id" element={<EditCourseSpecailCourse/>}/>
-                        <Route path="/edit-standard-course/:id" element={<EditCourseStandard/>}/>
-                        <Route path="/edit-academic-course/:id" element={<EditCourseAcademic/>}/>
-                        <Route path="/edit-business-course/:id" element={<EditBusinessEnglish/>}/>
-                        <Route path="/edit-mini-english-course/:id" element={<EditCourseMiniEnglish/>}/>
-                        <Route path="/edit-proofReading-course/:id" element={<EditCourseProofReading/>}/>
 
                         <Route path="/edit-fees/:id" element={<EditFees/>}/>
                         <Route path="/edit-friday/:id" element={<EditFriday/>}/>

@@ -10,14 +10,13 @@ const AddCourseStandard = () => {
         standardCourseEnglishFirstPara: "",
         standardCourseEnglushSecondPara: "",
         standardCourseEnglishThirdPara: "",
-        standardCourseEnglishForFirstCategory:"",
+        standardCourseEnglishFourthPara: "",
     })
     const {
         standardCourseEnglishFirstPara,
         standardCourseEnglushSecondPara,
         standardCourseEnglishThirdPara,
         standardCourseEnglishFourthPara,
-        standardCourseEnglishForFirstCategory
     } = user
     const onInputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
@@ -87,19 +86,7 @@ const AddCourseStandard = () => {
                                 onChange={(e) => onInputChange(e)}
                             />
                         </div>
-                        <div className="mb-3">
-                            <label htmlFor="Name" className="form-label">
-                                standard Course English For First Category
-                            </label>
-                            <input
-                                type={"text"}
-                                className="form-control"
-                                placeholder="Enter data to 4th box 2nd category"
-                                name="standardCourseEnglishForFirstCategory"
-                                value={standardCourseEnglishForFirstCategory}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                        </div>
+
                         <button type="submit" className="btn btn-outline-primary">
                             Submit
                         </button>
