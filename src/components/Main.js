@@ -201,7 +201,7 @@ const Main = () => {
                 </Contact>
                 <Button
                     as={NavLink}
-                    to="/login-page"
+                    to="/courses"
                     position="top: 25%; left: 30%; transform: translate(-50%, -50%);"
                 >
                     <motion.h2
@@ -221,7 +221,7 @@ const Main = () => {
                 </Button>
                 <Button
                     as={NavLink}
-                    to="/courses"
+                    to="/login-page"
                     position="top: 5%; left: 10%; transform: translate(-50%, -50%);"
                 >
                     <motion.h2
