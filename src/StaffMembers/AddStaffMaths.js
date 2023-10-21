@@ -20,7 +20,7 @@ const AddStaffMaths = () => {
     };
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/mathsAndPhysic", user);
+        await axios.post("http://16.170.227.60:8080/mathsAndPhysic", user);
         window.location.reload();
         navigate("/");
     };

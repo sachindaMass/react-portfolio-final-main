@@ -153,7 +153,7 @@ const Managment = () => {
     })
     const loadManagement = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/management");
+            const response = await axios.get("http://16.170.227.60:8080/management");
             setstaffManagement(response.data);
         } catch (error) {
             console.error(error);
@@ -161,35 +161,35 @@ const Managment = () => {
     };
     const loadStaffMemebers = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/staffMembers");
+            const response = await axios.get("http://16.170.227.60:8080/staffMembers");
             setstaffMembers(response.data);
         } catch (error) {
             console.error(error);
         }
     };
     const loadStaffMaths = async () => {
-        const result = await axios.get("http://localhost:8080/mathsAndPhysic")
+        const result = await axios.get("http://16.170.227.60:8080/mathsAndPhysic")
         setstaffMaths(result.data)
     }
     const loadStaffBiology = async () => {
-        const result = await axios.get("http://localhost:8080/biology")
+        const result = await axios.get("http://16.170.227.60:8080/biology")
         setstaffBiology(result.data)
     }
     const loadStaffScience = async () => {
-        const result = await axios.get("http://localhost:8080/science")
+        const result = await axios.get("http://16.170.227.60:8080/science")
         setstaffScience(result.data)
     }
     const loadStaffEnglish = async () => {
-        const result = await axios.get("http://localhost:8080/english")
+        const result = await axios.get("http://16.170.227.60:8080/english")
         setstaffEnglish(result.data)
     }
     const loadStaffAccount = async () => {
-        const result = await axios.get("http://localhost:8080/accountingAndCommerce")
+        const result = await axios.get("http://16.170.227.60:8080/accountingAndCommerce")
         setstaffAccount(result.data)
     }
 
     const loadStaffChemistry = async () => {
-        const result = await axios.get("http://localhost:8080/chemistry")
+        const result = await axios.get("http://16.170.227.60:8080/chemistry")
         setstaffChemistry(result.data)
     }
     const {id} = useParams();

@@ -16,7 +16,7 @@ const AddCourseEnglishCategory = () => {
     };
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/englishLesson/category", user);
+        await axios.post("http://16.170.227.60:8080/englishLesson/category", user);
         window.location.reload();
         navigate("/");
     };

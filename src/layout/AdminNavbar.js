@@ -84,106 +84,107 @@ const AdminNavbar = () => {
 
     // -----------------------------Course-------------------------------
     const loadProofReadingCategory = async () => {
-        const result = await axios.get("http://localhost:8080/proofReading/category")
+        // const result = await axios.get("http://localhost:8080/proofReading/category")
+        const result = await axios.get("http://16.170.227.60:8080/proofReading/category")
         setProofCategory(result.data)
     }
 
     const loadEnglishCategory = async () => {
-        const result = await axios.get("http://localhost:8080/englishLesson/category")
+        const result = await axios.get("http://16.170.227.60:8080/englishLesson/category")
         setEnglishCategory(result.data)
     }
 
     const loadSpecialCourseCategory = async () => {
-        const result = await axios.get("http://localhost:8080/specialCourseIndvidual/category")
+        const result = await axios.get("http://16.170.227.60:8080/specialCourseIndvidual/category")
         setSpecialCourseCategory(result.data)
     }
 
     const loadStandardCourseCategory = async () => {
-        const result = await axios.get("http://localhost:8080/standardCourseEnglish/category")
+        const result = await axios.get("http://16.170.227.60:8080/standardCourseEnglish/category")
         setstandardCourseCategory(result.data)
     }
 
     const loadAcademicCourseCategory = async () => {
-        const result = await axios.get("http://localhost:8080/academicEnglishSecondLang/category")
+        const result = await axios.get("http://16.170.227.60:8080/academicEnglishSecondLang/category")
         setAcademicCourseCategory(result.data)
     }
 
     const loadBusinessCourseCategory = async () => {
-        const result = await axios.get("http://localhost:8080/businessEnglishSecondLang/category")
+        const result = await axios.get("http://16.170.227.60:8080/businessEnglishSecondLang/category")
         setBusinessCourseCategory(result.data)
     }
 
     const loadMiniEnglishCateory = async () => {
-        const result = await axios.get("http://localhost:8080/miniEnglish/category")
+        const result = await axios.get("http://16.170.227.60:8080/miniEnglish/category")
         setminiEnglishCourseCategory(result.data)
     }
 
     const loadProofReading = async () => {
-        const result = await axios.get("http://localhost:8080/proofReading")
+        const result = await axios.get("http://16.170.227.60:8080/proofReading")
         setProof(result.data)
     }
 
     const loadEnglish = async () => {
-        const result = await axios.get("http://localhost:8080/englishLesson")
+        const result = await axios.get("http://16.170.227.60:8080/englishLesson")
         setEnglish(result.data)
     }
 
     const loadSpecialCourse = async () => {
-        const result = await axios.get("http://localhost:8080/specialCourseIndvidual")
+        const result = await axios.get("http://16.170.227.60:8080/specialCourseIndvidual")
         setSpecialCourse(result.data)
     }
 
     const loadAcademicCourse = async () => {
-        const result = await axios.get("http://localhost:8080/academicEnglishSecondLang")
+        const result = await axios.get("http://16.170.227.60:8080/academicEnglishSecondLang")
         setAcademicCourse(result.data)
     }
 
     const loadStandardCourse = async () => {
-        const result = await axios.get("http://localhost:8080/standardCourseEnglish")
+        const result = await axios.get("http://16.170.227.60:8080/standardCourseEnglish")
         setstandardCourse(result.data)
     }
 
     const loadBusinessCourse = async () => {
-        const result = await axios.get("http://localhost:8080/businessEnglishSecondLang")
+        const result = await axios.get("http://16.170.227.60:8080/businessEnglishSecondLang")
         setBusinessCourse(result.data)
     }
 
     const loadMiniEnglishCourse = async () => {
-        const result = await axios.get("http://localhost:8080/miniEnglish")
+        const result = await axios.get("http://16.170.227.60:8080/miniEnglish")
         setminiEnglishCourse(result.data)
     }
 // ------------------------Staff-------------------------------------
     const loadStaffManagement = async () => {
-        const result = await axios.get("http://localhost:8080/management")
+        const result = await axios.get("http://16.170.227.60:8080/management")
         setstaffManagement(result.data)
     }
 
     const loadStaffMemebers = async () => {
-        const result = await axios.get("http://localhost:8080/staffMembers")
+        const result = await axios.get("http://16.170.227.60:8080/staffMembers")
         setstaffMembers(result.data)
     }
     const loadStaffMaths = async () => {
-        const result = await axios.get("http://localhost:8080/mathsAndPhysic")
+        const result = await axios.get("http://16.170.227.60:8080/mathsAndPhysic")
         setstaffMaths(result.data)
     }
     const loadStaffChemistry = async () => {
-        const result = await axios.get("http://localhost:8080/chemistry")
+        const result = await axios.get("http://16.170.227.60:8080/chemistry")
         setstaffChemistry(result.data)
     }
     const loadStaffBiology = async () => {
-        const result = await axios.get("http://localhost:8080/biology")
+        const result = await axios.get("http://16.170.227.60:8080/biology")
         setstaffBiology(result.data)
     }
     const loadStaffScience = async () => {
-        const result = await axios.get("http://localhost:8080/science")
+        const result = await axios.get("http://16.170.227.60:8080/science")
         setstaffScience(result.data)
     }
     const loadStaffEnglish = async () => {
-        const result = await axios.get("http://localhost:8080/english")
+        const result = await axios.get("http://16.170.227.60:8080/english")
         setstaffEnglish(result.data)
     }
     const loadStaffAccount = async () => {
-        const result = await axios.get("http://localhost:8080/accountingAndCommerce")
+        const result = await axios.get("http://16.170.227.60:8080/accountingAndCommerce")
         setstaffAccount(result.data)
     }
 
@@ -191,7 +192,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/englishLesson/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/englishLesson/${id}`)
                 loadEnglish()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -203,7 +204,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/englishLesson/category/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/englishLesson/category/${id}`)
                 loadEnglishCategory()
             } catch (error) {
                 console.error('Error deleting english category:', error);
@@ -216,7 +217,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/specialCourseIndvidual/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/specialCourseIndvidual/${id}`)
                 loadSpecialCourse()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -228,7 +229,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/specialCourseIndvidual/category/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/specialCourseIndvidual/category/${id}`)
                 loadSpecialCourseCategory()
             } catch (error) {
                 console.error('Error deleting special category:', error);
@@ -241,7 +242,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/standardCourseEnglish/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/standardCourseEnglish/${id}`)
                 loadStandardCourse()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -253,7 +254,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/standardCourseEnglish/category/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/standardCourseEnglish/category/${id}`)
                 loadStandardCourseCategory()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -266,7 +267,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/academicEnglishSecondLang/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/academicEnglishSecondLang/${id}`)
                 loadAcademicCourse()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -278,7 +279,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/academicEnglishSecondLang/category/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/academicEnglishSecondLang/category/${id}`)
                 loadAcademicCourseCategory()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -291,7 +292,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/businessEnglishSecondLang/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/businessEnglishSecondLang/${id}`)
                 loadBusinessCourse()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -303,7 +304,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/businessEnglishSecondLang/category/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/businessEnglishSecondLang/category/${id}`)
                 loadBusinessCourseCategory()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -316,7 +317,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/miniEnglish/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/miniEnglish/${id}`)
                 loadMiniEnglishCourse()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -328,7 +329,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/miniEnglish/category/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/miniEnglish/category/${id}`)
                 loadMiniEnglishCateory()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -341,7 +342,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/proofReading/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/proofReading/${id}`)
                 loadProofReading()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -353,7 +354,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/proofReading/category/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/proofReading/category/${id}`)
                 loadProofReading()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -366,7 +367,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/management/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/management/${id}`)
                 loadStaffManagement()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -378,7 +379,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/staffMembers/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/staffMembers/${id}`)
                 loadStaffMemebers()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -390,7 +391,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/mathsAndPhysic/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/mathsAndPhysic/${id}`)
                 loadStaffMemebers()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -402,7 +403,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/chemistry/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/chemistry/${id}`)
                 loadStaffChemistry()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -414,7 +415,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/biology/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/biology/${id}`)
                 loadStaffBiology()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -426,7 +427,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/science/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/science/${id}`)
                 loadStaffScience()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -438,7 +439,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/english/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/english/${id}`)
                 loadStaffEnglish()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -450,7 +451,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/accountingAndCommerce/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/accountingAndCommerce/${id}`)
                 loadStaffAccount()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -460,7 +461,7 @@ const AdminNavbar = () => {
     }
 
     const loadUsers = async () => {
-        const result = await axios.get("http://localhost:8080/courses")
+        const result = await axios.get("http://16.170.227.60:8080/courses")
         setUsers(result.data)
     }
 
@@ -468,7 +469,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/courses/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/courses/${id}`)
                 loadUsers()
             } catch (error) {
                 console.error('Error deleting course:', error);
@@ -478,7 +479,7 @@ const AdminNavbar = () => {
     }
 
     const loadFees = async () => {
-        const result = await axios.get("http://localhost:8080/fees")
+        const result = await axios.get("http://16.170.227.60:8080/fees")
         setFees(result.data)
     }
 
@@ -486,7 +487,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/fees/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/fees/${id}`)
                 loadFees()
             } catch (error) {
                 console.error('Error deleting fees:', error);
@@ -496,7 +497,7 @@ const AdminNavbar = () => {
 
     }
     const loadSaturday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/saturday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/saturday")
         setSaturday(result.data)
     }
 
@@ -504,7 +505,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/time-table/saturday/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/time-table/saturday/${id}`)
                 loadSaturday()
             } catch (error) {
                 console.error('Error deleting saturday:', error);
@@ -514,7 +515,7 @@ const AdminNavbar = () => {
 
     }
     const loadMonday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/monday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/monday")
         setMonday(result.data)
     }
 
@@ -522,7 +523,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/time-table/monday/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/time-table/monday/${id}`)
                 loadMonday()
             } catch (error) {
                 console.error('Error deleting monday:', error);
@@ -532,7 +533,7 @@ const AdminNavbar = () => {
     }
 
     const loadTuesday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/tuesday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/tuesday")
         setTuesday(result.data)
     }
 
@@ -540,7 +541,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/time-table/tuesday/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/time-table/tuesday/${id}`)
                 loadTuesday()
             } catch (error) {
                 console.error('Error deleting tuesday:', error);
@@ -549,7 +550,7 @@ const AdminNavbar = () => {
         }
     }
     const loadWednesday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/wednesday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/wednesday")
         setWednesday(result.data)
     }
 
@@ -557,7 +558,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/time-table/wednesday/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/time-table/wednesday/${id}`)
                 loadWednesday()
             } catch (error) {
                 console.error('Error deleting wednesday:', error);
@@ -566,7 +567,7 @@ const AdminNavbar = () => {
         }
     }
     const loadThursday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/thursday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/thursday")
         setThursday(result.data)
     }
 
@@ -574,7 +575,7 @@ const AdminNavbar = () => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/time-table/thursday/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/time-table/thursday/${id}`)
                 loadThursday()
             } catch (error) {
                 console.error('Error deleting thursday:', error);
@@ -583,14 +584,14 @@ const AdminNavbar = () => {
         }
     }
     const loadFriday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/friday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/friday")
         setFriday(result.data)
     }
     const deleteFriday = async (id) => {
         const confirmed = window.confirm('Are you sure want to delete this field?');
         if (confirmed) {
             try {
-                await axios.delete(`http://localhost:8080/time-table/friday/${id}`)
+                await axios.delete(`http://16.170.227.60:8080/time-table/friday/${id}`)
                 loadFriday()
             } catch (error) {
                 console.error('Error deleting friday:', error);

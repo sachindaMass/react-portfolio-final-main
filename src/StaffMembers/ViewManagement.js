@@ -26,7 +26,7 @@ const ViewManagement = () => {
 
     const loadUser = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/management");
+            const response = await axios.get("http://16.170.227.60:8080/management");
             setstaffManagement(response.data);
         } catch (error) {
             console.error(error);

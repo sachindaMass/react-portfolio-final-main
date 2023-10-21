@@ -16,7 +16,7 @@ const AddCourseAcademicCategoryy = () => {
     };
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/academicEnglishSecondLang/category", user);
+        await axios.post("http://16.170.227.60:8080/academicEnglishSecondLang/category", user);
         window.location.reload();
         navigate("/");
     };

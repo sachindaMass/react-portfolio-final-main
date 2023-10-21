@@ -313,77 +313,77 @@ const BlogPage = () => {
 
   // -----------------------------Course-------------------------------
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/courses")
+    const result = await axios.get("http://16.170.227.60:8080/courses")
     setUsers(result.data)
   }
 
   const loadProofReadingCategory = async () => {
-    const result = await axios.get("http://localhost:8080/proofReading/category")
+    const result = await axios.get("http://16.170.227.60:8080/proofReading/category")
     setProofCategory(result.data)
   }
 
   const loadEnglishCategory = async () => {
-    const result = await axios.get("http://localhost:8080/englishLesson/category")
+    const result = await axios.get("http://16.170.227.60:8080/englishLesson/category")
     setEnglishCategory(result.data)
   }
 
   const loadSpecialCourseCategory = async () => {
-    const result = await axios.get("http://localhost:8080/specialCourseIndvidual/category")
+    const result = await axios.get("http://16.170.227.60:8080/specialCourseIndvidual/category")
     setSpecialCourseCategory(result.data)
   }
 
   const loadStandardCourseCategory = async () => {
-    const result = await axios.get("http://localhost:8080/standardCourseEnglish/category")
+    const result = await axios.get("http://16.170.227.60:8080/standardCourseEnglish/category")
     setstandardCourseCategory(result.data)
   }
 
   const loadAcademicCourseCategory = async () => {
-    const result = await axios.get("http://localhost:8080/academicEnglishSecondLang/category")
+    const result = await axios.get("http://16.170.227.60:8080/academicEnglishSecondLang/category")
     setAcademicCourseCategory(result.data)
   }
 
   const loadBusinessCourseCategory = async () => {
-    const result = await axios.get("http://localhost:8080/businessEnglishSecondLang/category")
+    const result = await axios.get("http://16.170.227.60:8080/businessEnglishSecondLang/category")
     setBusinessCourseCategory(result.data)
   }
 
   const loadMiniEnglishCateory = async () => {
-    const result = await axios.get("http://localhost:8080/miniEnglish/category")
+    const result = await axios.get("http://16.170.227.60:8080/miniEnglish/category")
     setminiEnglishCourseCategory(result.data)
   }
 
   const loadProofReading = async () => {
-    const result = await axios.get("http://localhost:8080/proofReading")
+    const result = await axios.get("http://16.170.227.60:8080/proofReading")
     setProof(result.data)
   }
 
   const loadEnglish = async () => {
-    const result = await axios.get("http://localhost:8080/englishLesson")
+    const result = await axios.get("http://16.170.227.60:8080/englishLesson")
     setEnglish(result.data)
   }
 
   const loadSpecialCourse = async () => {
-    const result = await axios.get("http://localhost:8080/specialCourseIndvidual")
+    const result = await axios.get("http://16.170.227.60:8080/specialCourseIndvidual")
     setSpecialCourse(result.data)
   }
 
   const loadAcademicCourse = async () => {
-    const result = await axios.get("http://localhost:8080/academicEnglishSecondLang")
+    const result = await axios.get("http://16.170.227.60:8080/academicEnglishSecondLang")
     setAcademicCourse(result.data)
   }
 
   const loadStandardCourse = async () => {
-    const result = await axios.get("http://localhost:8080/standardCourseEnglish")
+    const result = await axios.get("http://16.170.227.60:8080/standardCourseEnglish")
     setstandardCourse(result.data)
   }
 
   const loadBusinessCourse = async () => {
-    const result = await axios.get("http://localhost:8080/businessEnglishSecondLang")
+    const result = await axios.get("http://16.170.227.60:8080/businessEnglishSecondLang")
     setBusinessCourse(result.data)
   }
 
   const loadMiniEnglishCourse = async () => {
-    const result = await axios.get("http://localhost:8080/miniEnglish")
+    const result = await axios.get("http://16.170.227.60:8080/miniEnglish")
     setminiEnglishCourse(result.data)
   }
 

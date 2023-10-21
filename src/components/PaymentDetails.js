@@ -105,7 +105,7 @@ const PaymentDetails = () => {
     const [fees, setFees] = useState([])
 
     const loadFees = async () => {
-        const result = await axios.get("http://localhost:8080/fees")
+        const result = await axios.get("http://16.170.227.60:8080/fees")
         setFees(result.data)
     }
     const ref = useRef(null);

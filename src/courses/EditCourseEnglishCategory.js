@@ -21,12 +21,12 @@ const EditCourseEnglishCategory = () => {
     }, []);
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:8080/englishLesson/category/${id}`, user);
+        await axios.put(`http://16.170.227.60:8080/englishLesson/category/${id}`, user);
         window.location.reload();
         navigate("/");
     };
     const loadUser = async () => {
-        const result = await axios.get(`http://localhost:8080/englishLesson/category/${id}`);
+        const result = await axios.get(`http://16.170.227.60:8080/englishLesson/category/${id}`);
         setUser(result.data);
     }
     return (

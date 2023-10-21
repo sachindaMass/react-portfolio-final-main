@@ -25,12 +25,12 @@ const EditCourseProofReading = () => {
     }, []);
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.put(`http://localhost:8080/proofReading/${id}`, user);
+        await axios.put(`http://16.170.227.60:8080/proofReading/${id}`, user);
         window.location.reload();
         navigate("/");
     };
     const loadUser = async () => {
-        const result = await axios.get(`http://localhost:8080/proofReading/${id}`);
+        const result = await axios.get(`http://16.170.227.60:8080/proofReading/${id}`);
         setUser(result.data);
     }
     return (

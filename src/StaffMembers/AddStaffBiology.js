@@ -20,7 +20,7 @@ const AddStaffBiology = () => {
     };
     const onSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/biology", user);
+        await axios.post("http://16.170.227.60:8080/biology", user);
         window.location.reload();
         navigate("/");
     };

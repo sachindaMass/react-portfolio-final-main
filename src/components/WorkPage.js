@@ -128,27 +128,27 @@ const WorkPage = () => {
     const [timeTableFriday, setFriday] = useState([])
 
     const loadSaturday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/saturday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/saturday")
         setSaturday(result.data)
     }
     const loadMonday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/monday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/monday")
         setMonday(result.data)
     }
     const loadTuesday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/tuesday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/tuesday")
         setTuesday(result.data)
     }
     const loadWednesday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/wednesday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/wednesday")
         setWednesday(result.data)
     }
     const loadThursday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/thursday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/thursday")
         setThursday(result.data)
     }
     const loadFriday = async () => {
-        const result = await axios.get("http://localhost:8080/time-table/friday")
+        const result = await axios.get("http://16.170.227.60:8080/time-table/friday")
         setFriday(result.data)
     }
 
